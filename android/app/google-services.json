@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "956888614965",
+    "project_id": "food-cafe-294904",
+    "storage_bucket": "food-cafe-294904.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:956888614965:android:2f78eeb0f68a8a9cb3497c",
+        "android_client_info": {
+          "package_name": "com.jdkgroup.foodcafe"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "956888614965-g9cgguvc7rra0uv11260kpus55eahi39.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.jdkgroup.foodcafe",
+            "certificate_hash": "fb68e64683c331a3aaf7c6b089056bb669f40d7f"
+          }
+        },
+        {
+          "client_id": "956888614965-ndfv538ss7tsblaa7micmbfaintt5s3c.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.jdkgroup.foodcafe",
+            "certificate_hash": "4e21d4108a4f5c8449abfd6f7faee7b7235e5d29"
+          }
+        },
+        {
+          "client_id": "956888614965-h85nh4gl74s7r5vp3f0i9erdhirfrfkc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD4ekfk9Hacc84pTwOg-p1GQYGMerNCIa0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "956888614965-h85nh4gl74s7r5vp3f0i9erdhirfrfkc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
