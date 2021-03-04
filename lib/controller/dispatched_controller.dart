@@ -136,7 +136,7 @@ class DispatchedController extends GetxController {
       refreshStatus.value = RefreshStatus.INITIAL;
     }
     stateStatus.value = StateStatus.SUCCESS;
-    rxDispatchedList.assignAll(
+    rxDispatchedList.addAll(
         PendingResponse(orderMainList: orderMainList).orderMainList);
   }
 

@@ -53,7 +53,7 @@ class PauseMenuController extends GetxController {
     rxPauseShopList.assignAll(pauseMenuResponse.pauseShopList.obs);
     rxPauseMenuList.assignAll(pauseMenuResponse.pauseOrderGroupList.obs);
 
-    rxTempPauseMenuList.assignAll(rxPauseMenuList);
+    rxTempPauseMenuList.addAll(rxPauseMenuList);
   }
 
   void isTurnOfOrdering(PauseOrderMenu pauseOrderMenu) {

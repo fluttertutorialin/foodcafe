@@ -80,7 +80,7 @@ class ReadyController extends GetxController {
     }
 
     stateStatus.value = StateStatus.SUCCESS;
-    rxReadyList.assignAll(
+    rxReadyList.addAll(
         PendingResponse(orderMainList: orderMainList).orderMainList);
   }
 

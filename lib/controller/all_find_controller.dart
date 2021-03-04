@@ -257,7 +257,7 @@ class AllFindController extends GetxController {
 
     stateStatus.value = StateStatus.SUCCESS;
 
-    rxAllFindList.assignAll(
+    rxAllFindList.addAll(
         PendingResponse(orderMainList: orderMainList).orderMainList.obs);
   }
 

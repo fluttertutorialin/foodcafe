@@ -40,6 +40,6 @@ class KDSViewController extends GetxController {
 
     stateStatus.value = StateStatus.SUCCESS;
 
-    rxKDSViewList.assignAll(kdsViewResponse.kdsViewList.obs);
+    rxKDSViewList.addAll(kdsViewResponse.kdsViewList.obs);
   }
 }

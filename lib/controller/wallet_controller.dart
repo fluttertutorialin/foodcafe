@@ -43,6 +43,6 @@ class WalletController extends GetxController {
 
     stateStatus.value = StateStatus.SUCCESS;
 
-    this.rxWalletList.assignAll(walletResponse.walletList);
+    rxWalletList.addAll(walletResponse.walletList);
   }
 }
