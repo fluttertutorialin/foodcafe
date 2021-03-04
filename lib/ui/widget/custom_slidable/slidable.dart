@@ -1,0 +1,820 @@
+import 'dart:async';
+import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+import 'fractionnally_aligned_sized_box.dart';
+import 'slidable_dismissal.dart';
+
+const double _kActionsExtentRatio = 0.25;
+const double _kFastThreshold = 2500.0;
+const double _kDismissThreshold = 0.75;
+const Curve _kResizeTimeCurve = const Interval(0.4, 1.0, curve: Curves.ease);
+const Duration _kMovementDuration = const Duration(milliseconds: 200);
+
+enum SlidableRenderingMode {
+  none,
+  slide,
+  dismiss,
+  resize,
+}
+
+enum SlideActionType {
+  primary,
+  secondary,
+}
+
+typedef void DismissSlideActionCallback(SlideActionType actionType);
+typedef FutureOr<bool> SlideActionWillBeDismissed(SlideActionType actionType);
+typedef Widget SlideActionBuilder(BuildContext context, int index,
+    Animation<double> animation, SlidableRenderingMode step);
+abstract class SlideActionDelegate {
+  const SlideActionDelegate();
+  Widget build(BuildContext context, int index, Animation<double> animation,
+      SlidableRenderingMode step);
+  int get actionCount;
+}
+
+class SlideActionBuilderDelegate extends SlideActionDelegate {
+  const SlideActionBuilderDelegate({
+    @required this.builder,
+    @required this.actionCount,
+  }) : assert(actionCount != null && actionCount >= 0);
+
+  final SlideActionBuilder builder;
+  final int actionCount;
+
+  @override
+  Widget build(BuildContext context, int index, Animation<double> animation,
+          SlidableRenderingMode step) =>
+      builder(context, index, animation, step);
+}
+
+class SlideActionListDelegate extends SlideActionDelegate {
+  const SlideActionListDelegate({
+    @required this.actions,
+  });
+
+  final List<Widget> actions;
+
+  @override
+  int get actionCount => actions?.length ?? 0;
+
+  @override
+  Widget build(BuildContext context, int index, Animation<double> animation,
+          SlidableRenderingMode step) =>
+      actions[index];
+}
+
+class _SlidableScope extends InheritedWidget {
+  _SlidableScope({
+    Key key,
+    @required this.state,
+    @required Widget child,
+  }) : super(key: key, child: child);
+
+  final SlidableState state;
+
+  @override
+  bool updateShouldNotify(_SlidableScope oldWidget) => oldWidget.state != state;
+}
+
+class SlidableData extends InheritedWidget {
+  SlidableData({
+    Key key,
+    @required this.actionType,
+    @required this.renderingMode,
+    @required this.totalActionsExtent,
+    @required this.dismissThreshold,
+    @required this.dismissible,
+    @required this.actionDelegate,
+    @required this.overallMoveAnimation,
+    @required this.actionsMoveAnimation,
+    @required this.dismissAnimation,
+    @required this.slidable,
+    @required this.actionExtentRatio,
+    @required this.direction,
+    @required Widget child,
+  }) : super(key: key, child: child);
+
+  final SlideActionType actionType;
+
+  final SlidableRenderingMode renderingMode;
+
+  final double totalActionsExtent;
+
+  final double dismissThreshold;
+
+  final bool dismissible;
+
+  final SlideActionDelegate actionDelegate;
+
+  final Animation<double> overallMoveAnimation;
+
+  final Animation<double> actionsMoveAnimation;
+
+  final Animation<double> dismissAnimation;
+
+  final Slidable slidable;
+
+  final double actionExtentRatio;
+
+  final Axis direction;
+
+  bool get showActions => actionType == SlideActionType.primary;
+
+  int get actionCount => actionDelegate?.actionCount ?? 0;
+
+  double get actionSign => actionType == SlideActionType.primary ? 1.0 : -1.0;
+
+  bool get directionIsXAxis => direction == Axis.horizontal;
+
+  Alignment get alignment => Alignment(
+        directionIsXAxis ? -actionSign : 0.0,
+        directionIsXAxis ? 0.0 : -actionSign,
+      );
+
+  double get actionPaneWidthFactor =>
+      directionIsXAxis ? totalActionsExtent : null;
+
+  double get actionPaneHeightFactor =>
+      directionIsXAxis ? null : totalActionsExtent;
+
+  static SlidableData of(BuildContext context) {
+    return context.dependOnInheritedWidgetOfExactType<SlidableData>();
+  }
+
+  Offset createOffset(double value) {
+    return directionIsXAxis ? Offset(value, 0.0) : Offset(0.0, value);
+  }
+
+  double getMaxExtent(BoxConstraints constraints) {
+    return directionIsXAxis ? constraints.maxWidth : constraints.maxHeight;
+  }
+
+  Positioned createPositioned({
+    Widget child,
+    double extent,
+    double position,
+  }) {
+    return Positioned(
+      left: directionIsXAxis ? (showActions ? position : null) : 0.0,
+      right: directionIsXAxis ? (showActions ? null : position) : 0.0,
+      top: directionIsXAxis ? 0.0 : (showActions ? position : null),
+      bottom: directionIsXAxis ? 0.0 : (showActions ? null : position),
+      width: directionIsXAxis ? extent : null,
+      height: directionIsXAxis ? null : extent,
+      child: child,
+    );
+  }
+
+  FractionallyAlignedSizedBox createFractionallyAlignedSizedBox({
+    Widget child,
+    double extentFactor,
+    double positionFactor,
+  }) {
+    return FractionallyAlignedSizedBox(
+      leftFactor:
+          directionIsXAxis ? (showActions ? positionFactor : null) : 0.0,
+      rightFactor:
+          directionIsXAxis ? (showActions ? null : positionFactor) : 0.0,
+      topFactor: directionIsXAxis ? 0.0 : (showActions ? positionFactor : null),
+      bottomFactor:
+          directionIsXAxis ? 0.0 : (showActions ? null : positionFactor),
+      widthFactor: directionIsXAxis ? extentFactor : null,
+      heightFactor: directionIsXAxis ? null : extentFactor,
+      child: child,
+    );
+  }
+
+  List<Widget> buildActions(BuildContext context) {
+    return List.generate(
+      actionCount,
+      (int index) => actionDelegate.build(
+        context,
+        index,
+        actionsMoveAnimation,
+        SlidableRenderingMode.slide,
+      ),
+    );
+  }
+
+  @override
+  bool updateShouldNotify(SlidableData oldWidget) =>
+      (oldWidget.actionType != actionType) ||
+      (oldWidget.renderingMode != renderingMode) ||
+      (oldWidget.totalActionsExtent != totalActionsExtent) ||
+      (oldWidget.dismissThreshold != dismissThreshold) ||
+      (oldWidget.dismissible != dismissible) ||
+      (oldWidget.actionDelegate != actionDelegate) ||
+      (oldWidget.overallMoveAnimation != overallMoveAnimation) ||
+      (oldWidget.actionsMoveAnimation != actionsMoveAnimation) ||
+      (oldWidget.dismissAnimation != dismissAnimation) ||
+      (oldWidget.slidable != slidable) ||
+      (oldWidget.actionExtentRatio != actionExtentRatio) ||
+      (oldWidget.direction != direction);
+}
+
+class SlidableController {
+
+  SlidableController({
+    this.onSlideAnimationChanged,
+    this.onSlideIsOpenChanged,
+  });
+
+  final ValueChanged<Animation<double>> onSlideAnimationChanged;
+
+  final ValueChanged<bool> onSlideIsOpenChanged;
+
+  bool _isSlideOpen;
+
+  Animation<double> _slideAnimation;
+
+  SlidableState _activeState;
+
+  /// The state of the active [Slidable].
+  SlidableState get activeState => _activeState;
+
+  /// Changes the state of the active [Slidable].
+  set activeState(SlidableState value) {
+    _activeState?._flingAnimationController();
+
+    _activeState = value;
+    if (onSlideAnimationChanged != null) {
+      _slideAnimation?.removeListener(_handleSlideIsOpenChanged);
+      if (onSlideIsOpenChanged != null) {
+        _slideAnimation = value?.overallMoveAnimation;
+        _slideAnimation?.addListener(_handleSlideIsOpenChanged);
+        if (_slideAnimation == null) {
+          _isSlideOpen = false;
+          onSlideIsOpenChanged(_isSlideOpen);
+        }
+      }
+      onSlideAnimationChanged(value?.overallMoveAnimation);
+    }
+  }
+
+  void _handleSlideIsOpenChanged() {
+    if (onSlideIsOpenChanged != null && _slideAnimation != null) {
+      final bool isOpen = _slideAnimation.value != 0.0;
+      if (isOpen != _isSlideOpen) {
+        _isSlideOpen = isOpen;
+        onSlideIsOpenChanged(_isSlideOpen);
+      }
+    }
+  }
+}
+
+class Slidable extends StatefulWidget {
+  Slidable({
+    Key key,
+    @required Widget child,
+    @required Widget actionPane,
+    List<Widget> actions,
+    List<Widget> secondaryActions,
+    double showAllActionsThreshold = 0.5,
+    double actionExtentRatio = _kActionsExtentRatio,
+    Duration movementDuration = _kMovementDuration,
+    Axis direction = Axis.horizontal,
+    bool closeOnScroll = true,
+    bool enabled = true,
+    SlidableDismissal dismissal,
+    SlidableController controller,
+    double fastThreshold,
+  }) : this.builder(
+          key: key,
+          child: child,
+          actionPane: actionPane,
+          actionDelegate: SlideActionListDelegate(actions: actions),
+          secondaryActionDelegate:
+              SlideActionListDelegate(actions: secondaryActions),
+          showAllActionsThreshold: showAllActionsThreshold,
+          actionExtentRatio: actionExtentRatio,
+          movementDuration: movementDuration,
+          direction: direction,
+          closeOnScroll: closeOnScroll,
+          enabled: enabled,
+          dismissal: dismissal,
+          controller: controller,
+          fastThreshold: fastThreshold,
+        );
+
+  Slidable.builder({
+    Key key,
+    @required this.child,
+    @required this.actionPane,
+    this.actionDelegate,
+    this.secondaryActionDelegate,
+    this.showAllActionsThreshold = 0.5,
+    this.actionExtentRatio = _kActionsExtentRatio,
+    this.movementDuration = _kMovementDuration,
+    this.direction = Axis.horizontal,
+    this.closeOnScroll = true,
+    this.enabled = true,
+    this.dismissal,
+    this.controller,
+    double fastThreshold,
+  })  : assert(actionPane != null),
+        assert(direction != null),
+        assert(
+            showAllActionsThreshold != null &&
+                showAllActionsThreshold >= .0 &&
+                showAllActionsThreshold <= 1.0,
+            'showAllActionsThreshold must be between 0.0 and 1.0'),
+        assert(
+            actionExtentRatio != null &&
+                actionExtentRatio >= .0 &&
+                actionExtentRatio <= 1.0,
+            'actionExtentRatio must be between 0.0 and 1.0'),
+        assert(closeOnScroll != null),
+        assert(enabled != null),
+        assert(dismissal == null || key != null,
+            'a key must be provided if slideToDismissDelegate is set'),
+        assert(fastThreshold == null || fastThreshold >= .0,
+            'fastThreshold must be positive'),
+        fastThreshold = fastThreshold ?? _kFastThreshold,
+        super(key: key);
+
+  /// The widget below this widget in the tree.
+  final Widget child;
+
+  /// The controller that tracks the active [Slidable] and keep only one open.
+  final SlidableController controller;
+
+  /// A delegate that builds slide actions that appears when the child has been dragged
+  /// down or to the right.
+  final SlideActionDelegate actionDelegate;
+
+  /// A delegate that builds slide actions that appears when the child has been dragged
+  /// up or to the left.
+  final SlideActionDelegate secondaryActionDelegate;
+
+  /// The action pane that controls how the slide actions are animated;
+  final Widget actionPane;
+
+  /// A delegate that controls how to dismiss the item.
+  final SlidableDismissal dismissal;
+
+  /// Relative ratio between one slide action and the extent of the child.
+  final double actionExtentRatio;
+
+  /// The direction in which this widget can be slid.
+  final Axis direction;
+
+  /// The offset threshold the item has to be dragged in order to show all actions
+  /// in the slide direction.
+  ///
+  /// Represented as a fraction, e.g. if it is 0.4 (the default), then the item
+  /// has to be dragged at least 40% of the slide actions extent towards one direction to show all actions.
+  final double showAllActionsThreshold;
+
+  /// Defines the duration for card to go to final position or to come back to original position if threshold not reached.
+  final Duration movementDuration;
+
+  /// Specifies to close this slidable after the closest [Scrollable]'s position changed.
+  ///
+  /// Defaults to true.
+  final bool closeOnScroll;
+
+  /// Whether this slidable is interactive.
+  ///
+  /// If false, the child will not slid to show slide actions.
+  ///
+  /// Defaults to true.
+  final bool enabled;
+
+  /// The threshold used to know if a movement was fast and request to open/close the actions.
+  final double fastThreshold;
+
+  /// The state from the closest instance of this class that encloses the given context.
+  static SlidableState of(BuildContext context) {
+    final _SlidableScope scope =
+        context.dependOnInheritedWidgetOfExactType<_SlidableScope>();
+    return scope?.state;
+  }
+
+  @override
+  SlidableState createState() => SlidableState();
+}
+
+/// The state of [Slidable] widget.
+/// You can open or close the [Slidable] by calling the corresponding methods of
+/// this object.
+class SlidableState extends State<Slidable>
+    with TickerProviderStateMixin, AutomaticKeepAliveClientMixin<Slidable> {
+  @override
+  void initState() {
+    super.initState();
+    _overallMoveController =
+        AnimationController(duration: widget.movementDuration, vsync: this)
+          ..addStatusListener(_handleDismissStatusChanged)
+          ..addListener(_handleOverallPositionChanged);
+    _initAnimations();
+  }
+
+  void _initAnimations() {
+    _actionsMoveAnimation
+        ?.removeStatusListener(_handleShowAllActionsStatusChanged);
+    _dismissAnimation?.removeStatusListener(_handleShowAllActionsStatusChanged);
+
+    _actionsMoveAnimation = CurvedAnimation(
+      parent: _overallMoveController,
+      curve: Interval(0.0, _totalActionsExtent),
+    )..addStatusListener(_handleShowAllActionsStatusChanged);
+    _dismissAnimation = CurvedAnimation(
+      parent: _overallMoveController,
+      curve: Interval(_totalActionsExtent, 1.0),
+    )..addStatusListener(_handleShowAllActionsStatusChanged);
+  }
+
+  AnimationController _overallMoveController;
+  Animation<double> get overallMoveAnimation => _overallMoveController.view;
+
+  Animation<double> _actionsMoveAnimation;
+  Animation<double> _dismissAnimation;
+
+  AnimationController _resizeController;
+  Animation<double> _resizeAnimation;
+
+  double _dragExtent = 0.0;
+
+  SlidableRenderingMode _renderingMode = SlidableRenderingMode.none;
+  SlidableRenderingMode get renderingMode => _renderingMode;
+
+  ScrollPosition _scrollPosition;
+  bool _dragUnderway = false;
+  Size _sizePriorToCollapse;
+  bool _dismissing = false;
+
+  SlideActionType _actionType = SlideActionType.primary;
+  SlideActionType get actionType => _actionType;
+  set actionType(SlideActionType value) {
+    _actionType = value;
+    _initAnimations();
+  }
+
+  int get _actionCount => _actionDelegate?.actionCount ?? 0;
+
+  double get _totalActionsExtent => widget.actionExtentRatio * (_actionCount);
+
+  double get _dismissThreshold {
+    if (widget.dismissal == null)
+      return _kDismissThreshold;
+    else
+      return widget.dismissal.dismissThresholds[actionType] ??
+          _kDismissThreshold;
+  }
+
+  bool get _dismissible => widget.dismissal != null && _dismissThreshold < 1.0;
+
+  @override
+  bool get wantKeepAlive =>
+      !widget.closeOnScroll &&
+      (_overallMoveController?.isAnimating == true ||
+          _resizeController?.isAnimating == true);
+
+  /// The current actions that have to be shown.
+  SlideActionDelegate get _actionDelegate =>
+      actionType == SlideActionType.primary
+          ? widget.actionDelegate
+          : widget.secondaryActionDelegate;
+
+  bool get _directionIsXAxis => widget.direction == Axis.horizontal;
+
+  double get _overallDragAxisExtent {
+    final Size size = context.size;
+    return _directionIsXAxis ? size.width : size.height;
+  }
+
+  double get _actionsDragAxisExtent {
+    return _overallDragAxisExtent * _totalActionsExtent;
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    _removeScrollingNotifierListener();
+    _addScrollingNotifierListener();
+  }
+
+  @override
+  void didUpdateWidget(Slidable oldWidget) {
+    super.didUpdateWidget(oldWidget);
+
+    if (widget.closeOnScroll != oldWidget.closeOnScroll) {
+      _removeScrollingNotifierListener();
+      _addScrollingNotifierListener();
+    }
+  }
+
+  void _addScrollingNotifierListener() {
+    if (widget.closeOnScroll) {
+      _scrollPosition = Scrollable.of(context)?.position;
+      if (_scrollPosition != null)
+        _scrollPosition.isScrollingNotifier.addListener(_isScrollingListener);
+    }
+  }
+
+  void _removeScrollingNotifierListener() {
+    if (_scrollPosition != null) {
+      _scrollPosition.isScrollingNotifier.removeListener(_isScrollingListener);
+    }
+  }
+
+  @override
+  void dispose() {
+    _overallMoveController.dispose();
+    _resizeController?.dispose();
+    _removeScrollingNotifierListener();
+    widget.controller?._activeState = null;
+    super.dispose();
+  }
+
+  /// Opens the [Slidable].
+  /// By default it's open the [SlideActionType.primary] action pane, but you
+  /// can modify this by setting [actionType].
+  void open({SlideActionType actionType}) {
+    widget.controller?.activeState = this;
+
+    if (actionType != null && _actionType != actionType) {
+      setState(() {
+        this.actionType = actionType;
+      });
+    }
+    if (_actionCount > 0) {
+      _overallMoveController.animateTo(
+        _totalActionsExtent,
+        curve: Curves.easeIn,
+        duration: widget.movementDuration,
+      );
+    }
+  }
+
+  /// Closes this [Slidable].
+  void close() {
+    if (!_overallMoveController.isDismissed) {
+      if (widget.controller?.activeState == this) {
+        widget.controller?.activeState = null;
+      } else {
+        _flingAnimationController();
+      }
+    }
+  }
+
+  void _flingAnimationController() {
+    if (!_dismissing) {
+      _overallMoveController.fling(velocity: -1.0);
+    }
+  }
+
+  /// Dismisses this [Slidable].
+  /// By default it's dismiss by showing the [SlideActionType.primary] action pane, but you
+  /// can modify this by setting [actionType].
+  void dismiss({SlideActionType actionType}) {
+    if (_dismissible) {
+      _dismissing = true;
+      actionType ??= _actionType;
+      if (actionType != _actionType) {
+        setState(() {
+          this.actionType = actionType;
+        });
+      }
+
+      _overallMoveController.fling(velocity: 1.0);
+    }
+  }
+
+  void _isScrollingListener() {
+    if (!widget.closeOnScroll || _scrollPosition == null) return;
+
+    // When a scroll starts close this.
+    if (_scrollPosition.isScrollingNotifier.value) {
+      close();
+    }
+  }
+
+  void _handleDragStart(DragStartDetails details) {
+    _dragUnderway = true;
+    widget.controller?.activeState = this;
+    _dragExtent =
+        _actionsMoveAnimation.value * _actionsDragAxisExtent * _dragExtent.sign;
+    if (_overallMoveController.isAnimating) {
+      _overallMoveController.stop();
+    }
+  }
+
+  void _handleDragUpdate(DragUpdateDetails details) {
+    if (widget.controller != null && widget.controller.activeState != this) {
+      return;
+    }
+
+    final double delta = details.primaryDelta;
+    _dragExtent += delta;
+    setState(() {
+      actionType = _dragExtent.sign >= 0
+          ? SlideActionType.primary
+          : SlideActionType.secondary;
+      if (_actionCount > 0) {
+        if (_dismissible && !widget.dismissal.dragDismissible) {
+          // If the widget is not dismissible by dragging, clamp drag result
+          // so the widget doesn't slide past [_totalActionsExtent].
+          _overallMoveController.value =
+              (_dragExtent.abs() / _overallDragAxisExtent)
+                  .clamp(0.0, _totalActionsExtent);
+        } else {
+          _overallMoveController.value =
+              _dragExtent.abs() / _overallDragAxisExtent;
+        }
+      }
+    });
+  }
+
+  void _handleDragEnd(DragEndDetails details) {
+    if (widget.controller != null && widget.controller.activeState != this) {
+      return;
+    }
+
+    _dragUnderway = false;
+    final double velocity = details.primaryVelocity;
+    final bool shouldOpen = velocity.sign == _dragExtent.sign;
+    final bool fast = velocity.abs() > widget.fastThreshold;
+
+    if (_dismissible && overallMoveAnimation.value > _totalActionsExtent) {
+      // We are in a dismiss state.
+      if (overallMoveAnimation.value >= _dismissThreshold) {
+        dismiss();
+      } else {
+        open();
+      }
+    } else if (_actionsMoveAnimation.value >= widget.showAllActionsThreshold ||
+        (shouldOpen && fast)) {
+      open();
+    } else {
+      close();
+    }
+  }
+
+  void _handleShowAllActionsStatusChanged(AnimationStatus status) {
+    // Make sure to rebuild a last time, otherwise the slide action could
+    // be scrambled.
+    if (status == AnimationStatus.completed ||
+        status == AnimationStatus.dismissed) {
+      setState(() {});
+    }
+
+    updateKeepAlive();
+  }
+
+  void _handleOverallPositionChanged() {
+    final double value = _overallMoveController.value;
+    if (value == _overallMoveController.lowerBound) {
+      _renderingMode = SlidableRenderingMode.none;
+    } else if (value <= _totalActionsExtent) {
+      _renderingMode = SlidableRenderingMode.slide;
+    } else {
+      _renderingMode = SlidableRenderingMode.dismiss;
+    }
+
+    setState(() {});
+  }
+
+  void _handleDismissStatusChanged(AnimationStatus status) async {
+    if (_dismissible) {
+      if (status == AnimationStatus.completed &&
+          _overallMoveController.value == _overallMoveController.upperBound &&
+          !_dragUnderway) {
+        if (widget.dismissal.onWillDismiss == null ||
+            await widget.dismissal.onWillDismiss(actionType)) {
+          _startResizeAnimation();
+        } else {
+          _dismissing = false;
+          if (widget.dismissal?.closeOnCanceled == true) {
+            close();
+          } else {
+            open();
+          }
+        }
+      }
+      updateKeepAlive();
+    }
+  }
+
+  void _handleDismiss() {
+    widget.controller?.activeState = null;
+    final SlidableDismissal dismissal = widget.dismissal;
+    if (dismissal.onDismissed != null) {
+      assert(actionType != null);
+      dismissal.onDismissed(actionType);
+    }
+  }
+
+  void _startResizeAnimation() {
+    assert(_overallMoveController != null);
+    assert(_overallMoveController.isCompleted);
+    assert(_resizeController == null);
+    assert(_sizePriorToCollapse == null);
+    final SlidableDismissal dismissal = widget.dismissal;
+    if (dismissal.resizeDuration == null) {
+      _handleDismiss();
+    } else {
+      _resizeController =
+          AnimationController(duration: dismissal.resizeDuration, vsync: this)
+            ..addListener(_handleResizeProgressChanged)
+            ..addStatusListener((AnimationStatus status) => updateKeepAlive());
+      _resizeController.forward();
+      setState(() {
+        _renderingMode = SlidableRenderingMode.resize;
+        _sizePriorToCollapse = context.size;
+        _resizeAnimation = Tween<double>(begin: 1.0, end: 0.0).animate(
+            CurvedAnimation(
+                parent: _resizeController, curve: _kResizeTimeCurve));
+      });
+    }
+  }
+
+  void _handleResizeProgressChanged() {
+    if (_resizeController.isCompleted) {
+      _handleDismiss();
+    } else {
+      widget.dismissal.onResize?.call();
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    super.build(context); // See AutomaticKeepAliveClientMixin.
+
+    Widget content = widget.child;
+
+    if (!(!widget.enabled ||
+        ((widget.actionDelegate == null ||
+                widget.actionDelegate.actionCount == 0) &&
+            (widget.secondaryActionDelegate == null ||
+                widget.secondaryActionDelegate.actionCount == 0)))) {
+      if (actionType == SlideActionType.primary &&
+              widget.actionDelegate != null &&
+              widget.actionDelegate.actionCount > 0 ||
+          actionType == SlideActionType.secondary &&
+              widget.secondaryActionDelegate != null &&
+              widget.secondaryActionDelegate.actionCount > 0) {
+        if (_dismissible) {
+          content = widget.dismissal;
+
+          if (_resizeAnimation != null) {
+            // we've been dragged aside, and are now resizing.
+            assert(() {
+              if (_resizeAnimation.status != AnimationStatus.forward) {
+                assert(_resizeAnimation.status == AnimationStatus.completed);
+                throw FlutterError(
+                    'A dismissed Slidable widget is still part of the tree.\n'
+                    'Make sure to implement the onDismissed handler and to immediately remove the Slidable\n'
+                    'widget from the application once that handler has fired.');
+              }
+              return true;
+            }());
+
+            content = SizeTransition(
+              sizeFactor: _resizeAnimation,
+              axis: _directionIsXAxis ? Axis.vertical : Axis.horizontal,
+              child: SizedBox(
+                width: _sizePriorToCollapse.width,
+                height: _sizePriorToCollapse.height,
+                child: content,
+              ),
+            );
+          }
+        } else {
+          content = widget.actionPane;
+        }
+      }
+
+      content = GestureDetector(
+        onHorizontalDragStart: _directionIsXAxis ? _handleDragStart : null,
+        onHorizontalDragUpdate: _directionIsXAxis ? _handleDragUpdate : null,
+        onHorizontalDragEnd: _directionIsXAxis ? _handleDragEnd : null,
+        onVerticalDragStart: _directionIsXAxis ? null : _handleDragStart,
+        onVerticalDragUpdate: _directionIsXAxis ? null : _handleDragUpdate,
+        onVerticalDragEnd: _directionIsXAxis ? null : _handleDragEnd,
+        behavior: HitTestBehavior.opaque,
+        child: content,
+      );
+    }
+
+    return _SlidableScope(
+      state: this,
+      child: SlidableData(
+        actionType: actionType,
+        renderingMode: _renderingMode,
+        totalActionsExtent: _totalActionsExtent,
+        dismissThreshold: _dismissThreshold,
+        dismissible: _dismissible,
+        actionDelegate: _actionDelegate,
+        overallMoveAnimation: overallMoveAnimation,
+        actionsMoveAnimation: _actionsMoveAnimation,
+        dismissAnimation: _dismissAnimation,
+        slidable: widget,
+        actionExtentRatio: widget.actionExtentRatio,
+        direction: widget.direction,
+        child: content,
+      ),
+    );
+  }
+}
