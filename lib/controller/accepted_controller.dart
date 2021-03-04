@@ -99,7 +99,7 @@ class AcceptedController extends GetxController {
       refreshStatus.value = RefreshStatus.INITIAL;
     }
     stateStatus.value = StateStatus.SUCCESS;
-    rxAcceptedList.addAll(
+    rxAcceptedList.assignAll(
         PendingResponse(orderMainList: orderMainList).orderMainList);
   }
 

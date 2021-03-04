@@ -35,7 +35,7 @@ class NotificationController extends GetxController with SingleGetTickerProvider
     stateStatus.value = StateStatus.SUCCESS;
 
     rxTotalNotificationCounter.value = notificationResponse.totalNotification;
-    rxNotificationList.addAll(notificationResponse.notificationList);
+    rxNotificationList.assignAll(notificationResponse.notificationList);
   }
 
   @override

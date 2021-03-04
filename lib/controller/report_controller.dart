@@ -50,6 +50,6 @@ class ReportController extends GetxController {
     todayAcceptedOrderTotal.value = reportResponse.todayAcceptedOrderTotal;
     todayReadyOrderTotal.value = reportResponse.todayReadyOrderTotal;
     todayDispatchedOrderTotal.value = reportResponse.todayDispatchedOrderTotal;
-    rxReportPastOrderList.addAll(reportResponse.reportPastOrderList.obs);
+    rxReportPastOrderList.assignAll(reportResponse.reportPastOrderList.obs);
   }
 }

@@ -85,7 +85,7 @@ class PendingController extends GetxController {
     }
     stateStatus.value = StateStatus.SUCCESS;
 
-    rxPendingList.addAll(
+    rxPendingList.assignAll(
         PendingResponse(orderMainList: orderMainList).orderMainList.obs);
   }
 

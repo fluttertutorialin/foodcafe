@@ -70,7 +70,7 @@ class NewOrderController extends GetxController {
                 quantity: 2,
                 price: 2000,
                 orderType: 2)
-          ])
+          ]),
     ];
 
     await Future.delayed(Duration(seconds: 2));
@@ -81,7 +81,7 @@ class NewOrderController extends GetxController {
     stateStatus.value = StateStatus.SUCCESS;
 
     rxNewOrderList
-        .addAll(PendingResponse(orderMainList: orderMainList).orderMainList);
+        .assignAll(PendingResponse(orderMainList: orderMainList).orderMainList);
   }
 
   void removeOrder(
