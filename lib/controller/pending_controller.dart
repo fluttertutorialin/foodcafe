@@ -100,7 +100,7 @@ class PendingController extends GetxController {
             message: message,
             textColor: toastMessageOrderColor,
             backgroundColor: toastBackgroundOrderColor,
-            flushBarPosition: toastOrderPosition);
+            flushBarPosition: toastPositionBottom);
       rxPendingList.removeAt(indexGet);
     }
   }

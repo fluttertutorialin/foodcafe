@@ -8,6 +8,8 @@ import 'package:foodcafe/utils/extensions.dart';
 import 'package:foodcafe/utils/state_status.dart';
 import 'package:get/get.dart';
 
+import 'controller.dart';
+
 class LoginController extends GetxController {
   static LoginController get to => Get.find();
 
@@ -41,9 +43,11 @@ class LoginController extends GetxController {
   }
 
   Future<void> callLogin() async {
-    stateStatus.value = StateStatus.LOADING;
+    NetworkController.to.initConnectivity().then((value) async {
+      if (value > netWorkConnectionError) {
+        stateStatus.value = StateStatus.LOADING;
 
-    /*final _loginParam = LoginParam(_email, _password);
+        /*final _loginParam = LoginParam(_email, _password);
     fireStoreDatabaseRepository.login(
       body: _loginParam.toJson(),
         success: (value) {
@@ -66,22 +70,27 @@ class LoginController extends GetxController {
               flushBarPosition: toastOrderPosition);
         });*/
 
-    _localAuthRepository.writeSession(SECURE_STORAGE_USERNAME, developerName);
-    _localAuthRepository.writeSession(SECURE_STORAGE_EMAIL, developerEmail);
-    _localAuthRepository.writeSession(SECURE_STORAGE_PROFILE_URL, '');
-    _localAuthRepository.writeSession(SECURE_STORAGE_TOKEN, '');
-    _localAuthRepository.writeSession(SECURE_STORAGE_USER_ID, '');
-    _localAuthRepository.writeSession(SECURE_STORAGE_MOBILE, '');
-    _localAuthRepository.writeSession(SECURE_STORAGE_PINCODE, '123456');
-    _localAuthRepository.writeSession(SECURE_STORAGE_ADDRESS, 'Address');
-    _localAuthRepository.writeSession(SECURE_STORAGE_WHERE_LOGIN, WHERE_LOGIN);
-    _localAuthRepository.writeSession(SECURE_STORAGE_ON_BOARDING, ON_BOARDING);
+        _localAuthRepository.writeSession(
+            SECURE_STORAGE_USERNAME, developerName);
+        _localAuthRepository.writeSession(SECURE_STORAGE_EMAIL, developerEmail);
+        _localAuthRepository.writeSession(SECURE_STORAGE_PROFILE_URL, '');
+        _localAuthRepository.writeSession(SECURE_STORAGE_TOKEN, '');
+        _localAuthRepository.writeSession(SECURE_STORAGE_USER_ID, '');
+        _localAuthRepository.writeSession(SECURE_STORAGE_MOBILE, '');
+        _localAuthRepository.writeSession(SECURE_STORAGE_PINCODE, '123456');
+        _localAuthRepository.writeSession(SECURE_STORAGE_ADDRESS, 'Address');
+        _localAuthRepository.writeSession(
+            SECURE_STORAGE_WHERE_LOGIN, WHERE_LOGIN);
+        _localAuthRepository.writeSession(
+            SECURE_STORAGE_ON_BOARDING, ON_BOARDING);
 
-    await Future.delayed(Duration(seconds: 2));
-    stateStatus.value = StateStatus.SUCCESS;
-    _clearTextField();
+        await Future.delayed(Duration(seconds: 2));
+        stateStatus.value = StateStatus.SUCCESS;
+        _clearTextField();
 
-    Get.offNamedUntil(homeRoute, (_) => false);
+        Get.offNamedUntil(homeRoute, (_) => false);
+      }
+    });
   }
 
   Future<void> callGoogleLogin() async {
@@ -89,16 +98,23 @@ class LoginController extends GetxController {
       if (user != null) {
         stateStatus.value = StateStatus.SUCCESS;
 
-        _localAuthRepository.writeSession(SECURE_STORAGE_USERNAME, user.displayName.split(' ')[0]);
+        _localAuthRepository.writeSession(
+            SECURE_STORAGE_USERNAME, user.displayName.split(' ')[0]);
         _localAuthRepository.writeSession(SECURE_STORAGE_EMAIL, user.email);
-        _localAuthRepository.writeSession(SECURE_STORAGE_PROFILE_URL, user.photoURL);
-        _localAuthRepository.writeSession(SECURE_STORAGE_TOKEN, user.refreshToken);
+        _localAuthRepository.writeSession(
+            SECURE_STORAGE_PROFILE_URL, user.photoURL);
+        _localAuthRepository.writeSession(
+            SECURE_STORAGE_TOKEN, user.refreshToken);
         _localAuthRepository.writeSession(SECURE_STORAGE_USER_ID, user.uid);
-        _localAuthRepository.writeSession(SECURE_STORAGE_MOBILE, user.phoneNumber);
+        _localAuthRepository.writeSession(
+            SECURE_STORAGE_MOBILE, user.phoneNumber);
         _localAuthRepository.writeSession(SECURE_STORAGE_PINCODE, '362130');
-        _localAuthRepository.writeSession(SECURE_STORAGE_ADDRESS, 'To. Ravani Ta.Visavadar Dis.Junagadh');
-        _localAuthRepository.writeSession(SECURE_STORAGE_WHERE_LOGIN, WHERE_GOOGLE_LOGIN);
-        _localAuthRepository.writeSession(SECURE_STORAGE_ON_BOARDING, ON_BOARDING);
+        _localAuthRepository.writeSession(
+            SECURE_STORAGE_ADDRESS, 'To. Ravani Ta.Visavadar Dis.Junagadh');
+        _localAuthRepository.writeSession(
+            SECURE_STORAGE_WHERE_LOGIN, WHERE_GOOGLE_LOGIN);
+        _localAuthRepository.writeSession(
+            SECURE_STORAGE_ON_BOARDING, ON_BOARDING);
 
         stateStatus.value = StateStatus.SUCCESS;
         _clearTextField();
@@ -109,15 +125,17 @@ class LoginController extends GetxController {
   }
 
   Future<void> callFacebookLogin() async {
-    _localAuthRepository.writeSession(SECURE_STORAGE_USERNAME, ''.split(' ')[0]);
+    _localAuthRepository.writeSession(
+        SECURE_STORAGE_USERNAME, ''.split(' ')[0]);
     _localAuthRepository.writeSession(SECURE_STORAGE_EMAIL, '');
-    _localAuthRepository.writeSession(SECURE_STORAGE_PROFILE_URL,'');
-    _localAuthRepository.writeSession(SECURE_STORAGE_TOKEN,'');
+    _localAuthRepository.writeSession(SECURE_STORAGE_PROFILE_URL, '');
+    _localAuthRepository.writeSession(SECURE_STORAGE_TOKEN, '');
     _localAuthRepository.writeSession(SECURE_STORAGE_USER_ID, '');
     _localAuthRepository.writeSession(SECURE_STORAGE_MOBILE, '');
     _localAuthRepository.writeSession(SECURE_STORAGE_PINCODE, '');
     _localAuthRepository.writeSession(SECURE_STORAGE_ADDRESS, '');
-    _localAuthRepository.writeSession(SECURE_STORAGE_WHERE_LOGIN, WHERE_GOOGLE_LOGIN);
+    _localAuthRepository.writeSession(
+        SECURE_STORAGE_WHERE_LOGIN, WHERE_GOOGLE_LOGIN);
 
     _localAuthRepository.writeSession(SECURE_STORAGE_ON_BOARDING, ON_BOARDING);
     Get.offNamedUntil(homeRoute, (_) => false);

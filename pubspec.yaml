@@ -39,6 +39,7 @@ dependencies:
   json_annotation:
   rename:
   flutter_screenutil:
+  connectivity:
 
 dev_dependencies:
   flutter_test:

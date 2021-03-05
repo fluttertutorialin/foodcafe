@@ -161,7 +161,7 @@ class AcceptedController extends GetxController {
             message: message,
             textColor: toastMessageOrderColor,
             backgroundColor: toastBackgroundOrderColor,
-            flushBarPosition: toastOrderPosition);
+            flushBarPosition: toastPositionBottom);
       rxAcceptedList.removeAt(indexGet);
     }
   }

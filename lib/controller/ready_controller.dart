@@ -107,7 +107,7 @@ class ReadyController extends GetxController {
             message: message,
             textColor: toastMessageOrderColor,
             backgroundColor: toastBackgroundOrderColor,
-            flushBarPosition: toastOrderPosition);
+            flushBarPosition: toastPositionBottom);
       rxReadyList.removeAt(indexGet);
     }
   }

@@ -180,7 +180,7 @@ class HomeController extends GetxController {
     }
   }
 
-  callLogout()  {
+  callLogout() {
     _localAuthRepository.clearSession();
     fireStoreDatabaseRepository.googleLogout();
 

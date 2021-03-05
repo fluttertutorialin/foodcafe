@@ -95,7 +95,7 @@ class DeliveryTypesController extends GetxController {
           message: selectRestaurantMessage,
           textColor: toastMessageOrderColor,
           backgroundColor: toastBackgroundOrderColor,
-          flushBarPosition: toastOrderPosition);
+          flushBarPosition: toastPositionBottom);
     }
   }
 

@@ -26,3 +26,4 @@ export 'support_controller.dart';
 export 'reviews_controller.dart';
 export 'wallet_controller.dart';
 export 'report_controller.dart';
+export 'network_controller.dart';

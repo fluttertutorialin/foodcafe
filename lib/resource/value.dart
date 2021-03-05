@@ -84,7 +84,7 @@ const String closeButton = 'CLOSE';
 const String sentToBankButton = 'SEND TO BANK';
 const String addMoneyButton = ' ADD MONEY ';
 
-const logoutMessage = 'Are you sure want to exit?';
+//DATA NOT FOUND MESSAGE
 const dataNotMessage = 'Data not available';
 const dataNotPendingMessage = 'No pending list found!';
 const dataNotAcceptedMessage = 'No accepted list found!';
@@ -98,6 +98,14 @@ const dataNotTurnOfOrdering = 'Order not off';
 const dataNotPauseMenu = 'No pause menu list found!';
 const dataNotBirthday = 'No birthday list found!';
 
+//NETWORK ERROR MESSAGE
+const networkErrorMessage = 'Failed to get network connection';
+const networkErrorTitleMessage = 'Network error';
+
+//LOGOUT MESSAGE
+const logoutMessage = 'Are you sure want to exit?';
+
+//ORDER MESSAGE
 const pendingOrderAcceptedMessage = 'Order is accepted';
 const pendingOrderRejectMessage = 'Pending order is reject';
 const acceptedOrderReadyMessage = 'Your order is ready';
@@ -136,6 +144,10 @@ const timeAgoRemove = '10 min ago';
 const quantitySymbol = 'X';
 const rsSymbol = '\u20B9';
 
+const netWorkConnectionWIFI = 1;
+const netWorkConnectionMobile = 2;
+const netWorkConnectionError = 0;
+
 const double searchHeight = 50;
 
 const mobileMaxLength = 10;
@@ -143,7 +155,7 @@ const pinCodeMaxLength = 6;
 const passwordMaxLength = 6;
 const messageMaxLength = 250;
 
- final toastOrderPosition = SnackPosition.BOTTOM;
+ final toastPositionBottom = SnackPosition.BOTTOM;
 
 const pendingIndex = 0;
 const acceptedIndex = 1;
