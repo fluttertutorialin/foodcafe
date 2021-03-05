@@ -10,7 +10,8 @@ class BottomSheetPauseMenu extends StatelessWidget {
   final String menuName;
   final VoidCallback voidCallbackOk;
 
-  BottomSheetPauseMenu({@required this.menuName, @required this.voidCallbackOk});
+  BottomSheetPauseMenu(
+      {@required this.menuName, @required this.voidCallbackOk});
 
   @override
   Widget build(BuildContext context) {
@@ -27,29 +28,30 @@ class BottomSheetPauseMenu extends StatelessWidget {
       PauseMenuOrderOffTimer(),
       SizedBox(height: 30),
       Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-        FlatButton(
-            minWidth: Get.width / 3,
-            padding: const EdgeInsets.only(
-                left: 15.0, right: 15.0, top: 10, bottom: 10),
-            textColor: Colors.black,
-            color: btnCancelColor,
-            onPressed: () => Get.back(),
-            shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
-            child: Text(cancelButton,
-                style: TextStyle(fontFamily: mediumFont, fontSize: 15))),
+        ConstrainedBox(
+            constraints: BoxConstraints.tightFor(width: Get.width / 3),
+            child: TextButton(
+                style: ButtonStyle(
+                    backgroundColor: MaterialStateProperty.all(Colors.white),
+                    padding: MaterialStateProperty.all(EdgeInsets.only(
+                        left: 15.0, right: 15.0, top: 10, bottom: 10))),
+                onPressed: () => Get.back(),
+                child: Text(cancelButton,
+                    style: TextStyle(fontFamily: mediumFont, fontSize: 15)))),
         SizedBox(width: 30),
-        FlatButton(
-            minWidth: Get.width / 3,
-            padding: const EdgeInsets.only(
-                left: 15.0, right: 15.0, top: 10, bottom: 10),
-            textColor: Colors.white,
-            color: btnOkColor,
-            onPressed: () => voidCallbackOk(),
-            shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
-            child: Text(okButton,
-                style: TextStyle(fontFamily: mediumFont, fontSize: 15))),
+        ConstrainedBox(
+            constraints: BoxConstraints.tightFor(width: Get.width / 3),
+            child: TextButton(
+                style: ButtonStyle(
+                    backgroundColor: MaterialStateProperty.all(btnOkColor),
+                    padding: MaterialStateProperty.all(EdgeInsets.only(
+                        left: 15.0, right: 15.0, top: 10, bottom: 10))),
+                onPressed: () => voidCallbackOk(),
+                child: Text(okButton,
+                    style: TextStyle(
+                        fontFamily: mediumFont,
+                        color: Colors.white,
+                        fontSize: 15)))),
         SizedBox(height: 20)
       ])
     ]));

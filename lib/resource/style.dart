@@ -21,8 +21,8 @@ var getNotificationTitleStyle = TextStyle(fontSize: 36.sp, color: Colors.black, 
 var getNotificationDescriptionStyle = TextStyle(fontSize: 30.sp, color: Colors.black, fontFamily: regularFont);
 
 //BUTTON STYLE
-var btnOkStyle = TextStyle(fontSize: 25.sp, color: Colors.black, fontFamily: mediumFont);
-var btnCloseStyle = TextStyle(fontSize: 25.sp, color: Colors.red, fontFamily: mediumFont);
+var btnOkStyle = TextStyle(fontSize: 30.sp, color: Colors.black, fontFamily: mediumFont);
+var btnCloseStyle = TextStyle(fontSize: 30.sp, color: Colors.red, fontFamily: mediumFont);
 var btnFindStyle = TextStyle(fontSize: 25.sp, color: Colors.black, fontFamily: mediumFont);
 var btnOnBoardingStyle = TextStyle(fontSize: 30.sp, color: accentColor, fontFamily: mediumFont);
 

@@ -196,6 +196,7 @@ class HomePage extends StatelessWidget {
             padding: const EdgeInsets.only(right: 0.0, top: 4),
             child: Icon(iconData)),
         //if (count > 0)
+        if(!selectIndex)
         Positioned(
             right: 0,
             top: 0,
