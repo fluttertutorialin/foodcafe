@@ -1,5 +1,5 @@
-import 'package:foodcafe/model/notification_counter.dart';
-import 'package:foodcafe/shared/repository/firestore_database_repository.dart';
+import '../model/notification_counter.dart';
+import '../shared/repository/firestore_database_repository.dart';
 import 'package:get/get.dart';
 
 class NotificationFirebaseController extends GetxController {

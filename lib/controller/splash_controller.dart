@@ -1,8 +1,8 @@
 import 'package:flutter/animation.dart';
 import 'package:flutter/material.dart';
-import 'package:foodcafe/resource/api.dart';
-import 'package:foodcafe/resource/routes.dart';
-import 'package:foodcafe/shared/repository/local_auth_repository.dart';
+import '../resource/api.dart';
+import '../resource/routes.dart';
+import '../shared/repository/local_auth_repository.dart';
 import 'package:get/get.dart';
 import 'package:get/state_manager.dart';
 

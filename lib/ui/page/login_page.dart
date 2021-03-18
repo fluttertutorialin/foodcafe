@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:foodcafe/controller/controller.dart';
-import 'package:foodcafe/resource/colors.dart';
-import 'package:foodcafe/resource/images.dart';
-import 'package:foodcafe/resource/routes.dart';
-import 'package:foodcafe/resource/style.dart';
-import 'package:foodcafe/resource/value.dart';
+import '../../controller/controller.dart';
+import '../../resource/colors.dart';
+import '../../resource/images.dart';
+import '../../resource/routes.dart';
+import '../../resource/style.dart';
+import '../../resource/value.dart';
 import 'package:get/get.dart';
-import 'package:foodcafe/utils/extensions.dart';
+import '../../utils/extensions.dart';
 
 class LoginPage extends StatefulWidget {
   @override

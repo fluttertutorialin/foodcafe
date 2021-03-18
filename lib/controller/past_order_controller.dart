@@ -1,5 +1,5 @@
-import 'package:foodcafe/model/pastorder/past_order_response.dart';
-import 'package:foodcafe/utils/state_status.dart';
+import '../model/pastorder/past_order_response.dart';
+import '../utils/state_status.dart';
 import 'package:get/get.dart';
 
 class PastOrderController extends GetxController {

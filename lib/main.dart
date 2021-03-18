@@ -7,6 +7,7 @@ import 'package:flutter_screenutil/screenutil_init.dart';
 import 'package:foodcafe/dependency_injection.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:path_provider/path_provider.dart';
 import 'app_module.dart';
 import 'resource/colors.dart';
 import 'resource/routes.dart';

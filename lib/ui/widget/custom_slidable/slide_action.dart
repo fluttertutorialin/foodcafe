@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:foodcafe/resource/font.dart';
+import '../../../resource/font.dart';
 import 'slidable.dart';
 
 const bool _kCloseOnTap = true;

@@ -1,9 +1,9 @@
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
-import 'package:foodcafe/resource/colors.dart';
-import 'package:foodcafe/resource/style.dart';
-import 'package:foodcafe/resource/value.dart';
-import 'package:foodcafe/utils/extensions.dart';
+import '../../resource/colors.dart';
+import '../../resource/style.dart';
+import '../../resource/value.dart';
+import '../../utils/extensions.dart';
 
 class PastOrderWidget extends StatelessWidget {
   final String uniqueId,

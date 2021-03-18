@@ -17,7 +17,7 @@ dependencies:
   flutter_dash:
   recase:
   flutter_automation:
-  firebase_auth:
+  firebase_auth: 0.20.1
   firebase_core:
   cloud_firestore:
   google_sign_in:

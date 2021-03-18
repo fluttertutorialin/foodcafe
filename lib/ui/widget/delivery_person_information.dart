@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:foodcafe/model/order/order.dart';
-import 'package:foodcafe/resource/colors.dart';
-import 'package:foodcafe/resource/images.dart';
-import 'package:foodcafe/resource/style.dart';
-import 'package:foodcafe/resource/value.dart';
-import 'package:foodcafe/utils/extensions.dart';
+import '../../model/order/order.dart';
+import '../../resource/colors.dart';
+import '../../resource/images.dart';
+import '../../resource/style.dart';
+import '../../resource/value.dart';
+import '../../utils/extensions.dart';
 
 class DeliveryPersonInformation extends StatelessWidget {
   final DeliveryPersonDetail deliveryPersonDetail;

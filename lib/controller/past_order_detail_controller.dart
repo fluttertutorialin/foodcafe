@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:foodcafe/model/past_order_detail/past_order_detail.dart';
-import 'package:foodcafe/utils/state_status.dart';
+import '../model/past_order_detail/past_order_detail.dart';
+import '../utils/state_status.dart';
 import 'package:get/get.dart';
 
 class PastOrderDetailController extends GetxController {

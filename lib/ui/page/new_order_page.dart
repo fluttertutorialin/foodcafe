@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:foodcafe/controller/controller.dart';
-import 'package:foodcafe/resource/colors.dart';
-import 'package:foodcafe/resource/images.dart';
-import 'package:foodcafe/resource/style.dart';
-import 'package:foodcafe/resource/value.dart';
-import 'package:foodcafe/ui/widget/extra_order_detail.dart';
-import 'package:foodcafe/ui/widget/order_detail.dart';
-import 'package:foodcafe/ui/widget/order_status.dart';
-import 'package:foodcafe/ui/widget/preparation_time.dart';
-import 'package:foodcafe/utils/state_status.dart';
+import '../../controller/controller.dart';
+import '../../resource/colors.dart';
+import '../../resource/images.dart';
+import '../../resource/style.dart';
+import '../../resource/value.dart';
+import '../../ui/widget/extra_order_detail.dart';
+import '../../ui/widget/order_detail.dart';
+import '../../ui/widget/order_status.dart';
+import '../../ui/widget/preparation_time.dart';
+import '../../utils/state_status.dart';
 import 'package:get/get.dart';
-import 'package:foodcafe/utils/extensions.dart';
+import '../../utils/extensions.dart';
 
 class NewOrderPage extends StatelessWidget {
   final _infoKey = <GlobalKey>[];

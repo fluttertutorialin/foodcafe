@@ -1,9 +1,9 @@
 import 'package:connectivity/connectivity.dart';
 import 'package:flutter/services.dart';
-import 'package:foodcafe/resource/colors.dart';
-import 'package:foodcafe/resource/value.dart';
+import '../resource/colors.dart';
+import '../resource/value.dart';
 import 'package:get/get.dart';
-import 'package:foodcafe/utils/extensions.dart';
+import '../utils/extensions.dart';
 
 class NetworkController extends GetxController {
   static NetworkController get to => Get.find();

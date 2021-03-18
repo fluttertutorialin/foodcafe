@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:foodcafe/model/pausemenu/PauseMenuResponse.dart';
-import 'package:foodcafe/utils/state_status.dart';
+import '../model/pausemenu/PauseMenuResponse.dart';
+import '../utils/state_status.dart';
 import 'package:get/get.dart';
 
 class PauseMenuController extends GetxController {

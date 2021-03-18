@@ -1,11 +1,11 @@
-import 'package:foodcafe/model/order/order.dart';
-import 'package:foodcafe/model/order/order_response.dart';
-import 'package:foodcafe/resource/colors.dart';
-import 'package:foodcafe/resource/value.dart';
-import 'package:foodcafe/utils/state_status.dart';
+import '../model/order/order.dart';
+import '../model/order/order_response.dart';
+import '../resource/colors.dart';
+import '../resource/value.dart';
+import '../utils/state_status.dart';
 import 'package:get/get.dart';
 import 'pending_controller.dart';
-import 'package:foodcafe/utils/extensions.dart';
+import '../utils/extensions.dart';
 
 class NewOrderController extends GetxController {
   static NewOrderController get to => Get.find();

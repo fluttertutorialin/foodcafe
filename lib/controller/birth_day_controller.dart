@@ -1,6 +1,6 @@
-import 'package:foodcafe/controller/controller.dart';
-import 'package:foodcafe/model/birth_day/birth_day_response.dart';
-import 'package:foodcafe/utils/state_status.dart';
+import '../controller/controller.dart';
+import '../model/birth_day/birth_day_response.dart';
+import '../utils/state_status.dart';
 import 'package:get/get.dart';
 
 class BirthDayController extends GetxController {

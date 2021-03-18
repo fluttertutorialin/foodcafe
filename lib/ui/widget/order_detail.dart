@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:foodcafe/model/order/order.dart';
-import 'package:foodcafe/resource/api.dart';
-import 'package:foodcafe/resource/font.dart';
-import 'package:foodcafe/resource/images.dart';
-import 'package:foodcafe/resource/style.dart';
-import 'package:foodcafe/resource/value.dart';
+import '../../model/order/order.dart';
+import '../../resource/api.dart';
+import '../../resource/font.dart';
+import '../../resource/images.dart';
+import '../../resource/style.dart';
+import '../../resource/value.dart';
 import 'popup_window.dart';
-import 'package:foodcafe/utils/extensions.dart';
+import '../../utils/extensions.dart';
 
 class OrderDetail extends StatelessWidget {
   final GlobalKey infoKey;

@@ -1,5 +1,5 @@
-import 'package:foodcafe/model/turn_of_ordering/turn_of_ordering_response.dart';
-import 'package:foodcafe/utils/state_status.dart';
+import '../model/turn_of_ordering/turn_of_ordering_response.dart';
+import '../utils/state_status.dart';
 import 'package:get/get.dart';
 
 class TurnOfOrderingController extends GetxController {

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:foodcafe/resource/colors.dart';
-import 'package:foodcafe/resource/font.dart';
-import 'package:foodcafe/resource/images.dart';
-import 'package:foodcafe/resource/value.dart';
+import '../../resource/colors.dart';
+import '../../resource/font.dart';
+import '../../resource/images.dart';
+import '../../resource/value.dart';
 import 'package:get/get.dart';
 
 class TextFieldSearch extends StatelessWidget {

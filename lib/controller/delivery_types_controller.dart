@@ -1,10 +1,10 @@
-import 'package:foodcafe/model/delivey_types/delivery_type_response.dart';
-import 'package:foodcafe/model/delivey_types/free_delivery_person.dart';
-import 'package:foodcafe/resource/colors.dart';
-import 'package:foodcafe/resource/value.dart';
+import '../model/delivey_types/delivery_type_response.dart';
+import '../model/delivey_types/free_delivery_person.dart';
+import '../resource/colors.dart';
+import '../resource/value.dart';
 import 'package:get/get.dart';
 import 'controller.dart';
-import 'package:foodcafe/utils/extensions.dart';
+import '../utils/extensions.dart';
 
 class DeliveryTypesController extends GetxController {
   var rxDeliveryTypes = Rx<DeliveryTypeResponse>();

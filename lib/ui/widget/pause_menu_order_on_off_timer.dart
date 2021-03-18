@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:foodcafe/resource/colors.dart';
-import 'package:foodcafe/resource/images.dart';
-import 'package:foodcafe/resource/style.dart';
+import '../../resource/colors.dart';
+import '../../resource/images.dart';
+import '../../resource/style.dart';
 
 class PauseMenuOrderOffTimer extends StatefulWidget {
   @override

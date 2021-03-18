@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:foodcafe/controller/controller.dart';
-import 'package:foodcafe/resource/colors.dart';
-import 'package:foodcafe/resource/value.dart';
-import 'package:foodcafe/ui/widget/delivery_person_information.dart';
-import 'package:foodcafe/ui/widget/extra_order_detail.dart';
-import 'package:foodcafe/ui/widget/order_address.dart';
-import 'package:foodcafe/ui/widget/order_detail.dart';
-import 'package:foodcafe/ui/widget/order_status.dart';
-import 'package:foodcafe/utils/state_status.dart';
+import '../../controller/controller.dart';
+import '../../resource/colors.dart';
+import '../../resource/value.dart';
+import '../../ui/widget/delivery_person_information.dart';
+import '../../ui/widget/extra_order_detail.dart';
+import '../../ui/widget/order_address.dart';
+import '../../ui/widget/order_detail.dart';
+import '../../ui/widget/order_status.dart';
+import '../../utils/state_status.dart';
 import 'package:get/get.dart';
-import 'package:foodcafe/utils/extensions.dart';
+import '../../utils/extensions.dart';
 
 class AcceptedPage extends StatelessWidget {
   final _infoKey = <GlobalKey>[];

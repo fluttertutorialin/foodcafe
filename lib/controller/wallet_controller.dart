@@ -1,5 +1,5 @@
-import 'package:foodcafe/model/wallet/wallet_response.dart';
-import 'package:foodcafe/utils/state_status.dart';
+import '../model/wallet/wallet_response.dart';
+import '../utils/state_status.dart';
 import 'package:get/get.dart';
 
 class WalletController extends GetxController {

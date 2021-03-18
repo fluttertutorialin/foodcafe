@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:foodcafe/utils/extensions.dart';
-import 'package:foodcafe/utils/state_status.dart';
+import '../utils/extensions.dart';
+import '../utils/state_status.dart';
 import 'package:get/get.dart';
 
 class SupportController extends GetxController {

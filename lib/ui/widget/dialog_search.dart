@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:foodcafe/resource/routes.dart';
-import 'package:foodcafe/resource/style.dart';
-import 'package:foodcafe/resource/value.dart';
+import '../../resource/routes.dart';
+import '../../resource/style.dart';
+import '../../resource/value.dart';
 import 'package:get/get.dart';
 import 'text_field_search.dart';
 

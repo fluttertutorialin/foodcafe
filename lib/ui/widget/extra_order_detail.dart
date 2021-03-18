@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:foodcafe/model/order/order.dart';
-import 'package:foodcafe/resource/style.dart';
-import 'package:foodcafe/resource/value.dart';
+import '../../model/order/order.dart';
+import '../../resource/style.dart';
+import '../../resource/value.dart';
 
 class ExtraOrderDetail extends StatelessWidget {
   final double extraTotalAmount;

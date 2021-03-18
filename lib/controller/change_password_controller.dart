@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:foodcafe/shared/repository/firestore_database_repository.dart';
-import 'package:foodcafe/utils/extensions.dart';
-import 'package:foodcafe/utils/state_status.dart';
+import '../shared/repository/firestore_database_repository.dart';
+import '../utils/extensions.dart';
+import '../utils/state_status.dart';
 import 'package:get/get.dart';
 
 class ChangePasswordController extends GetxController {

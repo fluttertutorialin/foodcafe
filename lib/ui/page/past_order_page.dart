@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:foodcafe/controller/controller.dart';
-import 'package:foodcafe/resource/colors.dart';
-import 'package:foodcafe/resource/routes.dart';
-import 'package:foodcafe/ui/widget/past_order_widget.dart';
-import 'package:foodcafe/utils/state_status.dart';
+import '../../controller/controller.dart';
+import '../../resource/colors.dart';
+import '../../resource/routes.dart';
+import '../../ui/widget/past_order_widget.dart';
+import '../../utils/state_status.dart';
 import 'package:get/get.dart';
-import 'package:foodcafe/utils/extensions.dart';
+import '../../utils/extensions.dart';
 
 class PastOrderPage extends StatelessWidget {
   final _refreshKey = GlobalKey<RefreshIndicatorState>();

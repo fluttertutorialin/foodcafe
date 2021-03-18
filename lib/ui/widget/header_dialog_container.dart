@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:foodcafe/resource/colors.dart';
+import '../../resource/colors.dart';
 
 class HeaderContainer extends StatelessWidget {
   final Widget child;

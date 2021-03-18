@@ -28,7 +28,7 @@ class PauseOrderMenu {
   RxString menuName = RxString(null);
   setMenuName(String value) => menuName.value = value;
 
-  RxInt orderAvailableDateTime = RxInt();
+  RxInt orderAvailableDateTime = RxInt(0);
   setOrderAvailableDateTime(int value) =>
       orderAvailableDateTime.value = value;
 

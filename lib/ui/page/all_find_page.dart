@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:foodcafe/controller/controller.dart';
-import 'package:foodcafe/resource/api.dart';
-import 'package:foodcafe/resource/colors.dart';
-import 'package:foodcafe/resource/routes.dart';
-import 'package:foodcafe/resource/style.dart';
-import 'package:foodcafe/resource/value.dart';
-import 'package:foodcafe/ui/widget/delivery_person_information.dart';
-import 'package:foodcafe/ui/widget/extra_order_detail.dart';
-import 'package:foodcafe/ui/widget/order_address.dart';
-import 'package:foodcafe/ui/widget/order_detail.dart';
-import 'package:foodcafe/ui/widget/order_status.dart';
-import 'package:foodcafe/ui/widget/preparation_time.dart';
-import 'package:foodcafe/ui/widget/text_field_search.dart';
-import 'package:foodcafe/utils/state_status.dart';
+import '../../controller/controller.dart';
+import '../../resource/api.dart';
+import '../../resource/colors.dart';
+import '../../resource/routes.dart';
+import '../../resource/style.dart';
+import '../../resource/value.dart';
+import '../widget/delivery_person_information.dart';
+import '../widget/extra_order_detail.dart';
+import '../widget/order_address.dart';
+import '../widget/order_detail.dart';
+import '../widget/order_status.dart';
+import '../widget/preparation_time.dart';
+import '../widget/text_field_search.dart';
+import '../../utils/state_status.dart';
 import 'package:get/get.dart';
-import 'package:foodcafe/utils/extensions.dart';
+import '../../utils/extensions.dart';
 
 class AllFindPage extends StatelessWidget {
   final _infoKey = <GlobalKey>[];

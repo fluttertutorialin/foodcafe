@@ -1,10 +1,10 @@
-import 'package:foodcafe/model/order/order.dart';
-import 'package:foodcafe/model/order/order_response.dart';
-import 'package:foodcafe/resource/colors.dart';
-import 'package:foodcafe/resource/value.dart';
-import 'package:foodcafe/utils/state_status.dart';
+import '../model/order/order.dart';
+import '../model/order/order_response.dart';
+import '../resource/colors.dart';
+import '../resource/value.dart';
+import '../utils/state_status.dart';
 import 'package:get/get.dart';
-import 'package:foodcafe/utils/extensions.dart';
+import '../utils/extensions.dart';
 
 class AcceptedController extends GetxController {
   static AcceptedController get to => Get.find();
@@ -99,8 +99,8 @@ class AcceptedController extends GetxController {
       refreshStatus.value = RefreshStatus.INITIAL;
     }
     stateStatus.value = StateStatus.SUCCESS;
-    rxAcceptedList.assignAll(
-        PendingResponse(orderMainList: orderMainList).orderMainList);
+    rxAcceptedList
+        .assignAll(PendingResponse(orderMainList: orderMainList).orderMainList);
   }
 
   bool findUniqueId(String value) {
@@ -144,7 +144,8 @@ class AcceptedController extends GetxController {
       rxAcceptedList[indexGet].deliveryPersonDetail.name.value = '';
       rxAcceptedList[indexGet].deliveryPersonDetail.uniqueId.value = '';
       rxAcceptedList[indexGet].deliveryPersonDetail.mobileNo.value = null;
-      rxAcceptedList[indexGet].deliveryPersonDetail.arrivingDateTime.value = null;
+      rxAcceptedList[indexGet].deliveryPersonDetail.arrivingDateTime.value =
+          null;
 
       rxAcceptedList[indexGet].deliveryPersonDetail.isSelect.value = false;
     }
@@ -156,7 +157,7 @@ class AcceptedController extends GetxController {
         rxAcceptedList.indexWhere((element) => element.uniqueId == uniqueId);
     if (indexGet != -1) {
       if (isShowToast)
-      toast(
+        toast(
             title: rxAcceptedList[indexGet].orderPersonDetail.name,
             message: message,
             textColor: toastMessageOrderColor,

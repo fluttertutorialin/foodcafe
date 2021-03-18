@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:foodcafe/model/order/order.dart';
-import 'package:foodcafe/resource/images.dart';
-import 'package:foodcafe/resource/style.dart';
+import '../../model/order/order.dart';
+import '../../resource/images.dart';
+import '../../resource/style.dart';
 
 class OrderAddress extends StatelessWidget {
   final OrderPersonDetail orderPersonDetail;

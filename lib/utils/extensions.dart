@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:foodcafe/resource/colors.dart';
-import 'package:foodcafe/resource/font.dart';
-import 'package:foodcafe/resource/style.dart';
-import 'package:foodcafe/resource/validation.dart';
-import 'package:foodcafe/resource/value.dart';
-import 'package:foodcafe/ui/widget/icon_shadow.dart';
+import '../resource/colors.dart';
+import '../resource/font.dart';
+import '../resource/style.dart';
+import '../resource/validation.dart';
+import '../resource/value.dart';
+import '../ui/widget/icon_shadow.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';

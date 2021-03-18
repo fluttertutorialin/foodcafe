@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:foodcafe/controller/pause_menu_controller.dart';
-import 'package:foodcafe/resource/colors.dart';
-import 'package:foodcafe/resource/style.dart';
-import 'package:foodcafe/resource/value.dart';
-import 'package:foodcafe/ui/widget/bottom_sheet_custom.dart';
-import 'package:foodcafe/ui/widget/bottom_sheet_pause_menu.dart';
-import 'package:foodcafe/ui/widget/custom_switch.dart';
-import 'package:foodcafe/ui/widget/text_field_search.dart';
-import 'package:foodcafe/utils/state_status.dart';
+import '../../controller/pause_menu_controller.dart';
+import '../../resource/colors.dart';
+import '../../resource/style.dart';
+import '../../resource/value.dart';
+import '../../ui/widget/bottom_sheet_custom.dart';
+import '../../ui/widget/bottom_sheet_pause_menu.dart';
+import '../../ui/widget/custom_switch.dart';
+import '../../ui/widget/text_field_search.dart';
+import '../../utils/state_status.dart';
 import 'package:get/get.dart';
-import 'package:foodcafe/utils/extensions.dart';
+import '../../utils/extensions.dart';
 
 class PauseMenuPage extends StatelessWidget {
 

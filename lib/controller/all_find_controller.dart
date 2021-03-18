@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:foodcafe/model/order/order.dart';
-import 'package:foodcafe/model/order/order_response.dart';
-import 'package:foodcafe/resource/value.dart';
-import 'package:foodcafe/utils/state_status.dart';
+import '../model/order/order.dart';
+import '../model/order/order_response.dart';
+import '../resource/value.dart';
+import '../utils/state_status.dart';
 import 'package:get/get.dart';
 import 'controller.dart';
 
@@ -286,12 +286,21 @@ class AllFindController extends GetxController {
 
   void deliveryPersonalDetailUnSelect({String uniqueId}) {
     int indexGet =
+<<<<<<< HEAD
     rxAllFindList.indexWhere((element) => element.uniqueId == uniqueId);
+=======
+        rxAllFindList.indexWhere((element) => element.uniqueId == uniqueId);
+>>>>>>> best code structure flutter getx
     if (indexGet != -1) {
       rxAllFindList[indexGet].deliveryPersonDetail.name.value = '';
       rxAllFindList[indexGet].deliveryPersonDetail.uniqueId.value = '';
       rxAllFindList[indexGet].deliveryPersonDetail.mobileNo.value = null;
+<<<<<<< HEAD
       rxAllFindList[indexGet].deliveryPersonDetail.arrivingDateTime.value = null;
+=======
+      rxAllFindList[indexGet].deliveryPersonDetail.arrivingDateTime.value =
+          null;
+>>>>>>> best code structure flutter getx
 
       rxAllFindList[indexGet].deliveryPersonDetail.isSelect.value = false;
     }
@@ -320,7 +329,11 @@ class AllFindController extends GetxController {
   void removeOrder(String uniqueId, int whereToReachOrder) {
     int currentPageIndex = _homeController.currentPageIndex.value;
 
+<<<<<<< HEAD
     switch (currentPageIndex){
+=======
+    switch (currentPageIndex) {
+>>>>>>> best code structure flutter getx
       case pendingIndex:
         _homeController.pendingController.removeOrder(uniqueId: uniqueId);
         break;

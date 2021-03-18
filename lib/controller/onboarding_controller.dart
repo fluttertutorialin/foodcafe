@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:foodcafe/model/onboarding/onboarding_response.dart';
-import 'package:foodcafe/resource/api.dart';
-import 'package:foodcafe/resource/routes.dart';
-import 'package:foodcafe/shared/repository/local_auth_repository.dart';
+import '../model/onboarding/onboarding_response.dart';
+import '../resource/api.dart';
+import '../resource/routes.dart';
+import '../shared/repository/local_auth_repository.dart';
 import 'package:get/get.dart';
 import 'package:get/utils.dart';
 

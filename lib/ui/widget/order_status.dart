@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:foodcafe/controller/controller.dart';
-import 'package:foodcafe/resource/colors.dart';
-import 'package:foodcafe/resource/style.dart';
-import 'package:foodcafe/resource/value.dart';
+import '../../controller/controller.dart';
+import '../../resource/colors.dart';
+import '../../resource/style.dart';
+import '../../resource/value.dart';
 import 'package:get/get.dart';
 import 'bottom_sheet_custom.dart';
 import 'delivery_types.dart';

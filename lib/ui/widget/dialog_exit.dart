@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:foodcafe/resource/style.dart';
-import 'package:foodcafe/resource/value.dart';
+import '../../resource/style.dart';
+import '../../resource/value.dart';
 
 class DialogExit extends StatelessWidget {
   final VoidCallback callBackCancel, callBackOk;

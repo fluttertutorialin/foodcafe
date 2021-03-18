@@ -1,4 +1,4 @@
-import 'package:foodcafe/resource/api.dart';
+import '../../resource/api.dart';
 import 'package:get_storage/get_storage.dart';
 
 class LocalAuthProvider {

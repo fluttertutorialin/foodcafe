@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:foodcafe/resource/api.dart';
-import 'package:foodcafe/resource/routes.dart';
-import 'package:foodcafe/shared/repository/local_auth_repository.dart';
-import 'package:foodcafe/utils/extensions.dart';
-import 'package:foodcafe/utils/state_status.dart';
+import '../resource/api.dart';
+import '../resource/routes.dart';
+import '../shared/repository/local_auth_repository.dart';
+import '../utils/extensions.dart';
+import '../utils/state_status.dart';
 import 'package:get/get.dart';
 
 class SingUpController extends GetxController {

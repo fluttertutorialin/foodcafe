@@ -1,6 +1,6 @@
-import 'package:foodcafe/model/notification/notification_response.dart';
-import 'package:foodcafe/ui/widget/animation/slide_in_transition.dart';
-import 'package:foodcafe/utils/state_status.dart';
+import '../model/notification/notification_response.dart';
+import '../ui/widget/animation/slide_in_transition.dart';
+import '../utils/state_status.dart';
 import 'package:get/get.dart';
 
 class NotificationController extends GetxController with SingleGetTickerProviderMixin {

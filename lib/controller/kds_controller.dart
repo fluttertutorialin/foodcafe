@@ -1,5 +1,5 @@
-import 'package:foodcafe/model/kdsview/KDSView.dart';
-import 'package:foodcafe/utils/state_status.dart';
+import '../model/kdsview/KDSView.dart';
+import '../utils/state_status.dart';
 import 'package:get/get.dart';
 
 class KDSViewController extends GetxController {

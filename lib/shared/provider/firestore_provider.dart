@@ -1,8 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:foodcafe/model/notification_counter.dart';
-import 'package:foodcafe/resource/api.dart';
+import '../../model/notification_counter.dart';
+import '../../resource/api.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import '../http_hepler.dart';
 

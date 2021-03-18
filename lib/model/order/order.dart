@@ -72,7 +72,7 @@ class PreparationTimeDefault {
   RxInt selectTime = RxInt(0);
   setSelectTime(int value) => selectTime.value = value;
 
-  RxInt isMinHour = RxInt();
+  RxInt isMinHour = RxInt(0);
   setIsMinHour(int value) => isMinHour.value = value;
 }
 
@@ -105,10 +105,10 @@ class DeliveryPersonDetail {
   RxString name = RxString();
   setName(String value) => name.value = value;
 
-  RxInt arrivingDateTime = RxInt();
+  RxInt arrivingDateTime = RxInt(0);
   setArrivingDateTime(int value) => arrivingDateTime.value = value;
 
-  RxInt mobileNo = RxInt();
+  RxInt mobileNo = RxInt(0);
   setMobileNo(int value) => mobileNo.value = value;
 
   RxBool isSelect = RxBool(false);
