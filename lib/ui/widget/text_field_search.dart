@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import '../../resource/colors.dart';
 import '../../resource/font.dart';
 import '../../resource/images.dart';
 import '../../resource/value.dart';
-import 'package:get/get.dart';
 
 class TextFieldSearch extends StatelessWidget {
   final TextEditingController textEditingController;

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import '../../controller/controller.dart';
 import '../../resource/images.dart';
 import '../../resource/style.dart';
@@ -7,7 +8,6 @@ import '../../ui/widget/animation/slide_in_transition.dart';
 import '../../ui/widget/header_dialog_container.dart';
 import '../../ui/widget/rounded_shadow_container.dart';
 import '../../utils/extensions.dart';
-import 'package:get/get.dart';
 
 class NotificationPage extends StatelessWidget {
   @override

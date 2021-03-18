@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'animation/bounce_animation.dart';
 import '../../model/order/order.dart';
 import '../../resource/colors.dart';
 import '../../resource/images.dart';
 import '../../resource/style.dart';
 import '../../resource/value.dart';
-import 'package:get/get.dart';
-import 'animation/bounceeffect.dart';
 
 class PreparationTime extends StatelessWidget {
   final List<PreparationTimeList> preparationTimeList;
@@ -33,7 +33,7 @@ class PreparationTime extends StatelessWidget {
                   children: preparationTimeList
                       .map((item) => Container(
                           padding: EdgeInsets.all(10),
-                          child: Obx(() => BouncingWidget(
+                          child: Obx(() => BouncingAnimation(
                               scaleFactor: 1.5,
                               child: Text('${item.time}',
                                   style: item.isSelect.value

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import '../../controller/controller.dart';
 import '../../resource/api.dart';
 import '../../resource/colors.dart';
@@ -13,7 +14,6 @@ import '../widget/order_status.dart';
 import '../widget/preparation_time.dart';
 import '../widget/text_field_search.dart';
 import '../../utils/state_status.dart';
-import 'package:get/get.dart';
 import '../../utils/extensions.dart';
 
 class AllFindPage extends StatelessWidget {

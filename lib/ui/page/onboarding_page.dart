@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import '../../controller/controller.dart';
 import '../../resource/style.dart';
 import '../../resource/value.dart';
-import 'package:get/get.dart';
+
 
 class OnBoardingPage extends StatelessWidget {
   Widget build(BuildContext context) => Scaffold(

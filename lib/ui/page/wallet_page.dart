@@ -1,13 +1,13 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:get/get.dart';
 import '../../controller/controller.dart';
 import '../../resource/colors.dart';
 import '../../resource/images.dart';
 import '../../resource/style.dart';
 import '../../resource/value.dart';
 import '../../utils/state_status.dart';
-import 'package:get/get.dart';
 import '../../utils/extensions.dart';
 
 class WalletPage extends StatelessWidget {

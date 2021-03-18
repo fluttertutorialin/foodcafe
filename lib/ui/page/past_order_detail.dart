@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import '../../controller/controller.dart';
 import '../../model/past_order_detail/past_order_detail.dart';
 import '../../resource/api.dart';
@@ -6,7 +7,6 @@ import '../../resource/colors.dart';
 import '../../resource/images.dart';
 import '../../resource/style.dart';
 import '../../resource/value.dart';
-import 'package:get/get.dart';
 import '../../utils/extensions.dart';
 
 class PastOrderDetailPage extends StatelessWidget {

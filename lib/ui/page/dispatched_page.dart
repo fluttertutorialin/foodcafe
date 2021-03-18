@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import '../../controller/controller.dart';
 import '../../resource/colors.dart';
 import '../../resource/value.dart';
@@ -8,7 +9,6 @@ import '../../ui/widget/order_address.dart';
 import '../../ui/widget/order_detail.dart';
 import '../../ui/widget/order_status.dart';
 import '../../utils/state_status.dart';
-import 'package:get/get.dart';
 import '../../utils/extensions.dart';
 
 class DispatchedPage extends StatelessWidget {

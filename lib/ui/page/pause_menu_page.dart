@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import '../../controller/pause_menu_controller.dart';
 import '../../resource/colors.dart';
 import '../../resource/style.dart';
@@ -8,7 +9,6 @@ import '../../ui/widget/bottom_sheet_pause_menu.dart';
 import '../../ui/widget/custom_switch.dart';
 import '../../ui/widget/text_field_search.dart';
 import '../../utils/state_status.dart';
-import 'package:get/get.dart';
 import '../../utils/extensions.dart';
 
 class PauseMenuPage extends StatelessWidget {

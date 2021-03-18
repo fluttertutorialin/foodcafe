@@ -1,4 +1,6 @@
 import 'dart:ui';
+import 'package:get/get.dart';
+import 'package:line_icons/line_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import '../../resource/colors.dart';
@@ -6,8 +8,6 @@ import '../../resource/images.dart';
 import '../../resource/routes.dart';
 import '../../resource/style.dart';
 import '../../resource/value.dart';
-import 'package:get/get.dart';
-import 'package:line_icons/line_icons.dart';
 
 class AccountsPage extends StatelessWidget {
   @override

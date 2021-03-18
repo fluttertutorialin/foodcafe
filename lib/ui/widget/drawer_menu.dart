@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:recase/recase.dart';
 import '../../resource/colors.dart';
 import '../../resource/images.dart';
 import '../../resource/routes.dart';
 import '../../resource/style.dart';
 import '../../resource/value.dart';
 import '../../ui/widget/dialog_exit.dart';
-import 'package:get/get.dart';
-import 'package:recase/recase.dart';
 
 class DrawerMenu extends StatelessWidget {
   final String userName, email, profileURL;

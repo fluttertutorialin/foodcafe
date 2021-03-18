@@ -40,6 +40,7 @@ var logoutIcon = LineIcons.lock;
 var birthDayIcon = LineIcons.birthday_cake;
 var birthWishIcon = LineIcons.check;
 
+var phoneSquareIcon = LineIcons.phone_square;
 
 var googleIcon = LineIcons.google;
 var facebookLogin = LineIcons.facebook;

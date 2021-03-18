@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import '../../controller/controller.dart';
 import '../../resource/colors.dart';
 import '../../resource/routes.dart';
 import '../../ui/widget/past_order_widget.dart';
 import '../../utils/state_status.dart';
-import 'package:get/get.dart';
 import '../../utils/extensions.dart';
 
 class PastOrderPage extends StatelessWidget {

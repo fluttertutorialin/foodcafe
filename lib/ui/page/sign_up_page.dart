@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../controller/controller.dart';
 import '../../resource/colors.dart';
 import '../../resource/images.dart';
 import '../../resource/style.dart';
 import '../../resource/value.dart';
-import 'package:get/get.dart';
 import '../../utils/extensions.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class SignUpPage extends StatefulWidget {
   @override

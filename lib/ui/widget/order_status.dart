@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'bottom_sheet_custom.dart';
+import 'delivery_types.dart';
 import '../../controller/controller.dart';
 import '../../resource/colors.dart';
 import '../../resource/style.dart';
 import '../../resource/value.dart';
-import 'package:get/get.dart';
-import 'bottom_sheet_custom.dart';
-import 'delivery_types.dart';
 
 class OrderStatus extends StatelessWidget {
   final String uniqueId;

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
+import 'popup_window.dart';
 import '../../model/order/order.dart';
 import '../../resource/api.dart';
 import '../../resource/font.dart';
 import '../../resource/images.dart';
 import '../../resource/style.dart';
 import '../../resource/value.dart';
-import 'popup_window.dart';
 import '../../utils/extensions.dart';
 
 class OrderDetail extends StatelessWidget {

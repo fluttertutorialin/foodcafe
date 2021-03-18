@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import '../../controller/controller.dart';
 import '../../resource/colors.dart';
 import '../../resource/images.dart';
@@ -9,7 +10,6 @@ import '../../ui/widget/order_detail.dart';
 import '../../ui/widget/order_status.dart';
 import '../../ui/widget/preparation_time.dart';
 import '../../utils/state_status.dart';
-import 'package:get/get.dart';
 import '../../utils/extensions.dart';
 
 class NewOrderPage extends StatelessWidget {

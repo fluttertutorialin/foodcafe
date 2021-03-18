@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:intl/intl.dart';
+import 'package:url_launcher/url_launcher.dart';
+import 'state_status.dart';
 import '../resource/colors.dart';
 import '../resource/font.dart';
 import '../resource/style.dart';
 import '../resource/validation.dart';
 import '../resource/value.dart';
 import '../ui/widget/icon_shadow.dart';
-import 'package:get/get.dart';
-import 'package:image_picker/image_picker.dart';
-import 'package:intl/intl.dart';
-import 'package:url_launcher/url_launcher.dart';
-import 'state_status.dart';
 
 extension DynamicUtil on dynamic {
   void toast(

@@ -1,13 +1,14 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
 import '../../controller/controller.dart';
 import '../../resource/colors.dart';
 import '../../resource/images.dart';
 import '../../resource/style.dart';
 import '../../resource/value.dart';
-import 'package:get/get.dart';
 import '../../utils/extensions.dart';
-import 'package:image_picker/image_picker.dart';
+
 
 class ProfileEditPage extends StatefulWidget {
   @override

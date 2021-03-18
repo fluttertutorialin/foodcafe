@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import '../../controller/controller.dart';
 import '../../controller/notification_firebase_controller.dart';
 import '../../resource/colors.dart';
@@ -9,7 +10,6 @@ import '../../resource/value.dart';
 import '../../ui/widget/bottom_sheet_custom.dart';
 import '../../ui/widget/dialog_search.dart';
 import '../../ui/widget/drawer_menu.dart';
-import 'package:get/get.dart';
 
 class HomePage extends StatelessWidget {
   @override

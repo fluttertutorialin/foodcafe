@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import '../../controller/controller.dart';
 import '../../resource/colors.dart';
 import '../../resource/images.dart';
 import '../../resource/style.dart';
 import '../../resource/value.dart';
-import 'package:get/get.dart';
-import 'package:line_icons/line_icons.dart';
 import '../../utils/extensions.dart';
 
 class SupportPage extends StatelessWidget {
@@ -43,7 +42,7 @@ class SupportPage extends StatelessWidget {
                                   border: Border.all(color: Colors.red[500])),
                               padding: EdgeInsets.all(8),
                               child: Row(children: [
-                                Icon(LineIcons.phone_square,
+                                Icon(phoneSquareIcon,
                                     size: 20, color: Colors.white),
                                 Text('CALL NOW', style: supportCallNowStyle)
                               ]))),
