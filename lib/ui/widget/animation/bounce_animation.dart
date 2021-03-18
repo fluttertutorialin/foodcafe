@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 
-class BouncingWidget extends StatefulWidget {
-  /// Child that will receive the bouncing animation
+class BouncingAnimation extends StatefulWidget {
   final Widget child;
 
-  /// Callback on click event
   final VoidCallback onPressed;
 
   /// Scale factor
@@ -15,8 +13,7 @@ class BouncingWidget extends StatefulWidget {
 
   final Duration duration;
 
-  /// BouncingWidget constructor
-  const BouncingWidget({
+  const BouncingAnimation({
     Key key,
     @required this.child,
     @required this.onPressed,
@@ -25,38 +22,26 @@ class BouncingWidget extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  _BouncingWidgetState createState() => _BouncingWidgetState();
+  createState() => _BouncingAnimationState();
 }
 
-class _BouncingWidgetState extends State<BouncingWidget>
+class _BouncingAnimationState extends State<BouncingAnimation>
     with SingleTickerProviderStateMixin {
-  //// Animation controller
   AnimationController _controller;
 
-  /// View scale used in order to make the bouncing animation
   double _scale;
-
-  /// Key of the given child used to get its size and position whenever we need
   GlobalKey _childKey = GlobalKey();
 
-  /// If the touch position is outside or not of the given child
   bool _isOutside = false;
 
-  /// Simple getter on widget's child
   Widget get child => widget.child;
 
-  /// Simple getter on widget's onPressed callback
   VoidCallback get onPressed => widget.onPressed;
 
-  /// Simple getter on widget's scaleFactor
   double get scaleFactor => widget.scaleFactor;
 
-  /// Simple getter on widget's animation duration
   Duration get duration => widget.duration;
 
-  /// We instantiate the animation controller
-  /// The idea is to call setState() each time the controller's
-  /// value changes
   @override
   void initState() {
     _controller = AnimationController(
@@ -70,16 +55,12 @@ class _BouncingWidgetState extends State<BouncingWidget>
     super.initState();
   }
 
-  /// Dispose the animation controller
   @override
   void dispose() {
     _controller?.dispose();
     super.dispose();
   }
 
-  /// Each time the [_controller]'s value changes, build() will be called
-  /// We just have to calculate the appropriate scale from the controller value
-  /// and pass it to our Transform.scale widget
   @override
   Widget build(BuildContext context) {
     _scale = 1 - (_controller.value * scaleFactor);
@@ -97,19 +78,16 @@ class _BouncingWidgetState extends State<BouncingWidget>
     );
   }
 
-  /// Simple method called when we need to notify the user of a press event
   _triggerOnPressed() {
     if (onPressed != null) {
       onPressed();
     }
   }
 
-  /// We start the animation
   _onTapDown(TapDownDetails details) {
     _controller.forward();
   }
 
-  /// We reverse the animation and notify the user of a press event
   _onTapUp(TapUpDetails details) {
     Future.delayed(duration, () {
       _controller.reverse();
@@ -118,15 +96,11 @@ class _BouncingWidgetState extends State<BouncingWidget>
     _triggerOnPressed();
   }
 
-  /// Here we are listening on each change when drag event is triggered
-  /// We must keep the [_isOutside] value updated in order to use it later
   _onDragUpdate(DragUpdateDetails details, BuildContext context) {
     final Offset touchPosition = details.globalPosition;
     _isOutside = _isOutsideChildBox(touchPosition);
   }
 
-  /// When this callback is triggered, we reverse the animation
-  /// If the touch position is inside the children renderBox, we notify the user of a press event
   _onLongPressEnd(LongPressEndDetails details, BuildContext context) {
     final Offset touchPosition = details.globalPosition;
 
@@ -137,9 +111,6 @@ class _BouncingWidgetState extends State<BouncingWidget>
     _controller.reverse();
   }
 
-  /// When this callback is triggered, we reverse the animation
-  /// As we do not have position details, we use the [_isOutside] field to know
-  /// if we need to notify the user of a press event
   _onDragEnd(DragEndDetails details) {
     if (!_isOutside) {
       _triggerOnPressed();
