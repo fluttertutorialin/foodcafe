@@ -213,3 +213,7 @@ NOTE
 json.decode(): Builds Dart objects from a string containing JSON data.
 json.encode(): Serializes a Dart object into a JSON string.
 
+Git
+Android Studio Git push to rejected
+VCS --> Git --> Branches
+origin/master --> Rebase
