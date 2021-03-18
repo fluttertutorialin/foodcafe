@@ -206,9 +206,10 @@ LOGIC PART
       - Users reviews list display.
    5) Change password (change_password_page.dart)
    6) Support (support_page.dart)
-      - Query & feedbacks, call.
+      - Query & feedback, call.
    7) Share App
 
 NOTE
 json.decode(): Builds Dart objects from a string containing JSON data.
 json.encode(): Serializes a Dart object into a JSON string.
+
