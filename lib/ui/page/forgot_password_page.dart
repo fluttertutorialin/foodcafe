@@ -7,14 +7,8 @@ import '../../resource/style.dart';
 import '../../resource/value.dart';
 import '../../utils/extensions.dart';
 
-class ForgotPasswordPage extends StatefulWidget {
-  @override
-  createState() => _ForgotPasswordState();
-}
-
-class _ForgotPasswordState extends State<ForgotPasswordPage> {
-  var scaffoldKey = GlobalKey<ScaffoldState>();
-  var _key = GlobalKey<FormState>();
+class ForgotPasswordPage extends StatelessWidget {
+  final _key = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) =>
@@ -35,14 +29,14 @@ class _ForgotPasswordState extends State<ForgotPasswordPage> {
   _formUI() => Obx(() => Container(
       padding: EdgeInsets.all(20),
       child: Column(children: <Widget>[
-        widget.size(heightScale: 100.0),
+        size(heightScale: 100.0),
         _formIcon(),
         Text(titleForgotPassword, style: appBarTitleStyle),
         Text(labelForgotPassword,
             textAlign: TextAlign.center, style: appBarSubTitleStyle),
-        widget.size(heightScale: 30.0),
+        size(heightScale: 30.0),
         _emailInput(),
-        widget.size(heightScale: 20.0),
+        size(heightScale: 20.0),
         _forgotPasswordPress(),
       ])));
 
@@ -60,7 +54,7 @@ class _ForgotPasswordState extends State<ForgotPasswordPage> {
           qrCallback: () => _forgotPasswordValidate());
 
   _forgotPasswordValidate() {
-    FocusScope.of(context).requestFocus(FocusNode());
+    FocusScope.of(Get.context).requestFocus(FocusNode());
 
     switch (_key.currentState.validate()) {
       case true:
@@ -73,7 +67,7 @@ class _ForgotPasswordState extends State<ForgotPasswordPage> {
     }
   }
 
-  _emailInput() => widget.inputField(ForgotPasswordController.to.emailController,
+  _emailInput() => inputField(ForgotPasswordController.to.emailController,
       validation: ForgotPasswordController.to.isEmailValid,
       onChanged: ForgotPasswordController.to.changeEmail,
       labelText: hintEmail,

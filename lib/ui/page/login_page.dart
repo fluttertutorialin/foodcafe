@@ -9,14 +9,8 @@ import '../../resource/style.dart';
 import '../../resource/value.dart';
 import '../../utils/extensions.dart';
 
-class LoginPage extends StatefulWidget {
-  @override
-  createState() => _LoginState();
-}
-
-class _LoginState extends State<LoginPage> {
-  var scaffoldKey = GlobalKey<ScaffoldState>();
-  var _key = GlobalKey<FormState>();
+class LoginPage extends StatelessWidget {
+  final _key = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) => Scaffold(
@@ -28,12 +22,12 @@ class _LoginState extends State<LoginPage> {
   _formUI() => Obx(() => Container(
       padding: EdgeInsets.all(50.r),
       child: Column(children: <Widget>[
-        widget.size(heightScale: Get.height / 10),
+        size(heightScale: Get.height / 10),
         _formIcon(),
-        widget.size(heightScale: 30.0.h),
+        size(heightScale: 30.0.h),
         _emailInput(),
         _passwordInput(),
-        widget.size(heightScale: 30.0.h),
+        size(heightScale: 30.0.h),
         _loginPress(),
         SizedBox(height: 10.0.h),
         _login()
@@ -69,7 +63,7 @@ class _LoginState extends State<LoginPage> {
       qrCallback: () => _loginValidate());
 
   _loginValidate() {
-    FocusScope.of(context).requestFocus(FocusNode());
+    FocusScope.of(Get.context).requestFocus(FocusNode());
 
     switch (_key.currentState.validate()) {
       case true:
@@ -87,24 +81,24 @@ class _LoginState extends State<LoginPage> {
       height: 60,
       child:
           Row(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
-        widget.socialIcon(
+        socialIcon(
             icon: Icon(googleIcon, color: socialBackgroundColor, size: 25),
             backgroundColor: googleColor,
             voidCallback: () => LoginController.to.callGoogleLogin()),
         SizedBox(width: 30.h),
-        widget.socialIcon(
+        socialIcon(
             icon: Icon(facebookLogin, color: socialBackgroundColor, size: 25),
             backgroundColor: facebookColor,
             voidCallback: () => LoginController.to.callFacebookLogin())
       ]));
 
-  _emailInput() => widget.inputField(LoginController.to.emailController,
+  _emailInput() => inputField(LoginController.to.emailController,
       validation: LoginController.to.isEmailValid,
       onChanged: LoginController.to.changeEmail,
       labelText: hintEmail,
       keyboardType: TextInputType.emailAddress);
 
-  _passwordInput() => widget.inputField(LoginController.to.passwordController,
+  _passwordInput() => inputField(LoginController.to.passwordController,
       labelText: hintPassword,
       validation: LoginController.to.isPasswordValid,
       obscureText: LoginController.to.passwordVisible.value,

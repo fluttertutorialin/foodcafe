@@ -10,7 +10,6 @@ import '../../resource/value.dart';
 import '../../utils/extensions.dart';
 
 class PastOrderDetailPage extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) => Scaffold(
       appBar: AppBar(

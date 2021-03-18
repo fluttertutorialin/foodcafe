@@ -4,12 +4,7 @@ import '../../controller/controller.dart';
 import '../../resource/style.dart';
 import '../../resource/value.dart';
 
-class SplashPage extends StatefulWidget {
-  @override
-  createState() => _SplashState();
-}
-
-class _SplashState extends State<SplashPage> {
+class SplashPage extends StatelessWidget {
   final _splashController = Get.put(SplashController());
 
   @override

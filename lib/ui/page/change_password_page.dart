@@ -7,13 +7,8 @@ import '../../resource/style.dart';
 import '../../resource/value.dart';
 import '../../utils/extensions.dart';
 
-class ChangePasswordPage extends StatefulWidget {
-  @override
-  createState() => _ChangePasswordState();
-}
-
-class _ChangePasswordState extends State<ChangePasswordPage> {
-  var _key = GlobalKey<FormState>();
+class ChangePasswordPage extends StatelessWidget {
+  final _key = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) => Scaffold(
@@ -31,11 +26,11 @@ class _ChangePasswordState extends State<ChangePasswordPage> {
   _formUI() => Container(
       padding: EdgeInsets.all(20),
       child: Column(children: <Widget>[
-        widget.size(heightScale: 30.0),
+        size(heightScale: 30.0),
         _newPasswordInput(),
         _newConfirmPasswordInput(),
         _currentPasswordInput(),
-        widget.size(heightScale: 20.0),
+        size(heightScale: 20.0),
         _changePasswordPress(),
         SizedBox(height: 10.0)
       ]));
@@ -49,7 +44,7 @@ class _ChangePasswordState extends State<ChangePasswordPage> {
           qrCallback: () => _changePasswordValidate());
 
   _changePasswordValidate() {
-    FocusScope.of(context).requestFocus(FocusNode());
+    FocusScope.of(Get.context).requestFocus(FocusNode());
 
     switch (_key.currentState.validate()) {
       case true:
@@ -62,7 +57,7 @@ class _ChangePasswordState extends State<ChangePasswordPage> {
     }
   }
 
-  _newPasswordInput() => widget.inputField(
+  _newPasswordInput() => inputField(
       ChangePasswordController.to.newPasswordController,
       labelText: hintNewPassword,
       validation: ChangePasswordController.to.isNewPasswordValid,
@@ -76,7 +71,7 @@ class _ChangePasswordState extends State<ChangePasswordPage> {
           onTap: () => ChangePasswordController.to.togglePasswordVisibility()));
 
   _newConfirmPasswordInput() =>
-      widget.inputField(ChangePasswordController.to.newConfirmPasswordController,
+      inputField(ChangePasswordController.to.newConfirmPasswordController,
           labelText: hintNewConfirmPassword, validation: (value) {
         return value.isEmpty
             ? 'New confirm password is required'
@@ -94,7 +89,7 @@ class _ChangePasswordState extends State<ChangePasswordPage> {
               onTap: () =>
                   ChangePasswordController.to.togglePasswordVisibility()));
 
-  _currentPasswordInput() => widget.inputField(
+  _currentPasswordInput() => inputField(
       ChangePasswordController.to.currentPasswordController,
       labelText: hintCurrentPassword,
       validation: ChangePasswordController.to.isCurrentPasswordValid,

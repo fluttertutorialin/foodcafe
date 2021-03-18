@@ -9,15 +9,8 @@ import '../../resource/style.dart';
 import '../../resource/value.dart';
 import '../../utils/extensions.dart';
 
-
-class ProfileEditPage extends StatefulWidget {
-  @override
-  createState() => _ProfileEditState();
-}
-
-class _ProfileEditState extends State<ProfileEditPage> {
-  var _key = GlobalKey<FormState>();
-  var scaffoldKey = GlobalKey<ScaffoldState>();
+class ProfileEditPage extends StatelessWidget {
+  final _key = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) => Scaffold(
@@ -36,12 +29,12 @@ class _ProfileEditState extends State<ProfileEditPage> {
       padding: EdgeInsets.all(20),
       child: Column(children: <Widget>[
         _profileImage(),
-        widget.size(heightScale: 30.0),
+        size(heightScale: 30.0),
         _userNameInput(),
         _mobileInput(),
         _pinCodeInput(),
         _addressInput(),
-        widget.size(heightScale: 20.0),
+        size(heightScale: 20.0),
         _profileEditPress(),
         SizedBox(height: 10.0)
       ]));
@@ -72,7 +65,7 @@ class _ProfileEditState extends State<ProfileEditPage> {
           qrCallback: () => _profileEditValidate());
 
   _profileEditValidate() {
-    FocusScope.of(context).requestFocus(FocusNode());
+    FocusScope.of(Get.context).requestFocus(FocusNode());
 
     switch (_key.currentState.validate()) {
       case true:
@@ -86,27 +79,27 @@ class _ProfileEditState extends State<ProfileEditPage> {
   }
 
   _userNameInput() =>
-      widget.inputField(ProfileEditController.to.userNameController,
+      inputField(ProfileEditController.to.userNameController,
           validation: ProfileEditController.to.isUserNameValid,
           onChanged: ProfileEditController.to.changeUserName,
           labelText: hintUserName,
           keyboardType: TextInputType.text);
 
-  _mobileInput() => widget.inputField(ProfileEditController.to.mobileController,
+  _mobileInput() => inputField(ProfileEditController.to.mobileController,
       validation: ProfileEditController.to.isMobileValid,
       onChanged: ProfileEditController.to.changeMobile,
       maxLength: mobileMaxLength,
       labelText: hintMobile,
       keyboardType: TextInputType.number);
 
-  _pinCodeInput() => widget.inputField(ProfileEditController.to.pinCodeController,
+  _pinCodeInput() => inputField(ProfileEditController.to.pinCodeController,
       validation: ProfileEditController.to.isPinCodeValid,
       onChanged: ProfileEditController.to.changePinCode,
       labelText: hintPinCode,
       maxLength: pinCodeMaxLength,
       keyboardType: TextInputType.number);
 
-  _addressInput() => widget.inputField(ProfileEditController.to.addressController,
+  _addressInput() => inputField(ProfileEditController.to.addressController,
       validation: ProfileEditController.to.isAddressValid,
       onChanged: ProfileEditController.to.changeAddress,
       labelText: hintAddress,

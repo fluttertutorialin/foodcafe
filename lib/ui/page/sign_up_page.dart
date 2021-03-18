@@ -8,13 +8,8 @@ import '../../resource/style.dart';
 import '../../resource/value.dart';
 import '../../utils/extensions.dart';
 
-class SignUpPage extends StatefulWidget {
-  @override
-  createState() => _SignUpState();
-}
-
-class _SignUpState extends State<SignUpPage> {
-  var _key = GlobalKey<FormState>();
+class SignUpPage extends StatelessWidget {
+  final _key = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) => Scaffold(
@@ -26,19 +21,19 @@ class _SignUpState extends State<SignUpPage> {
   _formUI() => Obx(() => Container(
       padding: EdgeInsets.all(20),
       child: Column(children: <Widget>[
-        widget.size(heightScale: Get.height / 12),
+        size(heightScale: Get.height / 12),
         _formIcon(),
         Padding(
             padding: EdgeInsets.all(10.h),
             child: Text(labelSignUpContent,
                 textAlign: TextAlign.center, style: appBarTitleStyle)),
-        widget.size(heightScale: 30.0.h),
+        size(heightScale: 30.0.h),
         _userNameInput(),
         _emailInput(),
         _passwordInput(),
         _confirmPassword(),
         _mobileInput(),
-        widget.size(heightScale: 30.0.h),
+        size(heightScale: 30.0.h),
         _signUpPress(),
         SizedBox(height: 10.0.h)
       ])));
@@ -56,7 +51,7 @@ class _SignUpState extends State<SignUpPage> {
       qrCallback: () => _signUpValidate());
 
   _signUpValidate() {
-    FocusScope.of(context).requestFocus(FocusNode());
+    FocusScope.of(Get.context).requestFocus(FocusNode());
 
     switch (_key.currentState.validate()) {
       case true:
@@ -69,19 +64,19 @@ class _SignUpState extends State<SignUpPage> {
     }
   }
 
-  _userNameInput() => widget.inputField(SingUpController.to.userNameController,
+  _userNameInput() => inputField(SingUpController.to.userNameController,
       validation: SingUpController.to.isUserNameValid,
       onChanged: SingUpController.to.changeUserName,
       labelText: hintUserName,
       keyboardType: TextInputType.text);
 
-  _emailInput() => widget.inputField(SingUpController.to.emailController,
+  _emailInput() => inputField(SingUpController.to.emailController,
       validation: SingUpController.to.isEmailValid,
       onChanged: SingUpController.to.changeEmail,
       labelText: hintEmail,
       keyboardType: TextInputType.emailAddress);
 
-  _passwordInput() => widget.inputField(SingUpController.to.passwordController,
+  _passwordInput() => inputField(SingUpController.to.passwordController,
       labelText: hintPassword,
       validation: SingUpController.to.isPasswordValid,
       obscureText: SingUpController.to.passwordVisible.value,
@@ -94,7 +89,7 @@ class _SignUpState extends State<SignUpPage> {
           onTap: () => SingUpController.to.togglePasswordVisibility()));
 
   _confirmPassword() =>
-      widget.inputField(SingUpController.to.confirmPasswordController,
+      inputField(SingUpController.to.confirmPasswordController,
           labelText: hintConfirmPassword, validation: (confirmation) {
         return confirmation.isEmpty
             ? 'Confirm password is required'
@@ -111,7 +106,7 @@ class _SignUpState extends State<SignUpPage> {
                   : passwordVisibleIcon),
               onTap: () => SingUpController.to.togglePasswordVisibility()));
 
-  _mobileInput() => widget.inputField(SingUpController.to.mobileController,
+  _mobileInput() => inputField(SingUpController.to.mobileController,
       validation: SingUpController.to.isMobileValid,
       onChanged: SingUpController.to.changeMobile,
       labelText: hintMobile,

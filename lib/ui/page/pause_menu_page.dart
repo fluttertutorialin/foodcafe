@@ -12,7 +12,6 @@ import '../../utils/state_status.dart';
 import '../../utils/extensions.dart';
 
 class PauseMenuPage extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     return Obx(() => Scaffold(
