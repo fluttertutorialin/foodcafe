@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import '../utils/extensions.dart';
 import '../utils/state_status.dart';
-import 'package:get/get.dart';
 
 class ForgotPasswordController extends GetxController {
   static ForgotPasswordController get to => Get.find();

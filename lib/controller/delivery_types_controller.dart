@@ -1,9 +1,9 @@
-import '../model/delivey_types/delivery_type_response.dart';
-import '../model/delivey_types/free_delivery_person.dart';
-import '../resource/colors.dart';
-import '../resource/value.dart';
 import 'package:get/get.dart';
 import 'controller.dart';
+import '../model/delivery_types/delivery_type_response.dart';
+import '../model/delivery_types/free_delivery_person.dart';
+import '../resource/colors.dart';
+import '../resource/value.dart';
 import '../utils/extensions.dart';
 
 class DeliveryTypesController extends GetxController {

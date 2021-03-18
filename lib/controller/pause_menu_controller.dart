@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import '../model/pausemenu/PauseMenuResponse.dart';
 import '../utils/state_status.dart';
-import 'package:get/get.dart';
 
 class PauseMenuController extends GetxController {
   static PauseMenuController get to => Get.find();

@@ -1,8 +1,8 @@
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import '../resource/api.dart';
 import 'package:get/get.dart';
 import 'repository/local_auth_repository.dart';
+import '../resource/api.dart';
 
 class FirebaseService {
   FirebaseMessaging messaging = FirebaseMessaging.instance;

@@ -1,6 +1,6 @@
+import 'package:get/get.dart';
 import '../model/turn_of_ordering/turn_of_ordering_response.dart';
 import '../utils/state_status.dart';
-import 'package:get/get.dart';
 
 class TurnOfOrderingController extends GetxController {
   static TurnOfOrderingController get to => Get.find();

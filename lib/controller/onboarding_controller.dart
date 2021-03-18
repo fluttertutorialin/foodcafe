@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/utils.dart';
 import '../model/onboarding/onboarding_response.dart';
 import '../resource/api.dart';
 import '../resource/routes.dart';
 import '../shared/repository/local_auth_repository.dart';
-import 'package:get/get.dart';
-import 'package:get/utils.dart';
 
 class OnBoardingController extends GetxController {
   static OnBoardingController get to => Get.find();

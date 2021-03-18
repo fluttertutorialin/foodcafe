@@ -1,8 +1,8 @@
 import 'package:connectivity/connectivity.dart';
+import 'package:get/get.dart';
 import 'package:flutter/services.dart';
 import '../resource/colors.dart';
 import '../resource/value.dart';
-import 'package:get/get.dart';
 import '../utils/extensions.dart';
 
 class NetworkController extends GetxController {

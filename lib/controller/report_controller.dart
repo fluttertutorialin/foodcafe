@@ -1,6 +1,6 @@
+import 'package:get/get.dart';
 import '../model/report/report_response.dart';
 import '../utils/state_status.dart';
-import 'package:get/get.dart';
 
 class ReportController extends GetxController {
   static ReportController get to => Get.find();

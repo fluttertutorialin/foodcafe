@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'controller.dart';
 import '../resource/api.dart';
 import '../resource/routes.dart';
 import '../resource/value.dart';
@@ -11,8 +13,6 @@ import '../ui/page/past_order_page.dart';
 import '../ui/page/pause_menu_page.dart';
 import '../ui/page/pending_page.dart';
 import '../ui/page/ready_page.dart';
-import 'package:get/get.dart';
-import 'controller.dart';
 
 class HomeController extends GetxController {
   static HomeController get to => Get.find();

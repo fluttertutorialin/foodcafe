@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import '../controller/controller.dart';
 import '../utils/extensions.dart';
 import '../utils/state_status.dart';
-import 'package:get/get.dart';
 
 class ProfileEditController extends GetxController {
   static ProfileEditController get to => Get.find();

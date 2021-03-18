@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import '../model/past_order_detail/past_order_detail.dart';
 import '../utils/state_status.dart';
-import 'package:get/get.dart';
 
 class PastOrderDetailController extends GetxController {
   static PastOrderDetailController get to => Get.find();

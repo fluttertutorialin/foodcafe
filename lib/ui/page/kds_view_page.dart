@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dash/flutter_dash.dart';
+import 'package:get/get.dart';
 import '../../controller/controller.dart';
 import '../../resource/colors.dart';
 import '../../resource/style.dart';
@@ -8,7 +9,6 @@ import '../../ui/widget/custom_slidable/slidable.dart';
 import '../../ui/widget/custom_slidable/slidable_action_pane.dart';
 import '../../ui/widget/custom_slidable/slide_action.dart';
 import '../../utils/state_status.dart';
-import 'package:get/get.dart';
 import '../../utils/extensions.dart';
 
 class KDSViewPage extends StatelessWidget {

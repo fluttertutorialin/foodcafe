@@ -1,10 +1,10 @@
 import 'package:flutter/animation.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/state_manager.dart';
 import '../resource/api.dart';
 import '../resource/routes.dart';
 import '../shared/repository/local_auth_repository.dart';
-import 'package:get/get.dart';
-import 'package:get/state_manager.dart';
 
 class SplashController extends GetxController
     with SingleGetTickerProviderMixin {

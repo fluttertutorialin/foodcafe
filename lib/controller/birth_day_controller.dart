@@ -1,7 +1,7 @@
+import 'package:get/get.dart';
 import '../controller/controller.dart';
 import '../model/birth_day/birth_day_response.dart';
 import '../utils/state_status.dart';
-import 'package:get/get.dart';
 
 class BirthDayController extends GetxController {
   static BirthDayController get to => Get.find();

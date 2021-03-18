@@ -1,6 +1,6 @@
+import 'package:get/get.dart';
 import '../model/kdsview/KDSView.dart';
 import '../utils/state_status.dart';
-import 'package:get/get.dart';
 
 class KDSViewController extends GetxController {
   static KDSViewController get to => Get.find();

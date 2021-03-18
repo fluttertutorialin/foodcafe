@@ -1,7 +1,7 @@
+import 'package:get/get.dart';
 import '../model/notification/notification_response.dart';
 import '../ui/widget/animation/slide_in_transition.dart';
 import '../utils/state_status.dart';
-import 'package:get/get.dart';
 
 class NotificationController extends GetxController with SingleGetTickerProviderMixin {
   static NotificationController get to => Get.find();

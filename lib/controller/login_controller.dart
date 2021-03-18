@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'controller.dart';
 import '../resource/api.dart';
 import '../resource/routes.dart';
 import '../resource/value.dart';
@@ -6,8 +8,7 @@ import '../shared/repository/firestore_database_repository.dart';
 import '../shared/repository/local_auth_repository.dart';
 import '../utils/extensions.dart';
 import '../utils/state_status.dart';
-import 'package:get/get.dart';
-import 'controller.dart';
+
 
 class LoginController extends GetxController {
   static LoginController get to => Get.find();

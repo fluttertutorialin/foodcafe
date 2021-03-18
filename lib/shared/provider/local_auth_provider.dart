@@ -1,5 +1,5 @@
-import '../../resource/api.dart';
 import 'package:get_storage/get_storage.dart';
+import '../../resource/api.dart';
 
 class LocalAuthProvider {
   final GetStorage _storage;

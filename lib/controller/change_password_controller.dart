@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import '../shared/repository/firestore_database_repository.dart';
 import '../utils/extensions.dart';
 import '../utils/state_status.dart';
-import 'package:get/get.dart';
 
 class ChangePasswordController extends GetxController {
   static ChangePasswordController get to => Get.find();

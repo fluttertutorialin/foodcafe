@@ -1,6 +1,6 @@
+import 'package:get/get.dart';
 import '../model/pastorder/past_order_response.dart';
 import '../utils/state_status.dart';
-import 'package:get/get.dart';
 
 class PastOrderController extends GetxController {
   static PastOrderController get to => Get.find();

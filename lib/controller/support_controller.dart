@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import '../utils/extensions.dart';
 import '../utils/state_status.dart';
-import 'package:get/get.dart';
 
 class SupportController extends GetxController {
   var stateStatus = Rx<StateStatus>(StateStatus.INITIAL);

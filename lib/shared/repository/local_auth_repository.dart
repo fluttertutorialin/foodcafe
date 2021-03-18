@@ -1,5 +1,6 @@
-import 'package:foodcafe/shared/provider/local_auth_provider.dart';
 import 'package:get/get.dart';
+
+import '../provider/local_auth_provider.dart';
 
 class LocalAuthRepository {
   final LocalAuthProvider _localAuthProvider = Get.find<LocalAuthProvider>();

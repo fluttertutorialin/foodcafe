@@ -1,6 +1,6 @@
+import 'package:get/get.dart';
 import '../model/wallet/wallet_response.dart';
 import '../utils/state_status.dart';
-import 'package:get/get.dart';
 
 class WalletController extends GetxController {
   static WalletController get to => Get.find();

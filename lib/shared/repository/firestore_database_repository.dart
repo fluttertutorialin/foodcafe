@@ -1,8 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:foodcafe/model/notification_counter.dart';
-import 'package:foodcafe/shared/provider/firestore_provider.dart';
 import 'package:get/get.dart';
+import '../../model/notification_counter.dart';
+import '../provider/firestore_provider.dart';
 import '../http_hepler.dart';
 
 class FireStoreDatabaseRepository implements FireStoreDatabaseProvider {

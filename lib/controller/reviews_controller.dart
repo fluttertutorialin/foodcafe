@@ -1,6 +1,6 @@
+import 'package:get/get.dart';
 import '../model/reviews/reviews_response.dart';
 import '../utils/state_status.dart';
-import 'package:get/get.dart';
 
 class ReviewsController extends GetxController {
   static ReviewsController get to => Get.find();

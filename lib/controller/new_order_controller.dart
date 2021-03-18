@@ -1,10 +1,10 @@
+import 'package:get/get.dart';
+import 'pending_controller.dart';
 import '../model/order/order.dart';
 import '../model/order/order_response.dart';
 import '../resource/colors.dart';
 import '../resource/value.dart';
 import '../utils/state_status.dart';
-import 'package:get/get.dart';
-import 'pending_controller.dart';
 import '../utils/extensions.dart';
 
 class NewOrderController extends GetxController {

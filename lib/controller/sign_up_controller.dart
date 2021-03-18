@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import '../resource/api.dart';
 import '../resource/routes.dart';
 import '../shared/repository/local_auth_repository.dart';
 import '../utils/extensions.dart';
 import '../utils/state_status.dart';
-import 'package:get/get.dart';
 
 class SingUpController extends GetxController {
   static SingUpController get to => Get.find();
