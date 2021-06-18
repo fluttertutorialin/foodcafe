@@ -101,23 +101,16 @@ class LoginController extends GetxController {
       if (user != null) {
         stateStatus.value = StateStatus.SUCCESS;
 
-        localAuthRepository.writeSession(
-            SECURE_STORAGE_USERNAME, user.displayName.split(' ')[0]);
+        localAuthRepository.writeSession(SECURE_STORAGE_USERNAME, user.displayName.split(' ')[0]);
         localAuthRepository.writeSession(SECURE_STORAGE_EMAIL, user.email);
-        localAuthRepository.writeSession(
-            SECURE_STORAGE_PROFILE_URL, user.photoURL);
-        localAuthRepository.writeSession(
-            SECURE_STORAGE_TOKEN, user.refreshToken);
+        localAuthRepository.writeSession(SECURE_STORAGE_PROFILE_URL, user.photoURL);
+        localAuthRepository.writeSession(SECURE_STORAGE_TOKEN, user.refreshToken);
         localAuthRepository.writeSession(SECURE_STORAGE_USER_ID, user.uid);
-        localAuthRepository.writeSession(
-            SECURE_STORAGE_MOBILE, user.phoneNumber);
+        localAuthRepository.writeSession(SECURE_STORAGE_MOBILE, user.phoneNumber);
         localAuthRepository.writeSession(SECURE_STORAGE_PINCODE, '362130');
-        localAuthRepository.writeSession(
-            SECURE_STORAGE_ADDRESS, 'To. Ravani Ta.Visavadar Dis.Junagadh');
-        localAuthRepository.writeSession(
-            SECURE_STORAGE_WHERE_LOGIN, WHERE_GOOGLE_LOGIN);
-        localAuthRepository.writeSession(
-            SECURE_STORAGE_ON_BOARDING, ON_BOARDING);
+        localAuthRepository.writeSession(SECURE_STORAGE_ADDRESS, 'To. Ravani Ta.Visavadar Dis.Junagadh');
+        localAuthRepository.writeSession(SECURE_STORAGE_WHERE_LOGIN, WHERE_GOOGLE_LOGIN);
+        localAuthRepository.writeSession(SECURE_STORAGE_ON_BOARDING, ON_BOARDING);
 
         stateStatus.value = StateStatus.SUCCESS;
         _clearTextField();
@@ -136,8 +129,7 @@ class LoginController extends GetxController {
     localAuthRepository.writeSession(SECURE_STORAGE_MOBILE, '');
     localAuthRepository.writeSession(SECURE_STORAGE_PINCODE, '');
     localAuthRepository.writeSession(SECURE_STORAGE_ADDRESS, '');
-    localAuthRepository.writeSession(
-        SECURE_STORAGE_WHERE_LOGIN, WHERE_GOOGLE_LOGIN);
+    localAuthRepository.writeSession(SECURE_STORAGE_WHERE_LOGIN, WHERE_GOOGLE_LOGIN);
 
     localAuthRepository.writeSession(SECURE_STORAGE_ON_BOARDING, ON_BOARDING);
     Get.offNamedUntil(homeRoute, (_) => false);

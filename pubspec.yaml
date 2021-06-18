@@ -17,7 +17,7 @@ dependencies:
   flutter_dash:
   recase:
   flutter_automation:
-  firebase_auth: 0.20.1
+  firebase_auth:
   firebase_core:
   cloud_firestore:
   google_sign_in:
@@ -46,9 +46,6 @@ dev_dependencies:
     sdk: flutter
   build_runner:
   json_serializable:
-
-  integration_test:
-    sdk: flutter
 
 flutter_icons:
   android: "launcher_icon"
