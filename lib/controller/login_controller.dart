@@ -73,8 +73,7 @@ class LoginController extends GetxController {
               flushBarPosition: toastOrderPosition);
         });*/
 
-        localAuthRepository.writeSession(
-            SECURE_STORAGE_USERNAME, developerName);
+        localAuthRepository.writeSession(SECURE_STORAGE_USERNAME, developerName);
         localAuthRepository.writeSession(SECURE_STORAGE_EMAIL, developerEmail);
         localAuthRepository.writeSession(SECURE_STORAGE_PROFILE_URL, '');
         localAuthRepository.writeSession(SECURE_STORAGE_TOKEN, '');
@@ -82,10 +81,8 @@ class LoginController extends GetxController {
         localAuthRepository.writeSession(SECURE_STORAGE_MOBILE, '');
         localAuthRepository.writeSession(SECURE_STORAGE_PINCODE, '123456');
         localAuthRepository.writeSession(SECURE_STORAGE_ADDRESS, 'Address');
-        localAuthRepository.writeSession(
-            SECURE_STORAGE_WHERE_LOGIN, WHERE_LOGIN);
-        localAuthRepository.writeSession(
-            SECURE_STORAGE_ON_BOARDING, ON_BOARDING);
+        localAuthRepository.writeSession(SECURE_STORAGE_WHERE_LOGIN, WHERE_LOGIN);
+        localAuthRepository.writeSession(SECURE_STORAGE_ON_BOARDING, ON_BOARDING);
 
         await Future.delayed(Duration(seconds: 2));
         stateStatus.value = StateStatus.SUCCESS;

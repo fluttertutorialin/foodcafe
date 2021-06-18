@@ -213,6 +213,12 @@ NOTE
 json.decode(): Builds Dart objects from a string containing JSON data.
 json.encode(): Serializes a Dart object into a JSON string.
 
+
+//init inside
+WidgetsBinding.instance!.addPostFrameCallback((_) {
+
+ });
+
 Git
 Android Studio Git push to rejected
 VCS --> Git --> Branches
