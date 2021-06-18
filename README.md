@@ -217,7 +217,11 @@ json.encode(): Serializes a Dart object into a JSON string.
 //init inside
 WidgetsBinding.instance!.addPostFrameCallback((_) {
 
- });
+});
+
+SchedulerBinding.instance.addPostFrameCallback((timeStamp) {
+
+});
 
 Git
 Android Studio Git push to rejected
