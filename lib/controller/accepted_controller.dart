@@ -12,8 +12,8 @@ class AcceptedController extends GetxController {
   var rxAcceptedList = RxList<OrderMainList>([]);
   var search = Rx<String>('');
 
-  var stateStatus = Rx<StateStatus>(StateStatus.INITIAL);
-  var refreshStatus = Rx<RefreshStatus>(RefreshStatus.INITIAL);
+  var stateStatus = Rx<StateStatus>(StateStatus.initial);
+  var refreshStatus = Rx<RefreshStatus>(RefreshStatus.initial);
 
 /*  @override
   onInit() {
@@ -23,10 +23,10 @@ class AcceptedController extends GetxController {
 
   Future<void> fetchAccepted({bool isRefresh = false}) async {
     if (isRefresh) {
-      refreshStatus.value = RefreshStatus.LOADING;
+      refreshStatus.value = RefreshStatus.loading;
     }
 
-    stateStatus.value = StateStatus.LOADING;
+    stateStatus.value = StateStatus.loading;
 
     List<OrderMainList> orderMainList = [
       OrderMainList(
@@ -93,12 +93,12 @@ class AcceptedController extends GetxController {
           ])
     ];
 
-    await Future.delayed(Duration(seconds: 2));
+    await Future.delayed(const Duration(seconds: 2));
     if (isRefresh) {
-      refreshStatus.value = RefreshStatus.SUCCESS;
-      refreshStatus.value = RefreshStatus.INITIAL;
+      refreshStatus.value = RefreshStatus.success;
+      refreshStatus.value = RefreshStatus.initial;
     }
-    stateStatus.value = StateStatus.SUCCESS;
+    stateStatus.value = StateStatus.success;
     rxAcceptedList
         .assignAll(PendingResponse(orderMainList: orderMainList).orderMainList);
   }
@@ -156,13 +156,14 @@ class AcceptedController extends GetxController {
     int indexGet =
         rxAcceptedList.indexWhere((element) => element.uniqueId == uniqueId);
     if (indexGet != -1) {
-      if (isShowToast)
+      if (isShowToast) {
         toast(
             title: rxAcceptedList[indexGet].orderPersonDetail.name,
             message: message,
             textColor: toastMessageOrderColor,
             backgroundColor: toastBackgroundOrderColor,
             flushBarPosition: toastPositionBottom);
+      }
       rxAcceptedList.removeAt(indexGet);
     }
   }

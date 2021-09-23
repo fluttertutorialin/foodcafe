@@ -10,6 +10,8 @@ import '../../utils/extensions.dart';
 class ForgotPasswordPage extends StatelessWidget {
   final _key = GlobalKey<FormState>();
 
+  ForgotPasswordPage({Key key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) =>
       /*FancyBackground(
@@ -27,7 +29,7 @@ class ForgotPasswordPage extends StatelessWidget {
               child: ListView(children: [_formUI()])));
 
   _formUI() => Obx(() => Container(
-      padding: EdgeInsets.all(20),
+      padding: const EdgeInsets.all(20),
       child: Column(children: <Widget>[
         size(heightScale: 100.0),
         _formIcon(),
@@ -46,7 +48,7 @@ class ForgotPasswordPage extends StatelessWidget {
           child: Image.asset(appIconImage)));
 
   _forgotPasswordPress() =>
-      Align(alignment: Alignment.bottomCenter).customFloatForm(
+      const Align(alignment: Alignment.bottomCenter).customFloatForm(
           color: appBarTitleColor,
           stateStatus: ForgotPasswordController.to.stateStatus.value,
           icon: Icons.navigate_next,

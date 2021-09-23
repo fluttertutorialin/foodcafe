@@ -11,10 +11,13 @@ import '../../utils/extensions.dart';
 class TurnOfOrderingPage extends StatelessWidget {
   final _refreshKey = GlobalKey<RefreshIndicatorState>();
 
+  TurnOfOrderingPage({Key key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
+            backgroundColor: appBarColor,
             elevation: appBarElevation,
             leading: IconButton(
                 onPressed: () => Get.back(),
@@ -26,19 +29,19 @@ class TurnOfOrderingPage extends StatelessWidget {
             color: refreshColor,
             onRefresh: () async {
               if (TurnOfOrderingController.to.refreshStatus.value ==
-                  RefreshStatus.SUCCESS) {
+                  RefreshStatus.success) {
                 _refreshKey.currentState.dispose();
               }
 
               if (TurnOfOrderingController.to.refreshStatus.value ==
-                  RefreshStatus.INITIAL) {
+                  RefreshStatus.initial) {
                 _refreshKey.currentState.show();
                 TurnOfOrderingController.to
                     .fetchTurnOfOrdering(isRefresh: true);
               }
             },
             child: TurnOfOrderingController.to.stateStatus.value ==
-                    StateStatus.LOADING
+                    StateStatus.loading
                 ? circleProgressIndicator()
                 : TurnOfOrderingController.to.turnOfOrderingResponse.value
                         .turnOfOrderingList.isEmpty
@@ -57,19 +60,19 @@ class TurnOfOrderingPage extends StatelessWidget {
                               .value
                               .turnOfOrderingList[index];
                           return Container(
-                              margin: EdgeInsets.all(0),
+                              margin: const EdgeInsets.all(0),
                               child: Card(
                                   elevation: cardViewElevation,
                                   child: Container(
-                                      margin: EdgeInsets.all(5),
+                                      margin: const EdgeInsets.all(5),
                                       child: Row(children: [
                                         CircleAvatar(
                                             radius: 25,
                                             backgroundColor:
                                                 Colors.grey.withOpacity(0.1),
                                             backgroundImage:
-                                                ExactAssetImage(profileImage)),
-                                        SizedBox(width: 5),
+                                                const ExactAssetImage(profileImage)),
+                                        const SizedBox(width: 5),
                                         Expanded(
                                             child: Column(
                                                 crossAxisAlignment:

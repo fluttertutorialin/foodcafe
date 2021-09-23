@@ -15,6 +15,8 @@ class PendingPage extends StatelessWidget {
   final _infoKey = <GlobalKey>[];
   final _refreshKey = GlobalKey<RefreshIndicatorState>();
 
+  PendingPage({Key key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,12 +33,12 @@ class PendingPage extends StatelessWidget {
                 color: refreshColor,
                 onRefresh: () async {
                   if (PendingController.to.refreshStatus.value ==
-                      RefreshStatus.SUCCESS) {
+                      RefreshStatus.success) {
                     _refreshKey.currentState.dispose();
                   }
 
                   if (PendingController.to.refreshStatus.value ==
-                      RefreshStatus.INITIAL) {
+                      RefreshStatus.initial) {
                     _refreshKey.currentState.show();
                     PendingController.to.fetchPending(isRefresh: true);
                   }
@@ -55,7 +57,7 @@ class PendingPage extends StatelessWidget {
                           child: Card(
                               elevation: cardViewElevation,
                               child: Container(
-                                  margin: EdgeInsets.all(10),
+                                  margin: const EdgeInsets.all(10),
                                   child: Column(
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
@@ -96,7 +98,7 @@ class PendingPage extends StatelessWidget {
                                         OrderAddress(
                                             orderPersonDetail:
                                                 _pending.orderPersonDetail),
-                                        SizedBox(height: 10),
+                                        const SizedBox(height: 10),
                                         OrderStatus(
                                             orderStatus: acceptButton,
                                             rejectCallBack: () =>

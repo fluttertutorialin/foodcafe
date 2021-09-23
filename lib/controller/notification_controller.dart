@@ -7,7 +7,7 @@ class NotificationController extends GetxController with SingleGetTickerProvider
   static NotificationController get to => Get.find();
   var rxNotificationList = RxList<Notification>([]);
   var rxTotalNotificationCounter = Rx<int>(0);
-  var stateStatus = Rx<StateStatus>(StateStatus.INITIAL);
+  var stateStatus = Rx<StateStatus>(StateStatus.initial);
 
   SlideInController animationController;
 
@@ -20,7 +20,7 @@ class NotificationController extends GetxController with SingleGetTickerProvider
   }
 
   Future<void> fetchNotification() async {
-    stateStatus.value = StateStatus.LOADING;
+    stateStatus.value = StateStatus.loading;
 
     var notificationResponse =
         NotificationResponse(totalNotification: 1, notificationList: [
@@ -31,8 +31,8 @@ class NotificationController extends GetxController with SingleGetTickerProvider
           dateTime: 1607919790946705)
     ]);
 
-    await Future.delayed(Duration(seconds: 2));
-    stateStatus.value = StateStatus.SUCCESS;
+    await Future.delayed(const Duration(seconds: 2));
+    stateStatus.value = StateStatus.success;
 
     rxTotalNotificationCounter.value = notificationResponse.totalNotification;
     rxNotificationList.assignAll(notificationResponse.notificationList);

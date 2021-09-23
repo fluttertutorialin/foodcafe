@@ -10,37 +10,37 @@ class BirthDay {
   String birthDayWishName;
 
   BirthDay({String uniqueId, String name, this.birthDayWishName, String address, String birthDate, String mobile, String profilePictureUrl, int year, bool isSentMessage, bool isCall}) {
-    this.setUniqueId(uniqueId);
-    this.setName(name);
-    this.setBirthDayWishName(name);
-    this.setAddress(address);
-    this.setBirthDate(birthDate);
-    this.setMobile(mobile);
-    this.setProfilePictureUrl(profilePictureUrl);
-    this.setYear(year);
-    this.setIsSentMessage(isSentMessage);
-    this.setIsCall(isCall);
+    setUniqueId(uniqueId);
+    setName(name);
+    setBirthDayWishName(name);
+    setAddress(address);
+    setBirthDate(birthDate);
+    setMobile(mobile);
+    setProfilePictureUrl(profilePictureUrl);
+    setYear(year);
+    setIsSentMessage(isSentMessage);
+    setIsCall(isCall);
   }
 
-  RxString uniqueId = RxString();
+  RxString uniqueId = RxString('');
   setUniqueId(String value) => uniqueId.value = value;
 
-  RxString name = RxString();
+  RxString name = RxString('');
   setName(String value) => name.value = value;
 
-  RxString birthDayWishNameRx = RxString("");
+  RxString birthDayWishNameRx = RxString('');
   setBirthDayWishName(String value) => birthDayWishNameRx.value = value;
 
-  RxString address = RxString();
+  RxString address = RxString('');
   setAddress(String value) => address.value = value;
 
-  RxString birthDate = RxString();
+  RxString birthDate = RxString('');
   setBirthDate(String value) => birthDate.value = value;
 
-  RxString mobile = RxString();
+  RxString mobile = RxString('');
   setMobile(String value) => mobile.value = value;
 
-  RxString profilePictureUrl = RxString();
+  RxString profilePictureUrl = RxString('');
   setProfilePictureUrl(String value) => profilePictureUrl.value = value;
 
   RxInt year = RxInt(0);

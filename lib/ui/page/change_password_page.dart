@@ -10,9 +10,12 @@ import '../../utils/extensions.dart';
 class ChangePasswordPage extends StatelessWidget {
   final _key = GlobalKey<FormState>();
 
+  ChangePasswordPage({Key key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) => Scaffold(
       appBar: AppBar(
+          backgroundColor: appBarColor,
           elevation: appBarElevation,
           leading: IconButton(
               onPressed: () => Get.back(),
@@ -24,7 +27,7 @@ class ChangePasswordPage extends StatelessWidget {
           child: ListView(children: [_formUI()])));
 
   _formUI() => Container(
-      padding: EdgeInsets.all(20),
+      padding: const EdgeInsets.all(20),
       child: Column(children: <Widget>[
         size(heightScale: 30.0),
         _newPasswordInput(),
@@ -32,11 +35,11 @@ class ChangePasswordPage extends StatelessWidget {
         _currentPasswordInput(),
         size(heightScale: 20.0),
         _changePasswordPress(),
-        SizedBox(height: 10.0)
+        const SizedBox(height: 10.0)
       ]));
 
   _changePasswordPress() =>
-      Align(alignment: Alignment.bottomCenter).customFloatForm(
+      const Align(alignment: Alignment.bottomCenter).customFloatForm(
           color: appBarTitleColor,
           stateStatus: ChangePasswordController.to.stateStatus.value,
           icon: Icons.navigate_next,

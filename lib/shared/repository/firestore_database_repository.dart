@@ -21,7 +21,7 @@ class FireStoreDatabaseRepository implements FireStoreDatabaseProvider {
   }
 
   @override
-  Future<User> googleLogin() {
+  Future<UserInfo> googleLogin() {
     return _fireStoreDatabaseFoodCafe.googleLogin();
   }
 

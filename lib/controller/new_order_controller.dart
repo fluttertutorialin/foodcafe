@@ -9,13 +9,13 @@ import '../utils/extensions.dart';
 
 class NewOrderController extends GetxController {
   static NewOrderController get to => Get.find();
-  var refreshStatus = Rx<RefreshStatus>(RefreshStatus.INITIAL);
-  var stateStatus = StateStatus.INITIAL.obs;
+  var refreshStatus = Rx<RefreshStatus>(RefreshStatus.initial);
+  var stateStatus = StateStatus.initial.obs;
 
   var isTimeSelect = Rx<bool>(false);
 
   var rxNewOrderList = RxList<OrderMainList>([]);
-  var _pendingController = Get.put(PendingController());
+  final _pendingController = Get.put(PendingController());
 
   @override
   onInit() {
@@ -25,10 +25,10 @@ class NewOrderController extends GetxController {
 
   Future<void> fetchNewOrder({bool isRefresh = false}) async {
     if (isRefresh) {
-      refreshStatus.value = RefreshStatus.LOADING;
+      refreshStatus.value = RefreshStatus.loading;
     }
 
-    stateStatus.value = StateStatus.LOADING;
+    stateStatus.value = StateStatus.loading;
 
     List<OrderMainList> orderMainList = [
       OrderMainList(
@@ -73,12 +73,12 @@ class NewOrderController extends GetxController {
           ]),
     ];
 
-    await Future.delayed(Duration(seconds: 2));
+    await Future.delayed(const Duration(seconds: 2));
     if (isRefresh) {
-      refreshStatus.value = RefreshStatus.SUCCESS;
-      refreshStatus.value = RefreshStatus.INITIAL;
+      refreshStatus.value = RefreshStatus.success;
+      refreshStatus.value = RefreshStatus.initial;
     }
-    stateStatus.value = StateStatus.SUCCESS;
+    stateStatus.value = StateStatus.success;
 
     rxNewOrderList
         .assignAll(PendingResponse(orderMainList: orderMainList).orderMainList);

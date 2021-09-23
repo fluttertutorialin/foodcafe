@@ -11,11 +11,11 @@ class DialogSearch extends StatefulWidget {
   final TextEditingController textEditingController;
   final RxBool isVisibleSearchClearIcon;
 
-  DialogSearch(
-      {@required this.isVisibleSearchClearIcon,
+  const DialogSearch(
+      {Key key, @required this.isVisibleSearchClearIcon,
       @required this.callSearchClear,
       @required this.textEditingController,
-      @required this.onChanged});
+      @required this.onChanged}) : super(key: key);
 
   @override
   createState() => _DialogSearchState();
@@ -31,10 +31,10 @@ class _DialogSearchState extends State<DialogSearch>
   void initState() {
     super.initState();
     controller =
-        AnimationController(vsync: this, duration: Duration(milliseconds: 750));
+        AnimationController(vsync: this, duration: const Duration(milliseconds: 750));
 
     //_positionTween = Tween<Offset>(begin: Offset(0.0, 1.0), end: Offset(0.0, 0)); //BOTTOM ANIMATION
-    _positionTween = Tween<Offset>(begin: Offset(0.0, -1.0), end: Offset.zero); //TOP ANIMATION
+    _positionTween = Tween<Offset>(begin: const Offset(0.0, -1.0), end: Offset.zero); //TOP ANIMATION
 
     _positionAnimation = _positionTween.animate(
         CurvedAnimation(parent: controller, curve: Curves.fastOutSlowIn));
@@ -46,7 +46,7 @@ class _DialogSearchState extends State<DialogSearch>
   Widget build(BuildContext context) => SingleChildScrollView(
       child: SlideTransition(
           position: _positionAnimation,
-          child: Container(
+          child: SizedBox(
               width: double.infinity,
               child: Material(
                   elevation: 1,
@@ -67,7 +67,7 @@ class _DialogSearchState extends State<DialogSearch>
                                   //splashColor: appBarTitleColor,
                                   //highlightColor: appBarTitleColor,
                                   shape: RoundedRectangleBorder(
-                                      side: BorderSide(
+                                      side: const BorderSide(
                                           color: Colors.red,
                                           width: 1,
                                           style: BorderStyle.solid),
@@ -78,15 +78,15 @@ class _DialogSearchState extends State<DialogSearch>
                                     FocusScope.of(context).requestFocus(FocusNode());
                                     controller.reverse();
                                     await Future.delayed(
-                                        Duration(milliseconds: 750));
+                                        const Duration(milliseconds: 750));
                                     Get.back();
                                   }),
-                              SizedBox(width: 10),
+                              const SizedBox(width: 10),
                               FlatButton(
                                   //splashColor: appBarTitleColor,
                                   //highlightColor: appBarTitleColor,
                                   shape: RoundedRectangleBorder(
-                                      side: BorderSide(
+                                      side: const BorderSide(
                                           color: Colors.black,
                                           width: 1,
                                           style: BorderStyle.solid),
@@ -95,11 +95,11 @@ class _DialogSearchState extends State<DialogSearch>
                                   onPressed: () async {
                                     FocusScope.of(context).requestFocus(FocusNode());
                                     controller.reverse();
-                                    await Future.delayed(Duration(milliseconds: 750));
+                                    await Future.delayed(const Duration(milliseconds: 750));
                                     Get.back();
                                     Get.toNamed(allFindRoute);
                                   }),
-                              SizedBox(width: 15)
+                              const SizedBox(width: 15)
                             ])
                       ])))));
 }

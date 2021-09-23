@@ -10,10 +10,12 @@ import '../../resource/style.dart';
 import '../../resource/value.dart';
 
 class AccountsPage extends StatelessWidget {
+  const AccountsPage({Key key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) => Scaffold(
           body: CustomScrollView(
-              physics: BouncingScrollPhysics(),
+              physics: const BouncingScrollPhysics(),
               slivers: <Widget>[
         SliverAppBar(
             pinned: true,
@@ -35,13 +37,13 @@ class AccountsPage extends StatelessWidget {
                           end: Alignment.topRight,
                           colors: <Color>[
                     Colors.deepOrange.withOpacity(0.5),
-                    Color(0x00000000)
+                    const Color(0x00000000)
                   ])))
             ]))),
         SliverToBoxAdapter(
             child: Container(
                 color: Colors.white,
-                margin: EdgeInsets.only(top: 10),
+                margin: const EdgeInsets.only(top: 10),
                 child: InkWell(
                     onTap: () => Get.toNamed(turnOfOrderingRoute),
                     child: ListTile(
@@ -55,11 +57,11 @@ class AccountsPage extends StatelessWidget {
         SliverToBoxAdapter(
             child: Container(
                 color: Colors.white,
-                margin: EdgeInsets.only(top: 10),
+                margin: const EdgeInsets.only(top: 10),
                 child: InkWell(
                     onTap: () => Get.toNamed(reportRoute),
                     child: ListTile(
-                      leading: Icon(LineIcons.dashboard),
+                      leading: const Icon(LineIcons.dashboard),
                       title: Text(titleReport,
                           style: allReportLabelStyle(Colors.deepOrange)),
                       subtitle: Text(labelReport,
@@ -69,11 +71,11 @@ class AccountsPage extends StatelessWidget {
         SliverToBoxAdapter(
             child: Container(
                 color: Colors.white,
-                margin: EdgeInsets.only(top: 10),
+                margin: const EdgeInsets.only(top: 10),
                 child: InkWell(
                     onTap: () => Get.toNamed(walletRoute),
                     child: ListTile(
-                      leading: Icon(LineIcons.rupee),
+                      leading: const Icon(LineIcons.rupee),
                       title: Text(titleWallet,
                           style: allReportLabelStyle(Colors.deepOrange)),
                       subtitle: Text(labelWallet,
@@ -83,11 +85,11 @@ class AccountsPage extends StatelessWidget {
         SliverToBoxAdapter(
             child: Container(
                 color: Colors.white,
-                margin: EdgeInsets.only(top: 10),
+                margin: const EdgeInsets.only(top: 10),
                 child: InkWell(
                     onTap: () => Get.toNamed(reviewsRoute),
                     child: ListTile(
-                      leading: Icon(LineIcons.archive),
+                      leading: const Icon(LineIcons.archive),
                       title: Text(titleReviews,
                           style: allReportLabelStyle(Colors.deepOrange)),
                       subtitle: Text(labelReviews,
@@ -97,7 +99,7 @@ class AccountsPage extends StatelessWidget {
         SliverToBoxAdapter(
             child: Container(
                 color: Colors.white,
-                margin: EdgeInsets.only(top: 10),
+                margin: const EdgeInsets.only(top: 10),
                 child: InkWell(
                     child: ListTile(
                       leading: Icon(changePasswordIcon),
@@ -111,11 +113,11 @@ class AccountsPage extends StatelessWidget {
         SliverToBoxAdapter(
             child: Container(
                 color: Colors.white,
-                margin: EdgeInsets.only(top: 10),
+                margin: const EdgeInsets.only(top: 10),
                 child: InkWell(
                     onTap: () => Get.toNamed(supportRoute),
                     child: ListTile(
-                      leading: Icon(LineIcons.mobile),
+                      leading: const Icon(LineIcons.mobile),
                       title: Text(titleSupport,
                           style: allReportLabelStyle(Colors.deepOrange)),
                       subtitle: Text(labelSupport,
@@ -125,9 +127,9 @@ class AccountsPage extends StatelessWidget {
         SliverToBoxAdapter(
             child: Container(
                 color: Colors.white,
-                margin: EdgeInsets.only(top: 10),
+                margin: const EdgeInsets.only(top: 10),
                 child: ListTile(
-                  leading: Icon(LineIcons.share_alt_square),
+                  leading: const Icon(LineIcons.share_alt_square),
                   title: Text(titleShareApp,
                       style: allReportLabelStyle(Colors.deepOrange)),
                   subtitle: Text(labelShareApp,

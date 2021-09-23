@@ -7,7 +7,7 @@ import '../../resource/style.dart';
 
 class DeliveryTypes extends StatelessWidget {
   final String uniqueId;
-  DeliveryTypes({this.uniqueId});
+  DeliveryTypes({Key key, this.uniqueId}) : super(key: key);
 
   final _deliveryTypesController = Get.put(DeliveryTypesController());
 
@@ -15,43 +15,44 @@ class DeliveryTypes extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
+            backgroundColor: appBarColor,
             elevation: 0.2,
             leading: IconButton(
                 onPressed: () => Get.back(),
-                icon: Icon(searchClearIcon, size: 18, color: appBarTitleColor)),
+                icon: const Icon(searchClearIcon,
+                    size: 18, color: appBarTitleColor)),
             title: Row(
                 mainAxisAlignment: MainAxisAlignment.end,
-                children: _deliveryTypesController
-                    .rxDeliveryTypes.value.whichDeliveryTypeList
+                children: _deliveryTypesController.rxDeliveryTypes.value.whichDeliveryTypeList
                     .map((item) => InkWell(
                         highlightColor: appBarTitleColor.withOpacity(0.2),
-                        onTap: () => _deliveryTypesController
-                            .selectDeliveryType(orderUniqueId: uniqueId, uniqueId: item.uniqueId),
+                        onTap: () => _deliveryTypesController.selectDeliveryType(
+                            orderUniqueId: uniqueId, uniqueId: item.uniqueId),
                         borderRadius: BorderRadius.circular(5.0),
                         child: Container(
-                            margin: EdgeInsets.only(left: 5, right: 5),
-                            padding: EdgeInsets.all(5),
+                            margin: const EdgeInsets.only(left: 5, right: 5),
+                            padding: const EdgeInsets.all(5),
                             child: Obx(() => Text(item.name,
                                 style: _deliveryTypesController.rxSelectDeliveryType.value == item.uniqueId
                                     ? deliveryTypeSelectStyle
                                     : deliveryTypeUnSelectStyle)))))
                     .toList())),
         body: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          SizedBox(height: 5),
+          const SizedBox(height: 5),
           Wrap(
               children: _deliveryTypesController.rxPartyType.value.partyList
                   .map((item) => Container(
-                      margin: EdgeInsets.all(5),
+                      margin: const EdgeInsets.all(5),
                       child: InkWell(
                           highlightColor: appBarTitleColor.withOpacity(0.2),
-                          onTap: () => _deliveryTypesController
-                              .selectPartyType(orderUniqueId: uniqueId, uniqueId: item.uniqueId),
+                          onTap: () => _deliveryTypesController.selectPartyType(
+                              orderUniqueId: uniqueId, uniqueId: item.uniqueId),
                           borderRadius: BorderRadius.circular(5.0),
                           child: Container(
                               decoration: BoxDecoration(
                                   color: Colors.grey.withOpacity(0.1),
                                   borderRadius: BorderRadius.circular(5.0)),
-                              padding: EdgeInsets.all(5),
+                              padding: const EdgeInsets.all(5),
                               child: Obx(() => Text(item.name.toUpperCase(),
                                   style: _deliveryTypesController
                                               .rxSelectPartyType.value ==
@@ -59,7 +60,7 @@ class DeliveryTypes extends StatelessWidget {
                                       ? deliveryTypeNameSelectStyle
                                       : deliveryTypeNameUnSelectStyle))))))
                   .toList()),
-          SizedBox(height: 5),
+          const SizedBox(height: 5),
           Expanded(
               child: ListView(children: [
             Column(
@@ -75,7 +76,8 @@ class DeliveryTypes extends StatelessWidget {
                                       orderUniqueId: uniqueId,
                                       uniqueId: item.uniqueId),
                               child: Container(
-                                  padding: EdgeInsets.only(top: 5, bottom: 5, left: 10, right: 10),
+                                  padding: const EdgeInsets.only(
+                                      top: 5, bottom: 5, left: 10, right: 10),
                                   child: Row(
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceBetween,
@@ -97,7 +99,7 @@ class DeliveryTypes extends StatelessWidget {
                                                 scale: 4),
                                             onTap: () {})
                                       ]))),
-                          Divider(color: Colors.grey)
+                          const Divider(color: Colors.grey)
                         ]))
                     .toList())
           ]))

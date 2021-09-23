@@ -10,6 +10,8 @@ import '../../utils/extensions.dart';
 class PastOrderPage extends StatelessWidget {
   final _refreshKey = GlobalKey<RefreshIndicatorState>();
 
+  PastOrderPage({Key key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Obx(() => RefreshIndicator(
@@ -18,17 +20,17 @@ class PastOrderPage extends StatelessWidget {
         color: refreshColor,
         onRefresh: () async {
           if (PastOrderController.to.refreshStatus.value ==
-              RefreshStatus.SUCCESS) {
+              RefreshStatus.success) {
             _refreshKey.currentState.dispose();
           }
 
           if (PastOrderController.to.refreshStatus.value ==
-              RefreshStatus.INITIAL) {
+              RefreshStatus.initial) {
             _refreshKey.currentState.show();
             PastOrderController.to.fetchPastOrder(isRefresh: true);
           }
         },
-        child: PastOrderController.to.stateStatus.value == StateStatus.LOADING
+        child: PastOrderController.to.stateStatus.value == StateStatus.loading
             ? circleProgressIndicator()
             : PastOrderController.to.pastOrder.value.pastOrderList.isEmpty
                 ? emptyWidget()

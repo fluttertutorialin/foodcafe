@@ -4,7 +4,8 @@ class SingleChoiceHolder extends StatefulWidget {
   final List<String> choiceList;
   final String initialChoice;
   final dynamic _onSave;
-  SingleChoiceHolder(this.choiceList, this.initialChoice, this._onSave);
+
+  const SingleChoiceHolder(this.choiceList, this.initialChoice, this._onSave, {Key key}) : super(key: key);
 
   @override
   _SingleChoiceHolderState createState() => _SingleChoiceHolderState();

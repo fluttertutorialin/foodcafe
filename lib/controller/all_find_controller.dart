@@ -8,12 +8,12 @@ import '../utils/state_status.dart';
 
 class AllFindController extends GetxController {
   static AllFindController get to => Get.find();
-  var stateStatus = StateStatus.INITIAL.obs;
-  var refreshStatus = Rx<RefreshStatus>(RefreshStatus.INITIAL);
+  var stateStatus = StateStatus.initial.obs;
+  var refreshStatus = Rx<RefreshStatus>(RefreshStatus.initial);
 
   var rxAllFindList = RxList<OrderMainList>([]);
   var searchController = TextEditingController();
-  var _homeController = Get.put(HomeController());
+  final _homeController = Get.put(HomeController());
 
   var isTimeSelect = Rx<bool>(false);
   var isVisibleSearchClearIcon = false.obs;
@@ -22,10 +22,10 @@ class AllFindController extends GetxController {
 
   Future<void> fetchAllFind({bool isRefresh = false, String allFind}) async {
     if (isRefresh) {
-      refreshStatus.value = RefreshStatus.LOADING;
+      refreshStatus.value = RefreshStatus.loading;
     }
 
-    stateStatus.value = StateStatus.LOADING;
+    stateStatus.value = StateStatus.loading;
 
     List<OrderMainList> orderMainList = [
       OrderMainList(
@@ -248,14 +248,14 @@ class AllFindController extends GetxController {
           ])
     ];
 
-    await Future.delayed(Duration(seconds: 2));
+    await Future.delayed(const Duration(seconds: 2));
 
     if (isRefresh) {
-      refreshStatus.value = RefreshStatus.SUCCESS;
-      refreshStatus.value = RefreshStatus.INITIAL;
+      refreshStatus.value = RefreshStatus.success;
+      refreshStatus.value = RefreshStatus.initial;
     }
 
-    stateStatus.value = StateStatus.SUCCESS;
+    stateStatus.value = StateStatus.success;
 
     rxAllFindList.assignAll(
         PendingResponse(orderMainList: orderMainList).orderMainList.obs);

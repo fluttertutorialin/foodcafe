@@ -4,10 +4,10 @@ import '../utils/state_status.dart';
 
 class PastOrderController extends GetxController {
   static PastOrderController get to => Get.find();
-  var pastOrder = Rx<PastOrderResponse>();
+  var pastOrder = Rx<PastOrderResponse>(PastOrderResponse());
 
-  var stateStatus = Rx<StateStatus>(StateStatus.INITIAL);
-  var refreshStatus = Rx<RefreshStatus>(RefreshStatus.INITIAL);
+  var stateStatus = Rx<StateStatus>(StateStatus.initial);
+  var refreshStatus = Rx<RefreshStatus>(RefreshStatus.initial);
 
   @override
   onInit() {
@@ -18,10 +18,10 @@ class PastOrderController extends GetxController {
   Future<void> fetchPastOrder(
       {int orderStatus = 1, bool isRefresh = false}) async {
     if (isRefresh) {
-      refreshStatus.value = RefreshStatus.LOADING;
+      refreshStatus.value = RefreshStatus.loading;
     }
 
-    stateStatus.value = StateStatus.LOADING;
+    stateStatus.value = StateStatus.loading;
 
     var pastOrderResponse = PastOrderResponse(pastOrderList: [
       PastOrder(
@@ -44,12 +44,12 @@ class PastOrderController extends GetxController {
           remark: 'Items are not available')
     ]);
 
-    await Future.delayed(Duration(seconds: 2));
+    await Future.delayed(const Duration(seconds: 2));
     if (isRefresh) {
-      refreshStatus.value = RefreshStatus.SUCCESS;
-      refreshStatus.value = RefreshStatus.INITIAL;
+      refreshStatus.value = RefreshStatus.success;
+      refreshStatus.value = RefreshStatus.initial;
     }
-    stateStatus.value = StateStatus.SUCCESS;
+    stateStatus.value = StateStatus.success;
 
     pastOrder = pastOrderResponse.obs;
   }

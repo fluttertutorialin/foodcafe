@@ -5,13 +5,13 @@ import '../utils/state_status.dart';
 
 class ForgotPasswordController extends GetxController {
   static ForgotPasswordController get to => Get.find();
-  var stateStatus = Rx<StateStatus>(StateStatus.INITIAL);
+  var stateStatus = Rx<StateStatus>(StateStatus.initial);
 
   var emailController = TextEditingController();
 
   String _email = '';
 
-  var _autoValidate = Rx<bool>(false);
+  final _autoValidate = Rx<bool>(false);
 
   changeEmail(String value) {
     _email = value;
@@ -22,12 +22,12 @@ class ForgotPasswordController extends GetxController {
   }
 
   Future<void> callForgotPassword() async {
-    stateStatus.value = StateStatus.LOADING;
+    stateStatus.value = StateStatus.loading;
 
-    var param = new Map();
+    var param = {};
     param['email'] = _email;
 
-    stateStatus.value = StateStatus.SUCCESS;
+    stateStatus.value = StateStatus.success;
     _clearTextField();
 
     Get.back();

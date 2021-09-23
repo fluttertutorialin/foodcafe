@@ -4,7 +4,7 @@ import '../../resource/colors.dart';
 class RoundedShadowContainer extends StatelessWidget {
   final Widget child;
 
-  const RoundedShadowContainer({this.child});
+  const RoundedShadowContainer({Key key, this.child}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

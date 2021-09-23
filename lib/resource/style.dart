@@ -39,8 +39,8 @@ doNotHaveAccountStyle(Color color) => TextStyle(fontSize: 30.sp, color: color, f
 loginLinkStyle(Color color) => TextStyle(fontSize: 30.sp, fontFamily: mediumFont, color: color);
 
 //TAB STYLE
-var tabSelectStyle = TextStyle(fontSize: 14, fontFamily: mediumFont);
-var tabUnSelectStyle = TextStyle(fontSize: 12, fontFamily: mediumFont);
+var tabSelectStyle = const TextStyle(fontSize: 14, fontFamily: mediumFont);
+var tabUnSelectStyle = const TextStyle(fontSize: 12, fontFamily: mediumFont);
 
 //DRAWER STYLE
 var drawerMenuStyle = TextStyle(fontSize: 30.sp, color: Colors.black, fontFamily: regularFont);
@@ -148,5 +148,5 @@ var totalPayStyle = TextStyle(fontSize: 30.sp, color: Colors.deepOrange, fontFam
 
 //decoration
 var preparationTimeDecoration = BoxDecoration(
-    borderRadius: BorderRadius.all(Radius.circular(3.0)),
+    borderRadius: const BorderRadius.all(Radius.circular(3.0)),
     border: Border.all(color: preparationTimeDecorationColor, width: 1));

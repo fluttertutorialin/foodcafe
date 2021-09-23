@@ -10,9 +10,12 @@ import '../../resource/value.dart';
 import '../../utils/extensions.dart';
 
 class PastOrderDetailPage extends StatelessWidget {
+  const PastOrderDetailPage({Key key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) => Scaffold(
       appBar: AppBar(
+          backgroundColor: appBarColor,
           elevation: appBarElevation,
           leading: IconButton(
               onPressed: () => Get.back(),
@@ -20,7 +23,7 @@ class PastOrderDetailPage extends StatelessWidget {
           title: Text(titlePastOrderDetail, style: appBarTitleStyle)),
       body: Obx(() => ListView(children: [
             Container(
-                padding: EdgeInsets.all(10),
+                padding: const EdgeInsets.all(10),
                 child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -71,11 +74,11 @@ class PastOrderDetailPage extends StatelessWidget {
                                 '${ PastOrderDetailController.to.rxPastOrderDetail.value.orderPersonDetail.mobile}'
                                     .mobileCalling())
                       ]),
-                      SizedBox(height: 10),
+                      const SizedBox(height: 10),
                       Text('Delivery Detail', style: pastOrderDetailLabelStyle),
                       _deliveryDetail( PastOrderDetailController.to
                           .rxPastOrderDetail.value.deliveryPersonDetail),
-                      SizedBox(height: 10),
+                      const SizedBox(height: 10),
                       Text('Order Detail', style: pastOrderDetailLabelStyle),
                       orderDetail( PastOrderDetailController.to
                           .rxPastOrderDetail.value.orderList),
@@ -84,7 +87,7 @@ class PastOrderDetailPage extends StatelessWidget {
                               .rxPastOrderDetail.value.totalOrderQuantity,
                           PastOrderDetailController.to
                               .rxPastOrderDetail.value.totalOrderAmount),
-                      SizedBox(height: 10),
+                      const SizedBox(height: 10),
                       Text('Extra Order Detail',
                           style: pastOrderDetailLabelStyle),
                       _extraOrderDetail( PastOrderDetailController.to
@@ -94,7 +97,7 @@ class PastOrderDetailPage extends StatelessWidget {
                               .rxPastOrderDetail.value.totalExtraOrderQuantity,
                           PastOrderDetailController.to
                               .rxPastOrderDetail.value.extraOrderTotalAmount),
-                      SizedBox(height: 10),
+                      const SizedBox(height: 10),
                       Text('Payment Detail', style: pastOrderDetailLabelStyle),
                       _otherCharge( PastOrderDetailController.to
                           .rxPastOrderDetail.value.otherChargeList),
@@ -103,7 +106,7 @@ class PastOrderDetailPage extends StatelessWidget {
                               .rxPastOrderDetail.value.totalQuantity,
                           PastOrderDetailController.to
                               .rxPastOrderDetail.value.totalAmount),
-                      SizedBox(height: 10),
+                      const SizedBox(height: 10),
                       Text('Order', style: pastOrderDetailLabelStyle),
                       _orderStatus(
                           PastOrderDetailController.to
@@ -128,12 +131,12 @@ class PastOrderDetailPage extends StatelessWidget {
         ]),
         isRefundable == null
             ? Container()
-            : Text('$refundable', style: pastOrderRefundableStyle),
+            : Text(refundable, style: pastOrderRefundableStyle),
         remark == null
             ? Container()
             : Row(children: [
-                Text('$remarkItem', style: pastOrderRemarkStyle),
-                SizedBox(width: 5),
+                Text(remarkItem, style: pastOrderRemarkStyle),
+                const SizedBox(width: 5),
                 Text(remark, style: pastOrderRemarkCommentStyle)
               ])
       ]);
@@ -155,7 +158,7 @@ class PastOrderDetailPage extends StatelessWidget {
                           child: Text('$rsSymbol ${item.chargeAmount}',
                               style: menuPriceStyle)))
                 ]),
-                SizedBox(height: 3)
+                const SizedBox(height: 3)
               ]))
           .toList());
 
@@ -169,18 +172,18 @@ class PastOrderDetailPage extends StatelessWidget {
                   children: [
                     Row(children: [
                       Text('Paid', style: paymentPaidStatusStyle),
-                      SizedBox(width: 3),
-                      Text('($CODPaymentType)', style: paymentCollectStyle)
+                      const SizedBox(width: 3),
+                      Text('($codPaymentType)', style: paymentCollectStyle)
                     ]),
                     Row(children: [
                       Text(labelTotal, style: totalQuantityStyle),
-                      SizedBox(width: 3),
+                      const SizedBox(width: 3),
                     ])
                   ])),
           Flexible(
               flex: 600,
               child: Row(children: [
-                Text('$quantitySymbol', style: quantitySymbolStyle),
+                Text(quantitySymbol, style: quantitySymbolStyle),
                 Text('$totalQuantity', style: quantityStyle)
               ])),
           Flexible(
@@ -200,13 +203,13 @@ class PastOrderDetailPage extends StatelessWidget {
               child: Row(mainAxisAlignment: MainAxisAlignment.end, children: [
                 Row(children: [
                   Text(labelTotal, style: totalQuantityStyle),
-                  SizedBox(width: 3),
+                  const SizedBox(width: 3),
                 ])
               ])),
           Flexible(
               flex: 600,
               child: Row(children: [
-                Text('$quantitySymbol', style: quantitySymbolStyle),
+                Text(quantitySymbol, style: quantitySymbolStyle),
                 Text('$quantity', style: quantityStyle)
               ])),
           Flexible(
@@ -226,16 +229,16 @@ class PastOrderDetailPage extends StatelessWidget {
                       flex: 3500,
                       child: Row(children: [
                         Container(
-                            margin: EdgeInsets.only(bottom: 3),
+                            margin: const EdgeInsets.only(bottom: 3),
                             child: Image.asset(
                                 item.isVegNonVeg == vegIcon
                                     ? foodVegImage
                                     : foodNonVegImage,
                                 height: 12,
                                 width: 12)),
-                        SizedBox(width: 5),
+                        const SizedBox(width: 5),
                         Text(item.recipeName, style: menuNameStyle),
-                        SizedBox(width: 5),
+                        const SizedBox(width: 5),
                         Text(
                             1 == fullOrderTypeApi
                                 ? fullOrderType
@@ -245,7 +248,7 @@ class PastOrderDetailPage extends StatelessWidget {
                   Flexible(
                       flex: 600,
                       child: Row(children: [
-                        Text('$quantitySymbol', style: quantitySymbolStyle),
+                        Text(quantitySymbol, style: quantitySymbolStyle),
                         Text('${item.quantity}', style: quantityStyle)
                       ])),
                   Flexible(
@@ -255,7 +258,7 @@ class PastOrderDetailPage extends StatelessWidget {
                           child: Text('$rsSymbol ${item.price * item.quantity}',
                               style: menuPriceStyle)))
                 ]),
-                SizedBox(height: 3)
+                const SizedBox(height: 3)
               ]))
           .toList());
 
@@ -272,7 +275,7 @@ class PastOrderDetailPage extends StatelessWidget {
                   Flexible(
                       flex: 600,
                       child: Row(children: [
-                        Text('$quantitySymbol', style: quantitySymbolStyle),
+                        Text(quantitySymbol, style: quantitySymbolStyle),
                         Text('${item.quantity}', style: quantityStyle)
                       ])),
                   Flexible(
@@ -282,7 +285,7 @@ class PastOrderDetailPage extends StatelessWidget {
                           child: Text('$rsSymbol ${item.price * item.quantity}',
                               style: menuPriceStyle)))
                 ]),
-                SizedBox(height: 3)
+                const SizedBox(height: 3)
               ]))
           .toList());
 
@@ -291,7 +294,7 @@ class PastOrderDetailPage extends StatelessWidget {
         Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
           Row(children: [
             Image.asset(deliveryBoyImage, scale: 4),
-            SizedBox(width: 10),
+            const SizedBox(width: 10),
             Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
               Text(deliveryPersonDetail.name, style: deliveryPersonNameStyle),
               Text(deliveryPersonDetail.arrivingDateTime.dateTimeyyyyMMddhhmma(),

@@ -10,7 +10,7 @@ class SplashController extends GetxController
     with SingleGetTickerProviderMixin {
   static SplashController get to => Get.find();
 
-  var _localAuthRepository = Get.find<LocalAuthRepository>();
+  final _localAuthRepository = Get.find<LocalAuthRepository>();
   AnimationController _controller;
   Animation<Offset> offsetAnimation;
 
@@ -31,9 +31,9 @@ class SplashController extends GetxController
 
   _launchPage() async {
     var _onBoarding =
-        _localAuthRepository.hasDataSession(SECURE_STORAGE_ON_BOARDING);
+        _localAuthRepository.hasDataSession(secureStorageOnBoarding);
     var _whereLogin =
-        _localAuthRepository.hasDataSession(SECURE_STORAGE_WHERE_LOGIN);
+        _localAuthRepository.hasDataSession(secureStorageWhereLogin);
 
     await Future.delayed(const Duration(seconds: 3), () {});
     Get.offNamed(_onBoarding

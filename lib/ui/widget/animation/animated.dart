@@ -8,7 +8,7 @@ class Animated extends StatefulWidget {
   final Widget Function(BuildContext context, Widget child, Animation animation)
       builder;
 
-  Animated({
+  const Animated({
     Key key,
     @required this.value,
     @required this.builder,

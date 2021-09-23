@@ -4,8 +4,10 @@ import '../../controller/controller.dart';
 import '../../resource/style.dart';
 import '../../resource/value.dart';
 
-
 class OnBoardingPage extends StatelessWidget {
+  const OnBoardingPage({Key key}) : super(key: key);
+
+  @override
   Widget build(BuildContext context) => Scaffold(
           body: Stack(children: [
         PageView.builder(
@@ -13,26 +15,25 @@ class OnBoardingPage extends StatelessWidget {
             controller: OnBoardingController.to.pageController,
             itemCount: OnBoardingController.to.onBoardingResponseList.length,
             itemBuilder: (context, index) {
-              return Container(
-                  child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                    Image.asset(OnBoardingController.to
-                        .onBoardingResponseList[index].imageAssets),
-                    SizedBox(height: 32),
-                    Text(
+              return Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                Image.asset(OnBoardingController.to
+                    .onBoardingResponseList[index].imageAssets),
+                const SizedBox(height: 32),
+                Text(
+                    OnBoardingController.to
+                        .onBoardingResponseList[index].title,
+                    style: onBoardingTitleStyle),
+                const SizedBox(height: 20),
+                Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 64.0),
+                    child: Text(
                         OnBoardingController.to
-                            .onBoardingResponseList[index].title,
-                        style: onBoardingTitleStyle),
-                    SizedBox(height: 20),
-                    Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 64.0),
-                        child: Text(
-                            OnBoardingController.to
-                                .onBoardingResponseList[index].description,
-                            textAlign: TextAlign.center,
-                            style: onBoardingMessageStyle))
-                  ]));
+                            .onBoardingResponseList[index].description,
+                        textAlign: TextAlign.center,
+                        style: onBoardingMessageStyle))
+              ]);
             }),
         Positioned(
             left: 15,

@@ -15,6 +15,8 @@ class DispatchedPage extends StatelessWidget {
   final _infoKey = <GlobalKey>[];
   final _refreshKey = GlobalKey<RefreshIndicatorState>();
 
+  DispatchedPage({Key key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,12 +33,12 @@ class DispatchedPage extends StatelessWidget {
                 color: refreshColor,
                 onRefresh: () async {
                   if (DispatchedController.to.refreshStatus.value ==
-                      RefreshStatus.SUCCESS) {
+                      RefreshStatus.success) {
                     _refreshKey.currentState.dispose();
                   }
 
                   if (DispatchedController.to.refreshStatus.value ==
-                      RefreshStatus.INITIAL) {
+                      RefreshStatus.initial) {
                     _refreshKey.currentState.show();
                     DispatchedController.to.fetchDispatched(isRefresh: true);
                   }
@@ -56,7 +58,7 @@ class DispatchedPage extends StatelessWidget {
                           child: Card(
                               elevation: cardViewElevation,
                               child: Container(
-                                  margin: EdgeInsets.all(10),
+                                  margin: const EdgeInsets.all(10),
                                   child: Column(
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
@@ -80,7 +82,7 @@ class DispatchedPage extends StatelessWidget {
                                         OrderAddress(
                                             orderPersonDetail:
                                                 _dispatched.orderPersonDetail),
-                                        SizedBox(height: 10),
+                                        const SizedBox(height: 10),
                                         OrderStatus(
                                             orderStatus: settleOrderButton,
                                             rejectCallBack: () =>

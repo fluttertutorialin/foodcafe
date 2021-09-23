@@ -11,6 +11,8 @@ import '../../utils/extensions.dart';
 class SignUpPage extends StatelessWidget {
   final _key = GlobalKey<FormState>();
 
+  SignUpPage({Key key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) => Scaffold(
       body: Form(
@@ -19,7 +21,7 @@ class SignUpPage extends StatelessWidget {
           child: ListView(children: [_formUI()])));
 
   _formUI() => Obx(() => Container(
-      padding: EdgeInsets.all(20),
+      padding: const EdgeInsets.all(20),
       child: Column(children: <Widget>[
         size(heightScale: Get.height / 12),
         _formIcon(),
@@ -43,7 +45,7 @@ class SignUpPage extends StatelessWidget {
           backgroundColor: Colors.transparent,
           child: Image.asset(appIconImage)));
 
-  _signUpPress() => Align(alignment: Alignment.bottomCenter).customFloatForm(
+  _signUpPress() => const Align(alignment: Alignment.bottomCenter).customFloatForm(
       color: appBarTitleColor,
       stateStatus: SingUpController.to.stateStatus.value,
       icon: Icons.navigate_next,

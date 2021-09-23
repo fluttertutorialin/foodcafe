@@ -10,8 +10,8 @@ class PendingController extends GetxController {
   static PendingController get to => Get.find();
 
   var rxPendingList = RxList<OrderMainList>([]);
-  var stateStatus = Rx<StateStatus>(StateStatus.INITIAL);
-  var refreshStatus = Rx<RefreshStatus>(RefreshStatus.INITIAL);
+  var stateStatus = Rx<StateStatus>(StateStatus.initial);
+  var refreshStatus = Rx<RefreshStatus>(RefreshStatus.initial);
 
   var search = Rx<String>('');
 
@@ -23,9 +23,9 @@ class PendingController extends GetxController {
 
   Future<void> fetchPending({bool isRefresh = false}) async {
     if (isRefresh) {
-      refreshStatus.value = RefreshStatus.LOADING;
+      refreshStatus.value = RefreshStatus.loading;
     }
-    stateStatus.value = StateStatus.LOADING;
+    stateStatus.value = StateStatus.loading;
 
     List<OrderMainList> orderMainList = [
       OrderMainList(
@@ -78,12 +78,12 @@ class PendingController extends GetxController {
                 orderType: 2)
           ]),
     ];
-    await Future.delayed(Duration(seconds: 2));
+    await Future.delayed(const Duration(seconds: 2));
     if (isRefresh) {
-      refreshStatus.value = RefreshStatus.SUCCESS;
-      refreshStatus.value = RefreshStatus.INITIAL;
+      refreshStatus.value = RefreshStatus.success;
+      refreshStatus.value = RefreshStatus.initial;
     }
-    stateStatus.value = StateStatus.SUCCESS;
+    stateStatus.value = StateStatus.success;
 
     rxPendingList.assignAll(
         PendingResponse(orderMainList: orderMainList).orderMainList.obs);

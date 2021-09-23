@@ -12,11 +12,11 @@ class DrawerMenu extends StatelessWidget {
   final String userName, email, profileURL;
   final ValueChanged<String> drawerCallBack;
 
-  DrawerMenu(
-      {@required this.userName,
+  const DrawerMenu(
+      {Key key, @required this.userName,
       @required this.email,
       @required this.profileURL,
-      this.drawerCallBack});
+      this.drawerCallBack}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +26,7 @@ class DrawerMenu extends StatelessWidget {
           leading: CircleAvatar(
               backgroundColor: Colors.grey.withOpacity(0.1),
               backgroundImage: profileURL.isEmpty
-                  ? ExactAssetImage(profileImage)
+                  ? const ExactAssetImage(profileImage)
                   : NetworkImage(profileURL)),
           title: Text(userName.titleCase, style: drawerUserNameStyle),
           subtitle: Text(email.toLowerCase(), style: drawerEmailStyle),

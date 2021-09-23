@@ -5,10 +5,10 @@ import '../utils/state_status.dart';
 
 class BirthDayController extends GetxController {
   static BirthDayController get to => Get.find();
-  var stateStatus = Rx<StateStatus>(StateStatus.INITIAL);
-  var refreshStatus = Rx<RefreshStatus>(RefreshStatus.INITIAL);
+  var stateStatus = Rx<StateStatus>(StateStatus.initial);
+  var refreshStatus = Rx<RefreshStatus>(RefreshStatus.initial);
 
-  var birthDayResponse = Rx<BirthDayResponse>();
+  var birthDayResponse = Rx<BirthDayResponse>(BirthDayResponse());
 
   @override
   onInit() {
@@ -18,9 +18,9 @@ class BirthDayController extends GetxController {
 
   Future<void> fetchBirthDay({bool isRefresh = false}) async {
     if (isRefresh) {
-      refreshStatus.value = RefreshStatus.LOADING;
+      refreshStatus.value = RefreshStatus.loading;
     }
-    stateStatus.value = StateStatus.LOADING;
+    stateStatus.value = StateStatus.loading;
 
     var birthDayResponse = BirthDayResponse(birthDayList: [
       BirthDay(
@@ -43,19 +43,19 @@ class BirthDayController extends GetxController {
           isSentMessage: false)
     ]);
 
-    await Future.delayed(Duration(seconds: 2));
+    await Future.delayed(const Duration(seconds: 2));
     if (isRefresh) {
-      refreshStatus.value = RefreshStatus.SUCCESS;
-      refreshStatus.value = RefreshStatus.INITIAL;
+      refreshStatus.value = RefreshStatus.success;
+      refreshStatus.value = RefreshStatus.initial;
     }
 
-    stateStatus.value = StateStatus.SUCCESS;
+    stateStatus.value = StateStatus.success;
 
     this.birthDayResponse.value = birthDayResponse;
   }
 
   void birthDayWish({BirthDay birthDay}) {
-    birthDay.birthDayWishName = HomeController.to.secureStorageUserName.value;
+    birthDay.birthDayWishName = HomeController.to.secureStorageUserNameRx.value;
     birthDay.isSentMessage.value = true;
   }
 }

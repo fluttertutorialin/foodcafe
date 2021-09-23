@@ -1,11 +1,10 @@
 import 'package:flutter/widgets.dart';
 import 'slidable.dart';
 
-const Duration _kResizeDuration = const Duration(milliseconds: 300);
+const Duration _kResizeDuration = Duration(milliseconds: 300);
 
 class SlidableDismissal extends StatelessWidget {
-  /// Creates a widget that controls how the [Slidable] is dismissed.
-  const SlidableDismissal({
+  const SlidableDismissal({Key key,
     @required this.child,
     this.dismissThresholds = const <SlideActionType, double>{},
     this.onResize,
@@ -15,7 +14,7 @@ class SlidableDismissal extends StatelessWidget {
     this.onWillDismiss,
     this.closeOnCanceled = false,
     this.dragDismissible = true,
-  }) : assert(dismissThresholds != null);
+  }) : assert(dismissThresholds != null), super(key: key);
 
   final bool dragDismissible;
   final Map<SlideActionType, double> dismissThresholds;

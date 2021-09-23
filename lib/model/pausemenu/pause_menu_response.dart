@@ -16,10 +16,10 @@ class PauseOrderGroup{
 
 class PauseOrderMenu {
   PauseOrderMenu({int id, String menuName, int orderAvailableDateTime, bool switchCase}) {
-    this.setId(id);
-    this.setMenuName(menuName);
-    this.setOrderAvailableDateTime(orderAvailableDateTime);
-    this.setSwitchCase(switchCase);
+    setId(id);
+    setMenuName(menuName);
+    setOrderAvailableDateTime(orderAvailableDateTime);
+    setSwitchCase(switchCase);
   }
 
   RxInt id = RxInt(null);

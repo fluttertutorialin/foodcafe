@@ -4,18 +4,17 @@ import '../../controller/pause_menu_controller.dart';
 import '../../resource/colors.dart';
 import '../../resource/style.dart';
 import '../../resource/value.dart';
-import '../../ui/widget/bottom_sheet_custom.dart';
-import '../../ui/widget/bottom_sheet_pause_menu.dart';
-import '../../ui/widget/custom_switch.dart';
 import '../../ui/widget/text_field_search.dart';
 import '../../utils/state_status.dart';
 import '../../utils/extensions.dart';
 
 class PauseMenuPage extends StatelessWidget {
+  const PauseMenuPage({Key key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Obx(() => Scaffold(
-        body: PauseMenuController.to.stateStatus.value == StateStatus.LOADING
+        body: PauseMenuController.to.stateStatus.value == StateStatus.loading
             ? circleProgressIndicator()
             : Container(
                 color: backgroundPauseMenuColor,
@@ -23,12 +22,12 @@ class PauseMenuPage extends StatelessWidget {
                   Expanded(
                       flex: 0,
                       child: Column(children: [
-                        SizedBox(height: 10),
+                        const SizedBox(height: 10),
                         Text(labelTurnOfOrdering, style: pauseMenuTitleStyle),
                         Column(
                             children: PauseMenuController.to.rxPauseShopList
                                 .map((item) => Container(
-                                    margin: EdgeInsets.only(
+                                    margin: const EdgeInsets.only(
                                         bottom: 0, left: 10, right: 10),
                                     child: Column(children: [
                                       Row(
@@ -50,7 +49,7 @@ class PauseMenuPage extends StatelessWidget {
                                                       style:
                                                           menuAvailableStyle))
                                                 ]),
-                                            Obx(() => CustomSwitch(
+                                            /*Obx(() => CustomSwitch(
                                                 value: item.switchCase.value,
                                                 onChanged: (bool value) {
                                                   bottomSheetCustom(
@@ -80,14 +79,14 @@ class PauseMenuPage extends StatelessWidget {
                                                 inactiveTrackColor:
                                                     switchTrackColor,
                                                 inactiveThumbColor:
-                                                    switchInActiveColor))
+                                                    switchInActiveColor))*/
                                           ])
                                     ])))
                                 .toList())
                       ])),
                   Expanded(
                       child: Container(
-                          decoration: BoxDecoration(
+                          decoration: const BoxDecoration(
                               color: backgroundColor,
                               borderRadius: BorderRadius.only(
                                   topLeft: Radius.circular(15.0),
@@ -128,7 +127,7 @@ class PauseMenuPage extends StatelessWidget {
                                                 var item = PauseMenuController.to
                                                     .rxPauseMenuList[index];
                                                 return Container(
-                                                    margin: EdgeInsets.only(
+                                                    margin: const EdgeInsets.only(
                                                         left: 10, right: 10),
                                                     child: Column(
                                                         crossAxisAlignment:
@@ -151,7 +150,7 @@ class PauseMenuPage extends StatelessWidget {
                                                                               Text(item.menuName.value, style: switchLabelStyle),
                                                                               Obx(() => Text(item.orderAvailableDateTime.value != null ? '${item.orderAvailableDateTime.value.dateTimeyyyyMMddhhmma()}' : '', style: menuAvailableStyle))
                                                                             ]),
-                                                                            Obx(() => CustomSwitch(
+                                                                            /*Obx(() => CustomSwitch(
                                                                                 value: item.switchCase.value,
                                                                                 onChanged: (bool value) {
                                                                                   bottomSheetCustom(
@@ -170,7 +169,7 @@ class PauseMenuPage extends StatelessWidget {
                                                                                 },
                                                                                 activeColor: switchActiveColor,
                                                                                 inactiveTrackColor: switchTrackColor,
-                                                                                inactiveThumbColor: switchInActiveColor))
+                                                                                inactiveThumbColor: switchInActiveColor))*/
                                                                           ]))
                                                                   .toList())
                                                         ]));

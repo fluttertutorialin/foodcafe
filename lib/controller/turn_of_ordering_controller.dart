@@ -4,10 +4,10 @@ import '../utils/state_status.dart';
 
 class TurnOfOrderingController extends GetxController {
   static TurnOfOrderingController get to => Get.find();
-  var stateStatus = Rx<StateStatus>(StateStatus.INITIAL);
-  var refreshStatus = Rx<RefreshStatus>(RefreshStatus.INITIAL);
+  var stateStatus = Rx<StateStatus>(StateStatus.initial);
+  var refreshStatus = Rx<RefreshStatus>(RefreshStatus.initial);
 
-  var turnOfOrderingResponse = Rx<TurnOfOrderingResponse>();
+  var turnOfOrderingResponse = Rx<TurnOfOrderingResponse>(TurnOfOrderingResponse());
 
   @override
   onInit() {
@@ -18,22 +18,22 @@ class TurnOfOrderingController extends GetxController {
 
   Future<void> fetchTurnOfOrdering({bool isRefresh = false}) async {
     if (isRefresh) {
-      refreshStatus.value = RefreshStatus.LOADING;
+      refreshStatus.value = RefreshStatus.loading;
     }
-    stateStatus.value = StateStatus.LOADING;
+    stateStatus.value = StateStatus.loading;
 
     var turnOfOrderingResponse =  TurnOfOrderingResponse(turnOfOrderingList: [
       TurnOfOrdering(userId: '1', userName: 'Lakhani Kamlesh', recipeName: 'Chicken biryani', dateTime: '11-7-2020 - 1:15 PM', availableRecipe: '20-12-2020 - 1:15 PM'),
       TurnOfOrdering(userId: '2', userName: 'Lakhani Kamlesh', recipeName: 'Chicken biryani', dateTime: '11-8-2020 - 1:15 PM', availableRecipe: '20-12-2020 - 1:15 PM'),
     ]);
 
-    await Future.delayed(Duration(seconds: 2));
+    await Future.delayed(const Duration(seconds: 2));
     if (isRefresh) {
-      refreshStatus.value = RefreshStatus.SUCCESS;
-      refreshStatus.value = RefreshStatus.INITIAL;
+      refreshStatus.value = RefreshStatus.success;
+      refreshStatus.value = RefreshStatus.initial;
     }
 
-    stateStatus.value = StateStatus.SUCCESS;
+    stateStatus.value = StateStatus.success;
 
     this.turnOfOrderingResponse.value = turnOfOrderingResponse;
   }

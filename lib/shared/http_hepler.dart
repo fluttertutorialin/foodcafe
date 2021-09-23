@@ -1,17 +1,17 @@
 import 'package:get/get.dart';
 
 enum Method {
-  GET,
-  POST,
-  DELETE,
-  PUT,
+  get,
+  post,
+  delete,
+  put,
 }
 
-const MethodValues = {
-  Method.GET: 'get',
-  Method.POST: 'post',
-  Method.DELETE: 'delete',
-  Method.PUT: 'put',
+const Map<Method, String> methodValues = {
+  Method.get: 'get',
+  Method.post: 'post',
+  Method.delete: 'delete',
+  Method.put: 'put',
 };
 
 typedef HttpSuccessCallback<T> = void Function(T data);
@@ -25,11 +25,11 @@ class HttpHelper extends GetConnect {
       String contentType = 'application/json',
       dynamic body,
       Map<String, dynamic> query,
-      Method method = Method.GET,
+      Method method = Method.get,
       HttpSuccessCallback<T> success,
       HttpFailureCallback error}) async {
     try {
-      final response = await request(baseUrl, MethodValues[method],
+      final response = await request(baseUrl, methodValues[method],
           body: body, contentType: contentType, headers: headers, query: query);
       if (response.status.hasError) {
         return error(ErrorEntity(

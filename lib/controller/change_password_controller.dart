@@ -6,7 +6,7 @@ import '../utils/state_status.dart';
 
 class ChangePasswordController extends GetxController {
   static ChangePasswordController get to => Get.find();
-  var stateStatus = Rx<StateStatus>(StateStatus.INITIAL);
+  var stateStatus = Rx<StateStatus>(StateStatus.initial);
 
   var newPasswordController = TextEditingController();
   var newConfirmPasswordController = TextEditingController();
@@ -38,13 +38,13 @@ class ChangePasswordController extends GetxController {
   }
 
   togglePasswordVisibility() {
-    this.passwordVisible.value = !passwordVisible.value;
+    passwordVisible.value = !passwordVisible.value;
   }
 
   Future<void> callChangePassword() async {
-    stateStatus.value = StateStatus.LOADING;
+    stateStatus.value = StateStatus.loading;
 
-    var param = new Map();
+    var param = {};
     param['newPassword'] = _changePassword;
     param['newConfirmPassword'] = _changeConfirmPassword;
     param['currentPassword'] = _changeCurrentPassword;
@@ -52,7 +52,7 @@ class ChangePasswordController extends GetxController {
     /*fireStoreDatabaseRepository.changePassword(
         success: (value) {}, error: (value) {});*/
 
-    stateStatus.value = StateStatus.SUCCESS;
+    stateStatus.value = StateStatus.success;
 
     _clearTextField();
     Get.back();

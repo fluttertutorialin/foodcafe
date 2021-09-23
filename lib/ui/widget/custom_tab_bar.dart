@@ -5,7 +5,7 @@ class CustomTabBar extends StatelessWidget {
   final int selectedIndex;
   final Function(int) onTab;
 
-  CustomTabBar({
+  const CustomTabBar({
     Key key,
     @required this.icons,
     @required this.selectedIndex,
@@ -16,7 +16,7 @@ class CustomTabBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return TabBar(
         indicatorPadding: EdgeInsets.zero,
-        indicator: BoxDecoration(
+        indicator: const BoxDecoration(
             border: Border(top: BorderSide(color: Colors.blue, width: 3.0))),
         tabs: icons
             .asMap()

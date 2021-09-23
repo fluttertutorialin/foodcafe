@@ -8,9 +8,9 @@ import '../utils/state_status.dart';
 
 class SingUpController extends GetxController {
   static SingUpController get to => Get.find();
-  var _localAuthRepository = Get.find<LocalAuthRepository>();
+  final _localAuthRepository = Get.find<LocalAuthRepository>();
 
-  var stateStatus = Rx<StateStatus>(StateStatus.INITIAL);
+  var stateStatus = Rx<StateStatus>(StateStatus.initial);
 
   var userNameController = TextEditingController();
   var emailController = TextEditingController();
@@ -29,7 +29,7 @@ class SingUpController extends GetxController {
 
   final secureStorageUserName = Rx<String>('');
   final secureStorageProfileURL = Rx<String>('');
-  final secureStorageEmail = Rx<String>('');
+  final secureStorageEmailRx = Rx<String>('');
 
   changeUserName(String value) {
     _userName = value;
@@ -56,31 +56,31 @@ class SingUpController extends GetxController {
   }
 
   togglePasswordVisibility() {
-    this.passwordVisible.value = !passwordVisible.value;
+    passwordVisible.value = !passwordVisible.value;
   }
 
   Future<void> callSignUp() async {
-    stateStatus.value = StateStatus.LOADING;
+    stateStatus.value = StateStatus.loading;
 
-    var param = new Map();
+    var param = {};
     param['userName'] = _userName;
     param['email'] = _email;
     param['password'] = _password;
     param['confirmPassword'] = _confirmPassword;
     param['mobile'] = _mobile;
 
-    _localAuthRepository.writeSession(SECURE_STORAGE_USERNAME, _userName);
-    _localAuthRepository.writeSession(SECURE_STORAGE_EMAIL, _email);
-    _localAuthRepository.writeSession(SECURE_STORAGE_PROFILE_URL, '');
-    _localAuthRepository.writeSession(SECURE_STORAGE_TOKEN, '');
-    _localAuthRepository.writeSession(SECURE_STORAGE_USER_ID, '');
-    _localAuthRepository.writeSession(SECURE_STORAGE_MOBILE, _mobile);
+    _localAuthRepository.writeSession(secureStorageUsername, _userName);
+    _localAuthRepository.writeSession(secureStorageEmail, _email);
+    _localAuthRepository.writeSession(secureStorageProfileUrl, '');
+    _localAuthRepository.writeSession(secureStorageToken, '');
+    _localAuthRepository.writeSession(secureStorageUserId, '');
+    _localAuthRepository.writeSession(secureStorageMobile, _mobile);
 
-    _localAuthRepository.writeSession(SECURE_STORAGE_WHERE_LOGIN, WHERE_LOGIN);
-    _localAuthRepository.writeSession(SECURE_STORAGE_ON_BOARDING, ON_BOARDING);
-    await Future.delayed(Duration(seconds: 2));
+    _localAuthRepository.writeSession(secureStorageWhereLogin, whereLogin);
+    _localAuthRepository.writeSession(secureStorageOnBoarding, onBoarding);
+    await Future.delayed(const Duration(seconds: 2));
 
-    stateStatus.value = StateStatus.SUCCESS;
+    stateStatus.value = StateStatus.success;
     _clearTextField();
     Get.offNamedUntil(homeRoute, (_) => false);
   }

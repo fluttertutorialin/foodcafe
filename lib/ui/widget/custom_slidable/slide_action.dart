@@ -116,8 +116,7 @@ class IconSlideAction extends ClosableSlideAction {
                   fontFamily: semiBoldFont))));
     }
 
-    return Container(
-        child: Center(
-            child: Column(mainAxisSize: MainAxisSize.min, children: widgets)));
+    return Center(
+        child: Column(mainAxisSize: MainAxisSize.min, children: widgets));
   }
 }

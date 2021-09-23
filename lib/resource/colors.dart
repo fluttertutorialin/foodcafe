@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'hex_color.dart';
 
 const primarySwatchColor = Colors.deepOrange;
-const accentColor = Colors.deepOrange;
+const accentColor = Colors.white;
 const Color notificationBackgroundColor = Color(0xFFFF8A65);
 Color primaryColor = HexColor('#FFFFFF');
+const appBarColor = Colors.white;
 
 const backgroundColor = Colors.white;
 const backgroundPauseMenuColor = Color(0xffF1F2F3);
@@ -27,7 +28,6 @@ const appBarAddressColor = Colors.black;
 Color countBackgroundColor = Colors.black.withOpacity(0.3);
 Color countSelectBackgroundColor =  Colors.deepOrange;
 const countColor = Colors.white;
-const appBarColor = Colors.white;
 const linkColor = Color(0xFFf06c00);
 
 List<Color> gradientsButton = [Colors.white, Colors.white];

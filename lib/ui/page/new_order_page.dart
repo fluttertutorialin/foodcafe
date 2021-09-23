@@ -16,10 +16,13 @@ class NewOrderPage extends StatelessWidget {
   final _infoKey = <GlobalKey>[];
   final _refreshKey = GlobalKey<RefreshIndicatorState>();
 
+  NewOrderPage({Key key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
+            backgroundColor: appBarColor,
             elevation: appBarElevation,
             leading: IconButton(
                 onPressed: () => Get.back(),
@@ -31,12 +34,12 @@ class NewOrderPage extends StatelessWidget {
             color: refreshColor,
             onRefresh: () async {
               if (NewOrderController.to.refreshStatus.value ==
-                  RefreshStatus.SUCCESS) {
+                  RefreshStatus.success) {
                 _refreshKey.currentState.show(atTop: false);
               }
 
               if (NewOrderController.to.refreshStatus.value ==
-                  RefreshStatus.INITIAL) {
+                  RefreshStatus.initial) {
                 _refreshKey.currentState.show();
                 NewOrderController.to.fetchNewOrder(isRefresh: true);
               }
@@ -51,7 +54,7 @@ class NewOrderPage extends StatelessWidget {
                   return Card(
                       elevation: cardViewElevation,
                       child: Container(
-                          margin: EdgeInsets.all(10),
+                          margin: const EdgeInsets.all(10),
                           child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [

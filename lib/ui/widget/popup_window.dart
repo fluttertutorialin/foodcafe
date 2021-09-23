@@ -2,7 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-const Duration _kWindowDuration = const Duration(milliseconds: 0);
+const Duration _kWindowDuration = Duration(milliseconds: 0);
 const double _kWindowCloseIntervalEnd = 2.0 / 3.0;
 const double _kWindowMinWidth = 48.0;
 const double _kWindowVerticalPadding = 0.0;
@@ -11,7 +11,7 @@ Future<T> showPopupWindow<T>(
     {@required BuildContext context,
     RelativeRect position,
     @required Widget child,
-    double elevation: 8.0,
+    double elevation = 8.0,
     String semanticLabel,
     bool fullWidth,
     bool isShowBg = false}) {
@@ -50,9 +50,9 @@ Future<T> showPopupWindow<T>(
 class _PopupWindowRoute<T> extends PopupRoute<T> {
   _PopupWindowRoute(
       {RouteSettings settings,
-      this.child,
+      @required this.child,
       this.position,
-      this.elevation: 8.0,
+      this.elevation = 8.0,
       this.theme,
       this.barrierLabel,
       this.semanticLabel,
@@ -106,7 +106,7 @@ class _PopupWindowRoute<T> extends PopupRoute<T> {
                   child: Container(
                       width: double.infinity,
                       height: double.infinity,
-                      color: isShowBg ? Color(0x99000000) : null,
+                      color: isShowBg ? const Color(0x99000000) : null,
                       child: CustomSingleChildLayout(
                           delegate: _PopupWindowLayoutDelegate(
                               position, null, Directionality.of(context)),
@@ -120,19 +120,19 @@ class _PopupWindow<T> extends StatelessWidget {
     Key key,
     this.route,
     this.semanticLabel,
-    this.fullWidth: false,
+    this.fullWidth = false,
   }) : super(key: key);
   final _PopupWindowRoute<T> route;
   final String semanticLabel;
   final bool fullWidth;
   @override
   Widget build(BuildContext context) {
-    final double length = 10.0;
-    final double unit = 1.0 /
+    const double length = 10.0;
+    const double unit = 1.0 /
         (length + 1.5); // 1.0 for the width and 0.5 for the last item's fade.
     final CurveTween opacity = CurveTween(curve: const Interval(0.0, 1.0 / 3.0));
-    final CurveTween width = CurveTween(curve: Interval(0.0, unit));
-    final CurveTween height = CurveTween(curve: Interval(0.0, unit * length));
+    final CurveTween width = CurveTween(curve: const Interval(0.0, unit));
+    final CurveTween height = CurveTween(curve: const Interval(0.0, unit * length));
     final Widget child =  ConstrainedBox(
         constraints: BoxConstraints(
             minWidth: fullWidth ? double.infinity : _kWindowMinWidth,

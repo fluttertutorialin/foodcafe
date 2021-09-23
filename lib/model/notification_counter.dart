@@ -11,9 +11,9 @@ class NotificationCounterResponse{
   });
 
   NotificationCounterResponse.fromDocumentSnapshot(DocumentChange documentChange) {
-    pending = documentChange.doc["pending"];
-    accepted = documentChange.doc["accepted"];
-    ready = documentChange.doc["ready"];
-    dispatched = documentChange.doc["dispatched"];
+    pending = documentChange.doc['pending'];
+    accepted = documentChange.doc['accepted'];
+    ready = documentChange.doc['ready'];
+    dispatched = documentChange.doc['dispatched'];
   }
 }

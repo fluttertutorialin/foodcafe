@@ -79,7 +79,7 @@ const String searchButton = 'SEARCH';
 const String allFindButton = 'ALL FIND';
 const String okButton = 'OK';
 const String rejectButton = 'REJECT';
-const String BillButton = 'BILL';
+const String billButton = 'BILL';
 const String closeButton = 'CLOSE';
 const String sentToBankButton = 'SEND TO BANK';
 const String addMoneyButton = ' ADD MONEY ';
@@ -132,7 +132,7 @@ const int halfOrderTypeApi = 2;
 const developerName = 'Admin';
 const developerEmail = 'food.cafe@gmail.com';
 
-const CODPaymentType = 'COD';
+const codPaymentType = 'COD';
 const otp = 'OTP';
 const deliveryBoyArrivingIn = 'Arriving in';
 const availableOn = 'Available on';
@@ -155,7 +155,7 @@ const pinCodeMaxLength = 6;
 const passwordMaxLength = 6;
 const messageMaxLength = 250;
 
- final toastPositionBottom = SnackPosition.BOTTOM;
+const toastPositionBottom = SnackPosition.BOTTOM;
 
 const pendingIndex = 0;
 const acceptedIndex = 1;
@@ -165,6 +165,6 @@ const pauseMenuIndex = 4;
 const turnOffOrdering = 5;
 const pastOrder = 6;
 const newOrder = 7;
-const KDSView = 8;
+const int kdsView = 8;
 
 const appBarElevation = 0.3;

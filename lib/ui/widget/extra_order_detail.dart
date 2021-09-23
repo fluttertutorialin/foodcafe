@@ -6,12 +6,12 @@ import '../../resource/value.dart';
 class ExtraOrderDetail extends StatelessWidget {
   final double extraTotalAmount;
   final List<ExtraOrder> extraOrderList;
-  ExtraOrderDetail({this.extraTotalAmount, this.extraOrderList});
+  const ExtraOrderDetail({Key key, this.extraTotalAmount, this.extraOrderList}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-      SizedBox(height: 1),
+      const SizedBox(height: 1),
       Text('$labelExtraOrder' ' items', style: preparationTimeStyle),
       Row(children: [
         Expanded(
@@ -32,7 +32,7 @@ class ExtraOrderDetail extends StatelessWidget {
                     .toList())),
         Text('$rsSymbol $extraTotalAmount', style: menuPriceStyle)
       ]),
-      SizedBox(height: 1),
+      const SizedBox(height: 1),
     ]);
   }
 }

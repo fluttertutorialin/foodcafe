@@ -12,17 +12,20 @@ import '../../ui/widget/dialog_search.dart';
 import '../../ui/widget/drawer_menu.dart';
 
 class HomePage extends StatelessWidget {
+  const HomePage({Key key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) => _renderBody(context);
 
   _renderBody(BuildContext context) {
     return Obx(() => Scaffold(
         appBar: AppBar(
+            backgroundColor: appBarColor,
             elevation: appBarElevation,
             actions: [
               HomeController.to.drawerMenuIndex.value == 0
                   ? Container(
-                      margin: EdgeInsets.only(right: 10),
+                      margin: const EdgeInsets.only(right: 10),
                       child: GestureDetector(
                           child: Icon(searchIcon,
                               size: 18, color: appBarTitleColor),
@@ -55,7 +58,7 @@ class HomePage extends StatelessWidget {
                 onPressed: () {
                   FocusScope.of(context).requestFocus(FocusNode());
                   bottomSheetCustom(
-                      shape: RoundedRectangleBorder(
+                      shape: const RoundedRectangleBorder(
                           borderRadius: BorderRadius.only(
                               topRight: Radius.circular(10),
                               topLeft: Radius.circular(10))),
@@ -64,11 +67,9 @@ class HomePage extends StatelessWidget {
                       backgroundColor: backgroundColor,
                       context: context,
                       builder: (context) => DrawerMenu(
-                          userName:
-                              HomeController.to.secureStorageUserName.value,
-                          email: HomeController.to.secureStorageEmail.value,
-                          profileURL:
-                              HomeController.to.secureStorageProfileURL.value,
+                          userName: HomeController.to.secureStorageUserNameRx.value,
+                          email: HomeController.to.secureStorageEmailRx.value,
+                          profileURL: HomeController.to.secureStorageProfileUrlRx.value,
                           drawerCallBack: (String value) {
                             Get.back();
                             switch (value) {
@@ -92,7 +93,7 @@ class HomePage extends StatelessWidget {
                               case titleKDSView:
                                 HomeController.to.currentPageIndex.value =
                                     pendingIndex; //Tab selected 0 index
-                                HomeController.to.drawerMenuChange(KDSView);
+                                HomeController.to.drawerMenuChange(kdsView);
                                 break;
 
                               case titleNewOrder:
@@ -116,7 +117,7 @@ class HomePage extends StatelessWidget {
                 icon: Icon(navigationIcon, size: 18, color: appBarTitleColor)),
             title: Text(appName, style: appBarTitleStyle)),
         body: PageView(
-            physics: NeverScrollableScrollPhysics(),
+            physics: const NeverScrollableScrollPhysics(),
             children: [
               HomeController.to.redirectPage(),
               HomeController.to.redirectPage(),
@@ -127,63 +128,62 @@ class HomePage extends StatelessWidget {
         bottomNavigationBar: _bottomNavigationBar()));
   }
 
-  _bottomNavigationBar() => Container(
-          child: BottomNavigationBar(
-              elevation: 4,
-              backgroundColor: tabBackgroundColor,
-              fixedColor: tabSelectColor,
-              unselectedItemColor: tabUnSelectColor,
-              type: BottomNavigationBarType.fixed,
-              onTap: HomeController.to.onTabChange,
-              selectedLabelStyle: tabSelectStyle,
-              unselectedLabelStyle: tabUnSelectStyle,
-              currentIndex: HomeController.to.currentPageIndex.value,
-              items: [
-            BottomNavigationBarItem(
-                icon: _notification(
-                    iconData: tabPendingIcon,
-                    notificationCounter: NotificationFirebaseController
-                            .to.notificationList.isEmpty
-                        ? '0'
-                        : NotificationFirebaseController
-                            .to.notificationList[0].pending,
-                    selectIndex: HomeController.to.currentPageIndex.value ==
-                        pendingIndex),
-                label: drawerMenuPending),
-            BottomNavigationBarItem(
-                icon: _notification(
-                    iconData: tabAcceptedIcon,
-                    notificationCounter: NotificationFirebaseController
-                            .to.notificationList.isEmpty
-                        ? '0'
-                        : NotificationFirebaseController
-                            .to.notificationList[0].accepted,
-                    selectIndex: HomeController.to.currentPageIndex.value ==
-                        acceptedIndex),
-                label: drawerMenuAccepted),
-            BottomNavigationBarItem(
-                icon: _notification(
-                    iconData: tabReadyIcon,
-                    notificationCounter: NotificationFirebaseController
-                            .to.notificationList.isEmpty
-                        ? '0'
-                        : NotificationFirebaseController
-                            .to.notificationList[0].ready,
-                    selectIndex:
-                        HomeController.to.currentPageIndex.value == readyIndex),
-                label: drawerMenuReady),
-            BottomNavigationBarItem(
-                icon: _notification(
-                    iconData: tabDispatchedIcon,
-                    notificationCounter: NotificationFirebaseController
-                            .to.notificationList.isEmpty
-                        ? '0'
-                        : NotificationFirebaseController
-                            .to.notificationList[0].dispatched,
-                    selectIndex: HomeController.to.currentPageIndex.value ==
-                        dispatchedIndex),
-                label: drawerMenuDispatched)
-          ]));
+  _bottomNavigationBar() => BottomNavigationBar(
+      elevation: 4,
+      backgroundColor: tabBackgroundColor,
+      fixedColor: tabSelectColor,
+      unselectedItemColor: tabUnSelectColor,
+      type: BottomNavigationBarType.fixed,
+      onTap: HomeController.to.onTabChange,
+      selectedLabelStyle: tabSelectStyle,
+      unselectedLabelStyle: tabUnSelectStyle,
+      currentIndex: HomeController.to.currentPageIndex.value,
+      items: [
+    BottomNavigationBarItem(
+        icon: _notification(
+            iconData: tabPendingIcon,
+            notificationCounter: NotificationFirebaseController
+                    .to.notificationList.isEmpty
+                ? '0'
+                : NotificationFirebaseController
+                    .to.notificationList[0].pending,
+            selectIndex: HomeController.to.currentPageIndex.value ==
+                pendingIndex),
+        label: drawerMenuPending),
+    BottomNavigationBarItem(
+        icon: _notification(
+            iconData: tabAcceptedIcon,
+            notificationCounter: NotificationFirebaseController
+                    .to.notificationList.isEmpty
+                ? '0'
+                : NotificationFirebaseController
+                    .to.notificationList[0].accepted,
+            selectIndex: HomeController.to.currentPageIndex.value ==
+                acceptedIndex),
+        label: drawerMenuAccepted),
+    BottomNavigationBarItem(
+        icon: _notification(
+            iconData: tabReadyIcon,
+            notificationCounter: NotificationFirebaseController
+                    .to.notificationList.isEmpty
+                ? '0'
+                : NotificationFirebaseController
+                    .to.notificationList[0].ready,
+            selectIndex:
+                HomeController.to.currentPageIndex.value == readyIndex),
+        label: drawerMenuReady),
+    BottomNavigationBarItem(
+        icon: _notification(
+            iconData: tabDispatchedIcon,
+            notificationCounter: NotificationFirebaseController
+                    .to.notificationList.isEmpty
+                ? '0'
+                : NotificationFirebaseController
+                    .to.notificationList[0].dispatched,
+            selectIndex: HomeController.to.currentPageIndex.value ==
+                dispatchedIndex),
+        label: drawerMenuDispatched)
+  ]);
 
   _notification(
           {@required IconData iconData,

@@ -11,7 +11,7 @@ abstract class AppPages {
         binding: SplashBinding()),
     GetPage(
         name: onBoardingRoute,
-        page: () => OnBoardingPage(),
+        page: () => const OnBoardingPage(),
         binding: OnBoardingBinding()),
     GetPage(name: loginRoute, page: () => LoginPage(), binding: LoginBinding()),
     GetPage(
@@ -29,8 +29,8 @@ abstract class AppPages {
         page: () => ProfileEditPage(),
         binding: ProfileEditBinding()),
     GetPage(
-        name: reportRoute, page: () => ReportPage(), binding: ReportBinding()),
-    GetPage(name: accountsRoute, page: () => AccountsPage()),
+        name: reportRoute, page: () => const ReportPage(), binding: ReportBinding()),
+    GetPage(name: accountsRoute, page: () => const AccountsPage()),
     GetPage(
         name: supportRoute,
         page: () => SupportPage(),
@@ -40,19 +40,19 @@ abstract class AppPages {
         page: () => ReviewsPage(),
         binding: ReviewsBinding()),
     GetPage(
-        name: walletRoute, page: () => WalletPage(), binding: WalletBinding()),
+        name: walletRoute, page: () => const WalletPage(), binding: WalletBinding()),
     GetPage(
         name: notificationRoute,
-        page: () => NotificationPage(),
+        page: () => const NotificationPage(),
         binding: NotificationBinding()),
-    GetPage(name: homeRoute, page: () => HomePage(), binding: HomeBinding()),
+    GetPage(name: homeRoute, page: () => const HomePage(), binding: HomeBinding()),
     GetPage(
         name: pastOrderRoute,
         page: () => PastOrderPage(),
         binding: PastOrderBinding()),
     GetPage(
         name: pastOrderDetailRoute,
-        page: () => PastOrderDetailPage(),
+        page: () => const PastOrderDetailPage(),
         binding: PastOrderDetailBinging()),
     GetPage(
         name: newOrderRoute,

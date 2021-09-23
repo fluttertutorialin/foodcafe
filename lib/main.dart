@@ -3,11 +3,10 @@ import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_screenutil/screenutil_init.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'dependency_injection.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:path_provider/path_provider.dart';
 import 'app_module.dart';
 import 'resource/colors.dart';
 import 'resource/routes.dart';
@@ -15,16 +14,15 @@ import 'shared/firebase_service.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+  SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
       statusBarColor: Colors.white,
       statusBarBrightness: Brightness.dark,
       statusBarIconBrightness: Brightness.dark,
       systemNavigationBarIconBrightness: Brightness.dark,
       systemNavigationBarColor: Colors.white));
 
-  var appDocDir = await getApplicationDocumentsDirectory();
-  String appDocPath = appDocDir.path;
-  print(appDocPath);
+  //var appDocDir = await getApplicationDocumentsDirectory();
+  //String appDocPath = appDocDir.path;
 
   await GetStorage.init();
 
@@ -37,7 +35,7 @@ Future<void> main() async {
 
   FirebaseCrashlytics.instance.setCrashlyticsCollectionEnabled(true);
   //FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterError;
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
@@ -45,10 +43,11 @@ Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({Key key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) => ScreenUtilInit(
       designSize: const Size(750, 812),
-      allowFontScaling: false,
       builder: () => GetMaterialApp(
           debugShowCheckedModeBanner: false,
           enableLog: true,
@@ -62,7 +61,6 @@ class MyApp extends StatelessWidget {
             secondaryVariant: const Color(0xffc37400)),*/
               scaffoldBackgroundColor: backgroundColor,
               brightness: Brightness.light,
-              accentColor: accentColor,
               primaryColor: primaryColor,
               primarySwatch: primarySwatchColor),
           initialRoute: firstLaunchRoute,

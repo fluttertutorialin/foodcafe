@@ -10,6 +10,8 @@ import '../../ui/widget/rounded_shadow_container.dart';
 import '../../utils/extensions.dart';
 
 class NotificationPage extends StatelessWidget {
+  const NotificationPage({Key key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,7 +37,7 @@ class NotificationPage extends StatelessWidget {
                                     return Card(
                                         elevation: cardViewElevation,
                                         child: Container(
-                                            margin: EdgeInsets.all(10),
+                                            margin: const EdgeInsets.all(10),
                                             child: Column(
                                                 crossAxisAlignment:
                                                     CrossAxisAlignment.start,
@@ -55,7 +57,7 @@ class NotificationPage extends StatelessWidget {
                                                           getNotificationDescriptionStyle)
                                                 ])));
                                   }),
-                              margin: EdgeInsets.only(top: 0)))))
+                              margin: const EdgeInsets.only(top: 0)))))
             ]))));
   }
 
@@ -66,7 +68,7 @@ class NotificationPage extends StatelessWidget {
             child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-              SizedBox(width: double.infinity),
+              const SizedBox(width: double.infinity),
               IconButton(
                   onPressed: () => Get.back(),
                   color: Colors.white,

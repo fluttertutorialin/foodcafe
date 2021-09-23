@@ -4,6 +4,8 @@ import '../../resource/images.dart';
 import '../../resource/style.dart';
 
 class PauseMenuOrderOffTimer extends StatefulWidget {
+  const PauseMenuOrderOffTimer({Key key}) : super(key: key);
+
   @override
   RadioListBuilderState createState() {
     return RadioListBuilderState();
@@ -12,7 +14,7 @@ class PauseMenuOrderOffTimer extends StatefulWidget {
 
 class RadioListBuilderState extends State<PauseMenuOrderOffTimer> {
   int pos = 0;
-  List<String> timeSlotList = ["Day End", "2 Hours", "6 Hours", "Custom"];
+  List<String> timeSlotList = ['Day End', '2 Hours', '6 Hours', 'Custom'];
 
   @override
   Widget build(BuildContext context) {
@@ -26,13 +28,13 @@ class RadioListBuilderState extends State<PauseMenuOrderOffTimer> {
               });
             },
             child: Container(
-                padding: EdgeInsets.only(left: 20, right: 20, top: 15, bottom: 15),
+                padding: const EdgeInsets.only(left: 20, right: 20, top: 15, bottom: 15),
                 child: Row(children: [
                   pos == index
                       ? Icon(radioSelectIcon, color: radioSelectColor, size: 18)
                       : Icon(radioUnSelectIcon,
                           color: radioUnSelectColor, size: 18),
-                  SizedBox(width: 10),
+                  const SizedBox(width: 10),
                   Text(timeSlotList[index],
                       style: bottomSheetPauseMenuOrderOnOffTimerLabelStyle)
                 ])));

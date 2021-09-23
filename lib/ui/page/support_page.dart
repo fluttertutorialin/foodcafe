@@ -11,9 +11,12 @@ class SupportPage extends StatelessWidget {
   final _supportController = Get.put(SupportController());
   final _key = GlobalKey<FormState>();
 
+  SupportPage({Key key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) => Scaffold(
       appBar: AppBar(
+          backgroundColor: appBarColor,
           elevation: 0.0,
           leading: IconButton(
               onPressed: () => Get.back(),
@@ -23,7 +26,7 @@ class SupportPage extends StatelessWidget {
           key: _key,
           child: ListView(children: [
             Container(
-                padding: EdgeInsets.all(10),
+                padding: const EdgeInsets.all(10),
                 child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -31,7 +34,7 @@ class SupportPage extends StatelessWidget {
                           style: supportTitleStyle),
                       Text('Let us know your queries & Feedbacks.',
                           style: supportSubTitleStyle),
-                      SizedBox(height: 30),
+                      const SizedBox(height: 30),
                       Align(
                           alignment: Alignment.topRight,
                           child: Container(
@@ -40,17 +43,17 @@ class SupportPage extends StatelessWidget {
                                   borderRadius: BorderRadius.circular(30.0),
                                   color: Colors.deepOrange,
                                   border: Border.all(color: Colors.red[500])),
-                              padding: EdgeInsets.all(8),
+                              padding: const EdgeInsets.all(8),
                               child: Row(children: [
                                 Icon(phoneSquareIcon,
                                     size: 20, color: Colors.white),
                                 Text('CALL NOW', style: supportCallNowStyle)
                               ]))),
-                      SizedBox(height: 10),
+                      const SizedBox(height: 10),
                       Text('Sent your message',
                           style: supportSentMessageTitleStyle),
                       Container(
-                          margin: EdgeInsets.only(left: 10, right: 10),
+                          margin: const EdgeInsets.only(left: 10, right: 10),
                           child: Column(children: [
                             _userNameInput(),
                             _emailInput(),
@@ -58,12 +61,12 @@ class SupportPage extends StatelessWidget {
                             _messageInput(),
                             size(heightScale: 20.0),
                             _supportPress(),
-                            SizedBox(height: 10.0)
+                            const SizedBox(height: 10.0)
                           ]))
                     ]))
           ])));
 
-  _supportPress() => Align(alignment: Alignment.bottomCenter).customFloatForm(
+  _supportPress() => const Align(alignment: Alignment.bottomCenter).customFloatForm(
       color: appBarTitleColor,
       stateStatus: _supportController.stateStatus.value,
       icon: Icons.navigate_next,

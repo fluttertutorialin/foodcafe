@@ -8,7 +8,7 @@ import '../shared/repository/local_auth_repository.dart';
 
 class OnBoardingController extends GetxController {
   static OnBoardingController get to => Get.find();
-  var _localAuthRepository = Get.find<LocalAuthRepository>();
+  final _localAuthRepository = Get.find<LocalAuthRepository>();
   var selectedPage = 0.obs;
 
   bool get isLastPage => selectedPage.value == onBoardingResponseList.length - 1;
@@ -16,11 +16,12 @@ class OnBoardingController extends GetxController {
 
   forwardAction() {
     if (isLastPage) {
-      _localAuthRepository.writeSession(SECURE_STORAGE_ON_BOARDING, ON_BOARDING);
+      _localAuthRepository.writeSession(secureStorageOnBoarding, onBoarding);
 
       Get.offNamedUntil(loginRoute, (_) => false);
-    } else
+    } else {
       pageController.nextPage(duration: 300.milliseconds, curve: Curves.ease);
+    }
   }
 
   List<OnBoardingResponse> onBoardingResponseList = [

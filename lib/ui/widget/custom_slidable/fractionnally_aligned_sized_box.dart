@@ -11,7 +11,7 @@ class FractionallyAlignedSizedBox extends StatelessWidget {
   ///
   /// If non-null, the [widthFactor] and [heightFactor] arguments must be
   /// non-negative.
-  FractionallyAlignedSizedBox({
+  const FractionallyAlignedSizedBox({
     Key key,
     @required this.child,
     this.leftFactor,

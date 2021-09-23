@@ -15,6 +15,8 @@ class ReadyPage extends StatelessWidget {
   final _infoKey = <GlobalKey>[];
   final _refreshKey = GlobalKey<RefreshIndicatorState>();
 
+  ReadyPage({Key key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,12 +33,12 @@ class ReadyPage extends StatelessWidget {
                 color: refreshColor,
                 onRefresh: () async {
                   if (ReadyController.to.refreshStatus.value ==
-                      RefreshStatus.SUCCESS) {
+                      RefreshStatus.success) {
                     _refreshKey.currentState.dispose();
                   }
 
                   if (ReadyController.to.refreshStatus.value ==
-                      RefreshStatus.INITIAL) {
+                      RefreshStatus.initial) {
                     _refreshKey.currentState.show();
                     ReadyController.to.fetchReady(isRefresh: true);
                   }
@@ -55,7 +57,7 @@ class ReadyPage extends StatelessWidget {
                           child: Card(
                               elevation: cardViewElevation,
                               child: Container(
-                                  margin: EdgeInsets.all(10),
+                                  margin: const EdgeInsets.all(10),
                                   child: Column(
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
@@ -79,7 +81,7 @@ class ReadyPage extends StatelessWidget {
                                         OrderAddress(
                                             orderPersonDetail:
                                                 _ready.orderPersonDetail),
-                                        SizedBox(height: 10),
+                                        const SizedBox(height: 10),
                                         OrderStatus(
                                             rejectCallBack: () =>
                                                 ReadyController.to.removeOrder(

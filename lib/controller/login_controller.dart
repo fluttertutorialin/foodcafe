@@ -19,14 +19,14 @@ class LoginController extends GetxController {
   final LocalAuthRepository localAuthRepository;
   final FireStoreDatabaseRepository fireStoreDatabaseRepository;
 
-  var stateStatus = Rx<StateStatus>(StateStatus.INITIAL);
+  var stateStatus = Rx<StateStatus>(StateStatus.initial);
 
   var emailController = TextEditingController();
   var passwordController = TextEditingController();
 
   String _email = '', _password = '';
 
-  var _autoValidate = Rx<bool>(false);
+  final _autoValidate = Rx<bool>(false);
   var passwordVisible = Rx<bool>(true);
 
   changeEmail(String value) {
@@ -42,26 +42,26 @@ class LoginController extends GetxController {
   }
 
   togglePasswordVisibility() {
-    this.passwordVisible.value = !passwordVisible.value;
+    passwordVisible.value = !passwordVisible.value;
   }
 
   Future<void> callLogin() async {
     NetworkController.to.initConnectivity().then((value) async {
       if (value > netWorkConnectionError) {
-        stateStatus.value = StateStatus.LOADING;
+        stateStatus.value = StateStatus.loading;
 
         /*final _loginParam = LoginParam(_email, _password);
     fireStoreDatabaseRepository.login(
       body: _loginParam.toJson(),
         success: (value) {
-          stateStatus.value = StateStatus.SUCCESS;
+          stateStatus.value = StateStatus.success;
           print(value);
           /*var loginList =
               value.map((m) => LoginResponse.fromJson(m)).toList();
           print(loginList.length);*/
         },
         error: (value) {
-          stateStatus.value = StateStatus.SUCCESS;
+          stateStatus.value = StateStatus.success;
           passwordController.clear();
           _password = '';
 
@@ -73,19 +73,19 @@ class LoginController extends GetxController {
               flushBarPosition: toastOrderPosition);
         });*/
 
-        localAuthRepository.writeSession(SECURE_STORAGE_USERNAME, developerName);
-        localAuthRepository.writeSession(SECURE_STORAGE_EMAIL, developerEmail);
-        localAuthRepository.writeSession(SECURE_STORAGE_PROFILE_URL, '');
-        localAuthRepository.writeSession(SECURE_STORAGE_TOKEN, '');
-        localAuthRepository.writeSession(SECURE_STORAGE_USER_ID, '');
-        localAuthRepository.writeSession(SECURE_STORAGE_MOBILE, '');
-        localAuthRepository.writeSession(SECURE_STORAGE_PINCODE, '123456');
-        localAuthRepository.writeSession(SECURE_STORAGE_ADDRESS, 'Address');
-        localAuthRepository.writeSession(SECURE_STORAGE_WHERE_LOGIN, WHERE_LOGIN);
-        localAuthRepository.writeSession(SECURE_STORAGE_ON_BOARDING, ON_BOARDING);
+        localAuthRepository.writeSession(secureStorageUsername, developerName);
+        localAuthRepository.writeSession(secureStorageEmail, developerEmail);
+        localAuthRepository.writeSession(secureStorageProfileUrl, '');
+        localAuthRepository.writeSession(secureStorageToken, '');
+        localAuthRepository.writeSession(secureStorageUserId, '');
+        localAuthRepository.writeSession(secureStorageMobile, '');
+        localAuthRepository.writeSession(secureStoragePinCode, '123456');
+        localAuthRepository.writeSession(secureStorageAddress, 'Address');
+        localAuthRepository.writeSession(secureStorageWhereLogin, whereLogin);
+        localAuthRepository.writeSession(secureStorageOnBoarding, onBoarding);
 
-        await Future.delayed(Duration(seconds: 2));
-        stateStatus.value = StateStatus.SUCCESS;
+        await Future.delayed(const Duration(seconds: 2));
+        stateStatus.value = StateStatus.success;
         _clearTextField();
 
         Get.offNamedUntil(homeRoute, (_) => false);
@@ -94,41 +94,21 @@ class LoginController extends GetxController {
   }
 
   Future<void> callGoogleLogin() async {
-    fireStoreDatabaseRepository.googleLogin().then((user) {
-      if (user != null) {
-        stateStatus.value = StateStatus.SUCCESS;
 
-        localAuthRepository.writeSession(SECURE_STORAGE_USERNAME, user.displayName.split(' ')[0]);
-        localAuthRepository.writeSession(SECURE_STORAGE_EMAIL, user.email);
-        localAuthRepository.writeSession(SECURE_STORAGE_PROFILE_URL, user.photoURL);
-        localAuthRepository.writeSession(SECURE_STORAGE_TOKEN, user.refreshToken);
-        localAuthRepository.writeSession(SECURE_STORAGE_USER_ID, user.uid);
-        localAuthRepository.writeSession(SECURE_STORAGE_MOBILE, user.phoneNumber);
-        localAuthRepository.writeSession(SECURE_STORAGE_PINCODE, '362130');
-        localAuthRepository.writeSession(SECURE_STORAGE_ADDRESS, 'To. Ravani Ta.Visavadar Dis.Junagadh');
-        localAuthRepository.writeSession(SECURE_STORAGE_WHERE_LOGIN, WHERE_GOOGLE_LOGIN);
-        localAuthRepository.writeSession(SECURE_STORAGE_ON_BOARDING, ON_BOARDING);
-
-        stateStatus.value = StateStatus.SUCCESS;
-        _clearTextField();
-
-        Get.offNamedUntil(homeRoute, (_) => false);
-      }
-    });
   }
 
   Future<void> callFacebookLogin() async {
-    localAuthRepository.writeSession(SECURE_STORAGE_USERNAME, ''.split(' ')[0]);
-    localAuthRepository.writeSession(SECURE_STORAGE_EMAIL, '');
-    localAuthRepository.writeSession(SECURE_STORAGE_PROFILE_URL, '');
-    localAuthRepository.writeSession(SECURE_STORAGE_TOKEN, '');
-    localAuthRepository.writeSession(SECURE_STORAGE_USER_ID, '');
-    localAuthRepository.writeSession(SECURE_STORAGE_MOBILE, '');
-    localAuthRepository.writeSession(SECURE_STORAGE_PINCODE, '');
-    localAuthRepository.writeSession(SECURE_STORAGE_ADDRESS, '');
-    localAuthRepository.writeSession(SECURE_STORAGE_WHERE_LOGIN, WHERE_GOOGLE_LOGIN);
+    localAuthRepository.writeSession(secureStorageUsername, ''.split(' ')[0]);
+    localAuthRepository.writeSession(secureStorageEmail, '');
+    localAuthRepository.writeSession(secureStorageProfileUrl, '');
+    localAuthRepository.writeSession(secureStorageToken, '');
+    localAuthRepository.writeSession(secureStorageUserId, '');
+    localAuthRepository.writeSession(secureStorageMobile, '');
+    localAuthRepository.writeSession(secureStoragePinCode, '');
+    localAuthRepository.writeSession(secureStorageAddress, '');
+    localAuthRepository.writeSession(secureStorageWhereLogin, whereGoogleLogin);
 
-    localAuthRepository.writeSession(SECURE_STORAGE_ON_BOARDING, ON_BOARDING);
+    localAuthRepository.writeSession(secureStorageOnBoarding, onBoarding);
     Get.offNamedUntil(homeRoute, (_) => false);
   }
 

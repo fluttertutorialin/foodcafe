@@ -30,7 +30,7 @@ class _BouncingAnimationState extends State<BouncingAnimation>
   AnimationController _controller;
 
   double _scale;
-  GlobalKey _childKey = GlobalKey();
+  final GlobalKey _childKey = GlobalKey();
 
   bool _isOutside = false;
 

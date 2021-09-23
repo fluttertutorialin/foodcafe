@@ -11,9 +11,13 @@ import '../../utils/extensions.dart';
 class BirthDayPage extends StatelessWidget {
   final _refreshKey = GlobalKey<RefreshIndicatorState>();
 
+  BirthDayPage({Key key}) : super(key: key);
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
+            backgroundColor: appBarColor,
             elevation: appBarElevation,
             leading: IconButton(
                 onPressed: () => Get.back(),
@@ -25,18 +29,18 @@ class BirthDayPage extends StatelessWidget {
             color: refreshColor,
             onRefresh: () async {
               if (BirthDayController.to.refreshStatus.value ==
-                  RefreshStatus.SUCCESS) {
+                  RefreshStatus.success) {
                 _refreshKey.currentState.dispose();
               }
 
               if (BirthDayController.to.refreshStatus.value ==
-                  RefreshStatus.INITIAL) {
+                  RefreshStatus.initial) {
                 _refreshKey.currentState.show();
                 BirthDayController.to.fetchBirthDay(isRefresh: true);
               }
             },
             child: BirthDayController.to.stateStatus.value ==
-                    StateStatus.LOADING
+                    StateStatus.loading
                 ? circleProgressIndicator()
                 : BirthDayController
                         .to.birthDayResponse.value.birthDayList.isEmpty
@@ -48,19 +52,19 @@ class BirthDayPage extends StatelessWidget {
                           var _birthDay = BirthDayController
                               .to.birthDayResponse.value.birthDayList[index];
                           return Container(
-                              margin: EdgeInsets.all(0),
+                              margin: const EdgeInsets.all(0),
                               child: Card(
                                   elevation: cardViewElevation,
                                   child: Container(
-                                      margin: EdgeInsets.all(5),
+                                      margin: const EdgeInsets.all(5),
                                       child: Row(children: [
                                         CircleAvatar(
                                             radius: 25,
                                             backgroundColor:
                                                 Colors.grey.withOpacity(0.1),
                                             backgroundImage:
-                                                ExactAssetImage(profileImage)),
-                                        SizedBox(width: 5),
+                                                const ExactAssetImage(profileImage)),
+                                        const SizedBox(width: 5),
                                         Expanded(
                                             child: Column(
                                                 crossAxisAlignment:
@@ -96,7 +100,7 @@ class BirthDayPage extends StatelessWidget {
                                                                   .value
                                                               ? birthDayWish
                                                               : birthDayWishPending)),
-                                                      SizedBox(width: 3),
+                                                      const SizedBox(width: 3),
                                                       Obx(() => Text(
                                                           _birthDay
                                                                   .isSentMessage
@@ -112,33 +116,29 @@ class BirthDayPage extends StatelessWidget {
                                                                   : Colors
                                                                       .grey)))
                                                     ]),
-                                                    SizedBox(width: 10),
-                                                    if(_birthDay.isSentMessage.value == false)
-                                                    InkWell(
-                                                        borderRadius:
-                                                            BorderRadius.circular(
-                                                                13.0),
-                                                        radius: 14,
-                                                        highlightColor: Colors
-                                                            .deepOrange
-                                                            .withOpacity(0.2),
-                                                        onTap: () =>
-                                                            BirthDayController.to
-                                                                .birthDayWish(
-                                                                    birthDay:
-                                                                        _birthDay),
-                                                        child: CircleAvatar(
-                                                            backgroundColor:
-                                                                Colors.black
-                                                                    .withOpacity(
-                                                                        0.1),
-                                                            radius: 13,
-                                                            child: Icon(
-                                                                Icons
-                                                                    .sms_outlined,
-                                                                color:
-                                                                    accentColor,
-                                                                size: 15)))
+                                                    const SizedBox(width: 10),
+                                                    if (_birthDay.isSentMessage.value == false)
+                                                      InkWell(
+                                                          borderRadius:
+                                                              BorderRadius.circular(
+                                                                  13.0),
+                                                          radius: 14,
+                                                          highlightColor: Colors
+                                                              .deepOrange
+                                                              .withOpacity(0.2),
+                                                          onTap: () => BirthDayController.to
+                                                              .birthDayWish(
+                                                                  birthDay:
+                                                                      _birthDay),
+                                                          child: CircleAvatar(
+                                                              backgroundColor: Colors.black
+                                                                  .withOpacity(
+                                                                      0.1),
+                                                              radius: 13,
+                                                              child: const Icon(
+                                                                  Icons.sms_outlined,
+                                                                  color: accentColor,
+                                                                  size: 15)))
                                                   ])
                                             ]))
                                       ]))));

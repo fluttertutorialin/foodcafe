@@ -16,7 +16,7 @@ class SkeletonAnimation extends StatefulWidget {
   final double height;
   final Radius radius;
 
-  SkeletonAnimation({
+  const SkeletonAnimation({Key key,
     this.baseColor = const Color(0xFFE0E0E0),
     this.hightlightColor = const Color(0xFFeaeaea),
     // Use default size
@@ -24,7 +24,7 @@ class SkeletonAnimation extends StatefulWidget {
     this.height = 60.0,
     // Use default radius
     this.radius = const Radius.circular(0),
-  });
+  }) : super(key: key);
 
   @override
   _SkeletonAnimationState createState() => _SkeletonAnimationState();
@@ -40,7 +40,7 @@ class _SkeletonAnimationState extends State<SkeletonAnimation>
 
     _controller = AnimationController(
       vsync: this,
-      duration: Duration(seconds: 2),
+      duration: const Duration(seconds: 2),
     )..addStatusListener((AnimationStatus status) {
         if (status != AnimationStatus.completed) {
           return;
@@ -83,7 +83,7 @@ class _SkeletonAnimationState extends State<SkeletonAnimation>
   }
 
   /// Generate the value for the loading animation
-  double _generateValue({percentage: double, value: double}) {
+  double _generateValue({percentage = double, value = double}) {
     double tmp = (percentage * 1.3) - 0.65 + value;
 
     if (tmp < 0) {

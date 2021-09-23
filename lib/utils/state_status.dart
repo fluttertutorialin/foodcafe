@@ -1,3 +1,3 @@
-enum StateStatus { INITIAL, LOADING, SUCCESS }
+enum StateStatus { initial, loading, success }
 
-enum RefreshStatus { INITIAL, LOADING, SUCCESS }
+enum RefreshStatus { initial, loading, success }

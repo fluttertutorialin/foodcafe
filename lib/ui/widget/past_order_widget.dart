@@ -16,8 +16,8 @@ class PastOrderWidget extends StatelessWidget {
   final double orderTotalAmount;
   final String selectOrderStatus;
 
-  PastOrderWidget(
-      {this.uniqueId,
+  const PastOrderWidget(
+      {Key key, this.uniqueId,
       this.orderTotalAmount,
       this.dateTime,
       this.typeDelivery,
@@ -25,36 +25,36 @@ class PastOrderWidget extends StatelessWidget {
       this.paymentType,
       this.remark,
       this.isRefundable,
-      this.selectOrderStatus});
+      this.selectOrderStatus}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final cardRadius = 10.0;
+    const cardRadius = 10.0;
 
     final _dottedLine = DottedBorder(
         color: pastOrderBorderColor,
         strokeWidth: 1,
         strokeCap: StrokeCap.round,
-        dashPattern: [2, 2],
+        dashPattern: const [2, 2],
         customPath: (size) {
           return Path()
             ..moveTo(cardRadius, 0)
             ..lineTo(size.width - cardRadius, 0)
             ..arcToPoint(Offset(size.width, cardRadius),
-                radius: Radius.circular(cardRadius))
+                radius: const Radius.circular(cardRadius))
             ..lineTo(size.width, size.height - cardRadius)
             ..arcToPoint(Offset(size.width - cardRadius, size.height),
-                radius: Radius.circular(cardRadius))
+                radius: const Radius.circular(cardRadius))
             ..lineTo(cardRadius, size.height)
             ..arcToPoint(Offset(0, size.height - cardRadius),
-                radius: Radius.circular(cardRadius))
+                radius: const Radius.circular(cardRadius))
             ..lineTo(0, cardRadius)
-            ..arcToPoint(Offset(cardRadius, 0),
-                radius: Radius.circular(cardRadius));
+            ..arcToPoint(const Offset(cardRadius, 0),
+                radius: const Radius.circular(cardRadius));
         },
-        padding: EdgeInsets.only(left: 10, right: 10, top: 5),
+        padding: const EdgeInsets.only(left: 10, right: 10, top: 5),
         child: Container(
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
                 borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(15.0),
                     topRight: Radius.circular(15.0))),
@@ -69,7 +69,7 @@ class PastOrderWidget extends StatelessWidget {
               Text('Kamlesh', style: pastOrderNameStyle),
               Text('kamal.lakhani56@gmail.com', style: pastOrderEmailStyle),
               Text('Ahmedabad (Nikol) 123456', style: pastOrderAddressStyle),
-              SizedBox(height: 5),
+              const SizedBox(height: 5),
               Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
                 Text(typeDelivery, style: deliveryType),
                 Text(dateTime, style: timeCalculationStyle)
@@ -77,24 +77,24 @@ class PastOrderWidget extends StatelessWidget {
               Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
                 Row(children: [
                   Text(paymentType, style: paymentPaidStatusStyle),
-                  SizedBox(width: 3),
-                  Text('($CODPaymentType)', style: paymentCollectStyle)
+                  const SizedBox(width: 3),
+                  Text('($codPaymentType)', style: paymentCollectStyle)
                 ]),
                 Text('$rsSymbol $orderTotalAmount.', style: totalAmountStyle)
               ]),
-              isRefundable == null ? Container() : SizedBox(height: 5),
+              isRefundable == null ? Container() : const SizedBox(height: 5),
               isRefundable == null
                   ? Container()
-                  : Text('$refundable', style: pastOrderRefundableStyle),
+                  : Text(refundable, style: pastOrderRefundableStyle),
               remark == null
                   ? Container()
                   : Row(children: [
-                      Text('$remarkItem', style: pastOrderRemarkStyle),
-                      SizedBox(width: 5),
+                      Text(remarkItem, style: pastOrderRemarkStyle),
+                      const SizedBox(width: 5),
                       Text(remark, style: pastOrderRemarkCommentStyle)
                     ])
             ])));
 
-    return Container(margin: EdgeInsets.all(10), child: _dottedLine);
+    return Container(margin: const EdgeInsets.all(10), child: _dottedLine);
   }
 }

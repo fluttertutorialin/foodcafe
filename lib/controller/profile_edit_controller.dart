@@ -6,8 +6,8 @@ import '../utils/state_status.dart';
 
 class ProfileEditController extends GetxController {
   static ProfileEditController get to => Get.find();
-  var _homeController = Get.put(HomeController());
-  var stateStatus = Rx<StateStatus>(StateStatus.INITIAL);
+  final _homeController = Get.put(HomeController());
+  var stateStatus = Rx<StateStatus>(StateStatus.initial);
 
   var userNameController = TextEditingController();
   var mobileController = TextEditingController();
@@ -18,9 +18,9 @@ class ProfileEditController extends GetxController {
 
   var autoValidate = Rx<bool>(false);
   var profileURL = Rx<String>('');
-  var userName = Rx<String>();
+  var userName = Rx<String>('');
 
-  var imagePickerPath = Rx<String>();
+  var imagePickerPath = Rx<String>('');
 
   changeUserName(String value) {
     _userName = value;
@@ -47,13 +47,13 @@ class ProfileEditController extends GetxController {
     super.onInit();
     _homeController.getUserDetails();
 
-    userNameController.text = _homeController.secureStorageUserName.value;
-    mobileController.text = _homeController.secureStorageMobile.value;
-    pinCodeController.text = _homeController.secureStoragePinCode.value;
-    addressController.text = _homeController.secureStorageAddress.value;
+    userNameController.text = _homeController.secureStorageUserNameRx.value;
+    mobileController.text = _homeController.secureStorageMobileRx.value;
+    pinCodeController.text = _homeController.secureStoragePinCodeRx.value;
+    addressController.text = _homeController.secureStorageAddressRx.value;
 
-    profileURL.value = _homeController.secureStorageProfileURL.value;
-    userName.value = _homeController.secureStorageUserName.value;
+    profileURL.value = _homeController.secureStorageProfileUrlRx.value;
+    userName.value = _homeController.secureStorageUserNameRx.value;
   }
 
   setImagePickerPath(String path) {
@@ -61,24 +61,24 @@ class ProfileEditController extends GetxController {
   }
 
   Future<void> callProfile() async {
-    stateStatus.value = StateStatus.LOADING;
+    stateStatus.value = StateStatus.loading;
 
     _homeController.setUserDetails(
       userName: _userName == ''
-          ? _homeController.secureStorageUserName.value
+          ? _homeController.secureStorageUserNameRx.value
           : _userName,
       mobile:
-          _mobile == '' ? _homeController.secureStorageMobile.value : _mobile,
+          _mobile == '' ? _homeController.secureStorageMobileRx.value : _mobile,
       pinCode: _pinCode == ''
-          ? _homeController.secureStoragePinCode.value
+          ? _homeController.secureStoragePinCodeRx.value
           : _pinCode,
       address: _address == ''
-          ? _homeController.secureStorageAddress.value
+          ? _homeController.secureStorageAddressRx.value
           : _address,
     );
     _homeController.getUserDetails();
 
-    stateStatus.value = StateStatus.SUCCESS;
+    stateStatus.value = StateStatus.success;
 
     _clearTextField();
     Get.back();

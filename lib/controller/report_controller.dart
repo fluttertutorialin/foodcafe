@@ -4,7 +4,7 @@ import '../utils/state_status.dart';
 
 class ReportController extends GetxController {
   static ReportController get to => Get.find();
-  var stateStatus = Rx<StateStatus>(StateStatus.INITIAL);
+  var stateStatus = Rx<StateStatus>(StateStatus.initial);
 
   var rxReportPastOrderList = RxList<ReportPastOrder>([]);
   var todayPendingOrderTotal = RxInt(0);
@@ -19,7 +19,7 @@ class ReportController extends GetxController {
   }
 
   Future<void> fetchReport({bool isRefresh = false}) async {
-    stateStatus.value = StateStatus.LOADING;
+    stateStatus.value = StateStatus.loading;
 
     var reportResponse = ReportResponse(
         todayPendingOrderTotal: 1,
@@ -43,8 +43,8 @@ class ReportController extends GetxController {
               success: 1)
         ]);
 
-    await Future.delayed(Duration(seconds: 2));
-    stateStatus.value = StateStatus.SUCCESS;
+    await Future.delayed(const Duration(seconds: 2));
+    stateStatus.value = StateStatus.success;
 
     todayPendingOrderTotal.value = reportResponse.todayPendingOrderTotal;
     todayAcceptedOrderTotal.value = reportResponse.todayAcceptedOrderTotal;

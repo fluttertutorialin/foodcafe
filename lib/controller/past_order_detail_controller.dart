@@ -5,8 +5,8 @@ import '../utils/state_status.dart';
 
 class PastOrderDetailController extends GetxController {
   static PastOrderDetailController get to => Get.find();
-  var stateStatus = Rx<StateStatus>(StateStatus.INITIAL);
-  var rxPastOrderDetail = Rx<PastOrderDetail>();
+  var stateStatus = Rx<StateStatus>(StateStatus.initial);
+  var rxPastOrderDetail = Rx<PastOrderDetail>(PastOrderDetail());
 
   @override
   onInit() {

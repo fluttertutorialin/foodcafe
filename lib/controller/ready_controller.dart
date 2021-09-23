@@ -8,8 +8,8 @@ import '../utils/extensions.dart';
 
 class ReadyController extends GetxController {
   static ReadyController get to => Get.find();
-  var refreshStatus = Rx<RefreshStatus>(RefreshStatus.INITIAL);
-  var stateStatus = Rx<StateStatus>(StateStatus.INITIAL);
+  var refreshStatus = Rx<RefreshStatus>(RefreshStatus.initial);
+  var stateStatus = Rx<StateStatus>(StateStatus.initial);
 
   var rxReadyList = RxList<OrderMainList>([]);
   var search = Rx<String>('');
@@ -22,9 +22,9 @@ class ReadyController extends GetxController {
 
   Future<void> fetchReady({bool isRefresh = false}) async {
     if (isRefresh) {
-      refreshStatus.value = RefreshStatus.LOADING;
+      refreshStatus.value = RefreshStatus.loading;
     }
-    stateStatus.value = StateStatus.LOADING;
+    stateStatus.value = StateStatus.loading;
 
     List<OrderMainList> orderMainList = [
       OrderMainList(
@@ -72,14 +72,14 @@ class ReadyController extends GetxController {
           ])
     ];
 
-    await Future.delayed(Duration(seconds: 2));
+    await Future.delayed(const Duration(seconds: 2));
 
     if (isRefresh) {
-      refreshStatus.value = RefreshStatus.SUCCESS;
-      refreshStatus.value = RefreshStatus.INITIAL;
+      refreshStatus.value = RefreshStatus.success;
+      refreshStatus.value = RefreshStatus.initial;
     }
 
-    stateStatus.value = StateStatus.SUCCESS;
+    stateStatus.value = StateStatus.success;
     rxReadyList.assignAll(
         PendingResponse(orderMainList: orderMainList).orderMainList);
   }

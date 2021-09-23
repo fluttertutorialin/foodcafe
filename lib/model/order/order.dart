@@ -61,9 +61,9 @@ class Order {
 
 class PreparationTimeDefault {
   PreparationTimeDefault({int defaultTime, int selectTime, int isMinHour}) {
-    this.setDefaultTime(defaultTime);
-    this.setSelectTime(selectTime);
-    this.setIsMinHour(isMinHour);
+    setDefaultTime(defaultTime);
+    setSelectTime(selectTime);
+    setIsMinHour(isMinHour);
   }
 
   RxInt defaultTime = RxInt(null);
@@ -78,8 +78,8 @@ class PreparationTimeDefault {
 
 class PreparationTimeList {
   PreparationTimeList({int time, bool isSelect}) {
-    this.setSelect(isSelect);
-    this.setTime(time);
+    setSelect(isSelect);
+    setTime(time);
   }
 
   RxInt time = RxInt(null);
@@ -92,17 +92,17 @@ class PreparationTimeList {
 class DeliveryPersonDetail {
   DeliveryPersonDetail(
       {String uniqueId, String name, int arrivingDateTime, int mobileNo, bool isSelect}) {
-    this.setUniqueId(uniqueId);
-    this.setName(name);
-    this.setArrivingDateTime(arrivingDateTime);
-    this.setMobileNo(mobileNo);
-    this.setSelect(isSelect);
+    setUniqueId(uniqueId);
+    setName(name);
+    setArrivingDateTime(arrivingDateTime);
+    setMobileNo(mobileNo);
+    setSelect(isSelect);
   }
 
-  RxString uniqueId = RxString();
+  RxString uniqueId = RxString('');
   setUniqueId(String value) => uniqueId.value = value;
 
-  RxString name = RxString();
+  RxString name = RxString('');
   setName(String value) => name.value = value;
 
   RxInt arrivingDateTime = RxInt(0);

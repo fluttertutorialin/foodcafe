@@ -12,6 +12,8 @@ import '../../utils/extensions.dart';
 class LoginPage extends StatelessWidget {
   final _key = GlobalKey<FormState>();
 
+  LoginPage({Key key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) => Scaffold(
       body: Form(
@@ -55,7 +57,7 @@ class LoginPage extends StatelessWidget {
           backgroundColor: Colors.transparent,
           child: Image.asset(appIconImage)));
 
-  _loginPress() => Align(alignment: Alignment.bottomCenter).customFloatForm(
+  _loginPress() => const Align(alignment: Alignment.bottomCenter).customFloatForm(
       color: appBarTitleColor,
       stateStatus: LoginController.to.stateStatus.value,
       icon: Icons.navigate_next,
@@ -77,7 +79,7 @@ class LoginPage extends StatelessWidget {
     }
   }
 
-  _socialLogin() => Container(
+  _socialLogin() => SizedBox(
       height: 60,
       child:
           Row(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[

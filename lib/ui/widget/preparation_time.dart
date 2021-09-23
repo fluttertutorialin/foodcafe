@@ -14,17 +14,17 @@ class PreparationTime extends StatelessWidget {
       preparationTimeMinus,
       preparationTimePlus;
 
-  PreparationTime(
-      {this.preparationTimeList,
+  const PreparationTime(
+      {Key key, this.preparationTimeList,
       this.preparationTimeDefault,
       this.preparationTimeSelect,
       this.preparationTimeMinus,
-      this.preparationTimePlus});
+      this.preparationTimePlus}) : super(key: key);
 
   @override
   Widget build(BuildContext context) =>
       Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-        SizedBox(height: 1),
+        const SizedBox(height: 1),
         Text(labelPreparationTime, style: preparationTimeStyle),
         Row(children: [
           Expanded(
@@ -32,7 +32,7 @@ class PreparationTime extends StatelessWidget {
               child: Row(
                   children: preparationTimeList
                       .map((item) => Container(
-                          padding: EdgeInsets.all(10),
+                          padding: const EdgeInsets.all(10),
                           child: Obx(() => BouncingAnimation(
                               scaleFactor: 1.5,
                               child: Text('${item.time}',
@@ -49,23 +49,23 @@ class PreparationTime extends StatelessWidget {
                     onTap: () => preparationTimeMinus(
                         preparationTimeDefault.selectTime.value),
                     child: Container(
-                        padding: EdgeInsets.all(3),
+                        padding: const EdgeInsets.all(3),
                         decoration: preparationTimeDecoration,
-                        child: Icon(minusIcon,
+                        child: const Icon(minusIcon,
                             color: preparationTimeIconColor, size: 12))),
-                SizedBox(width: 10),
+                const SizedBox(width: 10),
                 Obx(() => Text(
-                    '${preparationTimeDefault.selectTime.value == null ? preparationTimeDefault.defaultTime.value : preparationTimeDefault.selectTime.value}'
+                    '${preparationTimeDefault.selectTime.value ?? preparationTimeDefault.defaultTime.value}'
                         .padLeft(2, '0'),
                     style: preparationTimeUnSelectStyle)),
-                SizedBox(width: 2),
+                const SizedBox(width: 2),
                 Text(labelMin, style: preparationTimeMinHourStyle),
-                SizedBox(width: 10),
+                const SizedBox(width: 10),
                 GestureDetector(
                     child: Container(
-                        padding: EdgeInsets.all(3),
+                        padding: const EdgeInsets.all(3),
                         decoration: preparationTimeDecoration,
-                        child: Icon(plusIcon,
+                        child: const Icon(plusIcon,
                             color: preparationTimeIconColor, size: 12)),
                     onTap: () => preparationTimePlus(
                         preparationTimeDefault.selectTime.value))

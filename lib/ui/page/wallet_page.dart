@@ -11,12 +11,14 @@ import '../../utils/state_status.dart';
 import '../../utils/extensions.dart';
 
 class WalletPage extends StatelessWidget {
+  const WalletPage({Key key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) => Scaffold(
       bottomNavigationBar: Container(
-          padding: EdgeInsets.all(10),
+          padding: const EdgeInsets.all(10),
           color: Colors.deepOrange,
-          margin: EdgeInsets.only(top: 10),
+          margin: const EdgeInsets.only(top: 10),
           child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
             Container(
                 decoration: BoxDecoration(
@@ -24,24 +26,24 @@ class WalletPage extends StatelessWidget {
                     color: Colors.white.withOpacity(0.1),
                     border: Border.all(color: Colors.white.withOpacity(0.1))),
                 padding:
-                    EdgeInsets.only(left: 10, right: 10, top: 3, bottom: 3),
+                    const EdgeInsets.only(left: 10, right: 10, top: 3, bottom: 3),
                 child: Row(children: [
                   Text(sentToBankButton, style: walletSentToBank)
                 ])),
-            SizedBox(width: 20),
+            const SizedBox(width: 20),
             Container(
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(12.0),
                     color: Colors.white,
                     border: Border.all(color: Colors.deepOrange)),
                 padding:
-                    EdgeInsets.only(left: 10, right: 10, top: 3, bottom: 3),
+                    const EdgeInsets.only(left: 10, right: 10, top: 3, bottom: 3),
                 child: Row(children: [
                   Text(addMoneyButton, style: walletAddMoneyStyle)
                 ]))
           ])),
       body:
-          CustomScrollView(physics: BouncingScrollPhysics(), slivers: <Widget>[
+          CustomScrollView(physics: const BouncingScrollPhysics(), slivers: <Widget>[
         SliverAppBar(
             pinned: true,
             bottom: PreferredSize(
@@ -59,7 +61,7 @@ class WalletPage extends StatelessWidget {
             elevation: appBarElevation,
             expandedHeight: 50.0,
             backgroundColor: Colors.white),
-        Obx(() => WalletController.to.stateStatus.value == StateStatus.LOADING
+        Obx(() => WalletController.to.stateStatus.value == StateStatus.loading
             ? SliverFillRemaining(child: circleProgressIndicator())
             : SliverList(
                 delegate: SliverChildBuilderDelegate(
@@ -68,7 +70,7 @@ class WalletPage extends StatelessWidget {
                 return Card(
                     elevation: cardViewElevation,
                     child: Container(
-                        padding: EdgeInsets.only(
+                        padding: const EdgeInsets.only(
                             top: 5, bottom: 5, left: 10, right: 0),
                         child: IntrinsicHeight(
                             child: Row(
@@ -90,7 +92,7 @@ class WalletPage extends StatelessWidget {
                                               Text(
                                                   '${wallet.totalItems} $labelItems',
                                                   style: walletTotalItems),
-                                              SizedBox(width: 10)
+                                              const SizedBox(width: 10)
                                             ]),
                                           Text('$rsSymbol ${wallet.amount}',
                                               style: totalPayStyle)
@@ -99,14 +101,14 @@ class WalletPage extends StatelessWidget {
                               Center(
                                   child: Container(
                                       decoration: BoxDecoration(
-                                          borderRadius: BorderRadius.only(
+                                          borderRadius: const BorderRadius.only(
                                               topLeft: Radius.circular(10.0),
                                               bottomLeft:
                                                   Radius.circular(10.0)),
                                           color: Colors.grey.withOpacity(0.1),
                                           border:
                                               Border.all(color: Colors.white)),
-                                      padding: EdgeInsets.only(
+                                      padding: const EdgeInsets.only(
                                           left: 5, right: 5, top: 2, bottom: 2),
                                       child: Text(
                                           wallet.orderStatus.toUpperCase(),

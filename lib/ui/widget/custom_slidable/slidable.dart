@@ -7,8 +7,8 @@ import 'slidable_dismissal.dart';
 const double _kActionsExtentRatio = 0.25;
 const double _kFastThreshold = 2500.0;
 const double _kDismissThreshold = 0.75;
-const Curve _kResizeTimeCurve = const Interval(0.4, 1.0, curve: Curves.ease);
-const Duration _kMovementDuration = const Duration(milliseconds: 200);
+const Curve _kResizeTimeCurve = Interval(0.4, 1.0, curve: Curves.ease);
+const Duration _kMovementDuration = Duration(milliseconds: 200);
 
 enum SlidableRenderingMode {
   none,
@@ -22,10 +22,11 @@ enum SlideActionType {
   secondary,
 }
 
-typedef void DismissSlideActionCallback(SlideActionType actionType);
-typedef FutureOr<bool> SlideActionWillBeDismissed(SlideActionType actionType);
-typedef Widget SlideActionBuilder(BuildContext context, int index,
+typedef DismissSlideActionCallback = void Function(SlideActionType actionType);
+typedef SlideActionWillBeDismissed = FutureOr<bool> Function(SlideActionType actionType);
+typedef SlideActionBuilder = Widget Function(BuildContext context, int index,
     Animation<double> animation, SlidableRenderingMode step);
+
 abstract class SlideActionDelegate {
   const SlideActionDelegate();
   Widget build(BuildContext context, int index, Animation<double> animation,
@@ -37,7 +38,7 @@ class SlideActionBuilderDelegate extends SlideActionDelegate {
   const SlideActionBuilderDelegate({
     @required this.builder,
     @required this.actionCount,
-  }) : assert(actionCount != null && actionCount >= 0);
+  });
 
   final SlideActionBuilder builder;
   final int actionCount;
@@ -65,7 +66,7 @@ class SlideActionListDelegate extends SlideActionDelegate {
 }
 
 class _SlidableScope extends InheritedWidget {
-  _SlidableScope({
+  const _SlidableScope({
     Key key,
     @required this.state,
     @required Widget child,
@@ -78,7 +79,7 @@ class _SlidableScope extends InheritedWidget {
 }
 
 class SlidableData extends InheritedWidget {
-  SlidableData({
+  const SlidableData({
     Key key,
     @required this.actionType,
     @required this.renderingMode,
@@ -214,7 +215,6 @@ class SlidableData extends InheritedWidget {
 }
 
 class SlidableController {
-
   SlidableController({
     this.onSlideAnimationChanged,
     this.onSlideIsOpenChanged,
@@ -297,7 +297,7 @@ class Slidable extends StatefulWidget {
           fastThreshold: fastThreshold,
         );
 
-  Slidable.builder({
+  const Slidable.builder({
     Key key,
     @required this.child,
     @required this.actionPane,

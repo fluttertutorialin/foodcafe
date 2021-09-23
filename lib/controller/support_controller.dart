@@ -4,7 +4,7 @@ import '../utils/extensions.dart';
 import '../utils/state_status.dart';
 
 class SupportController extends GetxController {
-  var stateStatus = Rx<StateStatus>(StateStatus.INITIAL);
+  var stateStatus = Rx<StateStatus>(StateStatus.initial);
 
   var userNameController = TextEditingController();
   var emailController = TextEditingController();
@@ -36,15 +36,15 @@ class SupportController extends GetxController {
   }
 
   Future<void> callSupport() async {
-    stateStatus.value = StateStatus.LOADING;
-    var param = new Map();
+    stateStatus.value = StateStatus.loading;
+    var param = {};
     param['userName'] = _userName;
     param['email'] = _email;
     param['mobile'] = _mobile;
     param['message'] = _message;
 
     _clearTextField();
-    stateStatus.value = StateStatus.SUCCESS;
+    stateStatus.value = StateStatus.success;
   }
 
   _clearTextField() {

@@ -11,10 +11,13 @@ import '../../utils/extensions.dart';
 class ReviewsPage extends StatelessWidget {
   final _refreshKey = GlobalKey<RefreshIndicatorState>();
 
+  ReviewsPage({Key key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
+            backgroundColor: appBarColor,
             elevation: appBarElevation,
             leading: IconButton(
                 onPressed: () => Get.back(),
@@ -26,17 +29,17 @@ class ReviewsPage extends StatelessWidget {
             color: refreshColor,
             onRefresh: () async {
               if (ReviewsController.to.refreshStatus.value ==
-                  RefreshStatus.SUCCESS) {
+                  RefreshStatus.success) {
                 _refreshKey.currentState.dispose();
               }
 
               if (ReviewsController.to.refreshStatus.value ==
-                  RefreshStatus.INITIAL) {
+                  RefreshStatus.initial) {
                 _refreshKey.currentState.show();
                 ReviewsController.to.fetchReviews(isRefresh: true);
               }
             },
-            child: ReviewsController.to.stateStatus.value == StateStatus.LOADING
+            child: ReviewsController.to.stateStatus.value == StateStatus.loading
                 ? circleProgressIndicator()
                 : ReviewsController.to.reviewsResponse.value.reviewsList.isEmpty
                     ? emptyWidget(message: dataNotTurnOfOrdering)
@@ -47,19 +50,19 @@ class ReviewsPage extends StatelessWidget {
                           var reviews = ReviewsController
                               .to.reviewsResponse.value.reviewsList[index];
                           return Container(
-                              margin: EdgeInsets.all(0),
+                              margin: const EdgeInsets.all(0),
                               child: Card(
                                   elevation: cardViewElevation,
                                   child: Container(
-                                      margin: EdgeInsets.all(5),
+                                      margin: const EdgeInsets.all(5),
                                       child: Row(children: [
                                         CircleAvatar(
                                             radius: 25,
                                             backgroundColor:
                                                 Colors.grey.withOpacity(0.1),
                                             backgroundImage:
-                                                ExactAssetImage(profileImage)),
-                                        SizedBox(width: 5),
+                                                const ExactAssetImage(profileImage)),
+                                        const SizedBox(width: 5),
                                         Expanded(
                                             child: Column(
                                                 crossAxisAlignment:
@@ -85,12 +88,12 @@ class ReviewsPage extends StatelessWidget {
                                                       border: Border.all(
                                                           color:
                                                               Colors.red[500])),
-                                                  padding: EdgeInsets.only(
+                                                  padding: const EdgeInsets.only(
                                                       left: 5, right: 5),
                                                   child: Text('4.0',
                                                       style:
                                                           reviewsRattingCountStyle)),
-                                              SizedBox(height: 5),
+                                              const SizedBox(height: 5),
                                               Text(reviews.description,
                                                   style:
                                                       reviewsDescriptionStyle)

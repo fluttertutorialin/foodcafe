@@ -20,10 +20,13 @@ class AllFindPage extends StatelessWidget {
   final _infoKey = <GlobalKey>[];
   final _refreshKey = GlobalKey<RefreshIndicatorState>();
 
+  AllFindPage({Key key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
+            backgroundColor: appBarColor,
             elevation: appBarElevation,
             titleSpacing: 0.0,
             automaticallyImplyLeading: false,
@@ -53,7 +56,6 @@ class AllFindPage extends StatelessWidget {
                     AllFindController.to.fetchAllFind(
                         allFind: AllFindController.to.search.value);
                   } else {
-                    print('dd');
                   }
                 },
                 onChanged: AllFindController.to.search)),
@@ -62,7 +64,7 @@ class AllFindPage extends StatelessWidget {
               AllFindController.to.search.value = '';
               AllFindController.to.searchController.clear();
               AllFindController.to.rxAllFindList.clear();
-              AllFindController.to.stateStatus = StateStatus.INITIAL.obs;
+              AllFindController.to.stateStatus = StateStatus.initial.obs;
             },
             init: AllFindController(),
             builder: (_) => RefreshIndicator(
@@ -72,7 +74,7 @@ class AllFindPage extends StatelessWidget {
                 onRefresh: () async {
                   if (AllFindController.to.search.value.isNotEmpty) {
                     if (AllFindController.to.refreshStatus.value ==
-                        RefreshStatus.INITIAL) {
+                        RefreshStatus.initial) {
                       _refreshKey.currentState.show();
                       AllFindController.to.fetchAllFind(isRefresh: true);
                     }
@@ -94,7 +96,7 @@ class AllFindPage extends StatelessWidget {
                           child: Card(
                               elevation: cardViewElevation,
                               child: Container(
-                                  margin: EdgeInsets.all(10),
+                                  margin: const EdgeInsets.all(10),
                                   child: Column(
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
@@ -158,7 +160,7 @@ class AllFindPage extends StatelessWidget {
                                                           .address,
                                                       style:
                                                           pastOrderAddressStyle),
-                                                  SizedBox(height: 5),
+                                                  const SizedBox(height: 5),
                                                   Text(_allFind.typeDelivery,
                                                       style: deliveryType),
                                                   Row(
@@ -172,9 +174,9 @@ class AllFindPage extends StatelessWidget {
                                                                   .paymentType,
                                                               style:
                                                                   paymentPaidStatusStyle),
-                                                          SizedBox(width: 3),
+                                                          const SizedBox(width: 3),
                                                           Text(
-                                                              '($CODPaymentType)',
+                                                              '($codPaymentType)',
                                                               style:
                                                                   paymentCollectStyle)
                                                         ]),
@@ -239,7 +241,7 @@ class AllFindPage extends StatelessWidget {
                                               OrderAddress(
                                                   orderPersonDetail: _allFind
                                                       .orderPersonDetail),
-                                              SizedBox(height: 10)
+                                              const SizedBox(height: 10)
                                             ])),
                                         Visibility(
                                             visible:
@@ -276,7 +278,7 @@ class AllFindPage extends StatelessWidget {
                                                               CrossAxisAlignment
                                                                   .start,
                                                           children: [
-                                                            Text('$remarkItem',
+                                                            Text(remarkItem,
                                                                 style:
                                                                     pastOrderRemarkStyle),
                                                             Text(

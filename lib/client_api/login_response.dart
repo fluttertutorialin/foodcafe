@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 class LoginResponse {
   int apiStatusCode;
   String message;
@@ -46,18 +44,4 @@ class LoginResponse {
         'profilePicture': profilePicture,
         'personaAddToCartCounter': 0
       };
-}
-
-void main() {
-  LoginResponse loginResponse = LoginResponse(
-      apiStatusCode: 200,
-      message: 'Login successful',
-      userId: '001',
-      token: 'token',
-      userName: 'kamlesh',
-      email: 'kamal.lakhani56@gmail.com',
-      mobile: 9586331823,
-      profilePicture: 'url');
-
-  print(json.encode(loginResponse));
 }

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../model/pausemenu/PauseMenuResponse.dart';
+import '../model/pausemenu/pause_menu_response.dart';
 import '../utils/state_status.dart';
 
 class PauseMenuController extends GetxController {
   static PauseMenuController get to => Get.find();
-  var stateStatus = Rx<StateStatus>(StateStatus.INITIAL);
+  var stateStatus = Rx<StateStatus>(StateStatus.initial);
 
   var rxPauseMenuList = RxList<PauseOrderGroup>([]);
   var rxPauseShopList = RxList<PauseOrderMenu>([]);
@@ -21,7 +21,7 @@ class PauseMenuController extends GetxController {
   }
 
   Future<void> fetchPauseMenu() async {
-    stateStatus.value = StateStatus.LOADING;
+    stateStatus.value = StateStatus.loading;
 
     var pauseMenuResponse = PauseMenuResponse(pauseShopList: [
       PauseOrderMenu(id: 1001, menuName: 'Online ordering', switchCase: true),
@@ -47,8 +47,8 @@ class PauseMenuController extends GetxController {
       ]),
     ]);
 
-    await Future.delayed(Duration(seconds: 2));
-    stateStatus.value = StateStatus.SUCCESS;
+    await Future.delayed(const Duration(seconds: 2));
+    stateStatus.value = StateStatus.success;
 
     rxPauseShopList.assignAll(pauseMenuResponse.pauseShopList.obs);
     rxPauseMenuList.assignAll(pauseMenuResponse.pauseOrderGroupList.obs);

@@ -4,8 +4,8 @@ import '../utils/state_status.dart';
 
 class WalletController extends GetxController {
   static WalletController get to => Get.find();
-  var stateStatus = Rx<StateStatus>(StateStatus.INITIAL);
-  var refreshStatus = Rx<RefreshStatus>(RefreshStatus.INITIAL);
+  var stateStatus = Rx<StateStatus>(StateStatus.initial);
+  var refreshStatus = Rx<RefreshStatus>(RefreshStatus.initial);
   var rxWalletList = RxList<Wallet>([]);
 
   @override
@@ -16,9 +16,9 @@ class WalletController extends GetxController {
 
   Future<void> fetchWallet({bool isRefresh = false}) async {
     if (isRefresh) {
-      refreshStatus.value = RefreshStatus.LOADING;
+      refreshStatus.value = RefreshStatus.loading;
     }
-    stateStatus.value = StateStatus.LOADING;
+    stateStatus.value = StateStatus.loading;
 
     var walletResponse = WalletResponse(creditBalance: 100, walletList: [
       Wallet(
@@ -35,13 +35,13 @@ class WalletController extends GetxController {
           dateTime: '20-12-2020 - 1:15 PM'),
     ]);
 
-    await Future.delayed(Duration(seconds: 2));
+    await Future.delayed(const Duration(seconds: 2));
     if (isRefresh) {
-      refreshStatus.value = RefreshStatus.SUCCESS;
-      refreshStatus.value = RefreshStatus.INITIAL;
+      refreshStatus.value = RefreshStatus.success;
+      refreshStatus.value = RefreshStatus.initial;
     }
 
-    stateStatus.value = StateStatus.SUCCESS;
+    stateStatus.value = StateStatus.success;
 
     rxWalletList.assignAll(walletResponse.walletList);
   }

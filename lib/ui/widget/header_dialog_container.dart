@@ -4,7 +4,7 @@ import '../../resource/colors.dart';
 class HeaderContainer extends StatelessWidget {
   final Widget child;
 
-  const HeaderContainer({this.child});
+  const HeaderContainer({Key key, this.child}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

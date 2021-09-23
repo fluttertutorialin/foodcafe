@@ -12,6 +12,8 @@ import '../../utils/extensions.dart';
 class ProfileEditPage extends StatelessWidget {
   final _key = GlobalKey<FormState>();
 
+  ProfileEditPage({Key key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) => Scaffold(
       appBar: AppBar(
@@ -26,7 +28,7 @@ class ProfileEditPage extends StatelessWidget {
           child: ListView(children: [_formUI()])));
 
   _formUI() => Container(
-      padding: EdgeInsets.all(20),
+      padding: const EdgeInsets.all(20),
       child: Column(children: <Widget>[
         _profileImage(),
         size(heightScale: 30.0),
@@ -36,18 +38,18 @@ class ProfileEditPage extends StatelessWidget {
         _addressInput(),
         size(heightScale: 20.0),
         _profileEditPress(),
-        SizedBox(height: 10.0)
+        const SizedBox(height: 10.0)
       ]));
 
   _profileImage() => Column(children: [
         Obx(() => InkWell(
-            borderRadius: BorderRadius.all(Radius.circular(60.0)),
+            borderRadius: const BorderRadius.all(Radius.circular(60.0)),
             child: CircleAvatar(
                 radius: 60,
                 backgroundColor: Colors.grey.withOpacity(0.1),
                 backgroundImage: ProfileEditController.to.profileURL.value.isEmpty
                     ? ProfileEditController.to.imagePickerPath.value == null
-                        ? ExactAssetImage(profileImage)
+                        ? const ExactAssetImage(profileImage)
                         : FileImage(
                             File(ProfileEditController.to.imagePickerPath.value))
                     : NetworkImage(ProfileEditController.to.profileURL.value)),
@@ -57,7 +59,7 @@ class ProfileEditPage extends StatelessWidget {
       ]);
 
   _profileEditPress() =>
-      Align(alignment: Alignment.bottomCenter).customFloatForm(
+      const Align(alignment: Alignment.bottomCenter).customFloatForm(
           color: appBarTitleColor,
           stateStatus: ProfileEditController.to.stateStatus.value,
           icon: Icons.navigate_next,

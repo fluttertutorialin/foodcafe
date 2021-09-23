@@ -17,10 +17,10 @@ dependencies:
   flutter_dash:
   recase:
   flutter_automation:
-  firebase_auth:
-  firebase_core:
-  cloud_firestore:
-  google_sign_in:
+  firebase_auth: ^3.1.1
+  firebase_core: 1.6.0
+  cloud_firestore: 2.5.3
+  google_sign_in: ^5.1.1
   get_storage:
   cached_network_image:
   logger:
@@ -32,13 +32,13 @@ dependencies:
   simple_animations:
   flutter_launcher_icons:
   path_provider:
-  firebase_messaging: ^8.0.0-dev.11
+  firebase_messaging:
   flutter_local_notifications:
   firebase_crashlytics:
   scrollable_positioned_list:
   json_annotation:
   rename:
-  flutter_screenutil:
+  flutter_screenutil: ^5.0.0+2
   connectivity:
 
 dev_dependencies:
@@ -46,6 +46,7 @@ dev_dependencies:
     sdk: flutter
   build_runner:
   json_serializable:
+  linter: 
 
 flutter_icons:
   android: "launcher_icon"

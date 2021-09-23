@@ -5,32 +5,31 @@ import '../../resource/value.dart';
 class DialogExit extends StatelessWidget {
   final VoidCallback callBackCancel, callBackOk;
 
-  DialogExit({@required this.callBackCancel, @required this.callBackOk});
+  const DialogExit({Key key, @required this.callBackCancel, @required this.callBackOk}) : super(key: key);
 
   @override
   Widget build(BuildContext context) => Center(
           child: SingleChildScrollView(
               child: Column(children: <Widget>[
-        Container(
-            child: Stack(children: <Widget>[
+        Stack(children: <Widget>[
           Container(
-              width: double.infinity,
-              padding: const EdgeInsets.all(16.0),
-              child: Material(
-                  clipBehavior: Clip.antiAlias,
-                  elevation: 1.0,
-                  borderRadius: BorderRadius.circular(4.0),
-                  child: Padding(
-                      padding: const EdgeInsets.all(10.0),
-                      child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
-                            Text(titleLogout, style: appBarTitleStyle),
-                            SizedBox(height: 5.0),
-                            Text(logoutMessage,
-                                style: descriptionStyle)
-                          ]))))
-        ])),
+          width: double.infinity,
+          padding: const EdgeInsets.all(16.0),
+          child: Material(
+              clipBehavior: Clip.antiAlias,
+              elevation: 1.0,
+              borderRadius: BorderRadius.circular(4.0),
+              child: Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Text(titleLogout, style: appBarTitleStyle),
+                        const SizedBox(height: 5.0),
+                        Text(logoutMessage,
+                            style: descriptionStyle)
+                      ]))))
+        ]),
         Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[

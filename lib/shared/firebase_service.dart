@@ -6,7 +6,7 @@ import '../resource/api.dart';
 
 class FirebaseService {
   FirebaseMessaging messaging = FirebaseMessaging.instance;
-  var _localAuthRepository = Get.find<LocalAuthRepository>();
+  final _localAuthRepository = Get.find<LocalAuthRepository>();
 
   Future<void> initializeFirebase() async {
     final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
@@ -49,7 +49,7 @@ class FirebaseService {
     });
   }
 
-  final _channel = AndroidNotificationChannel(
+  final _channel = const AndroidNotificationChannel(
     'foodcafe', // id
     '956888614965', // title
     '', // description
@@ -58,6 +58,6 @@ class FirebaseService {
   );
 
   Future<void> saveTokenToDatabase(String token) async {
-    _localAuthRepository.writeSession(SECURE_STORAGE_FIREBASE_TOKEN, token);
+    _localAuthRepository.writeSession(secureStorageFirebaseToken, token);
   }
 }

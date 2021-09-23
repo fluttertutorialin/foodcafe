@@ -2,7 +2,7 @@ import 'dart:async';
 import 'package:get/state_manager.dart';
 
 class NotificationMinController extends GetxController {
-  final message = Rx<String>("0".padLeft(2, '0'));
+  final message = Rx<String>('0'.padLeft(2, '0'));
   Timer _timer;
   int i = 0;
 
@@ -13,7 +13,7 @@ class NotificationMinController extends GetxController {
   }
 
   _init() {
-    _timer = Timer.periodic(Duration(minutes: 1), (timer) {
+    _timer = Timer.periodic(const Duration(minutes: 1), (timer) {
       i += 1;
       message.value = '$i'.padLeft(2, '0');
     });

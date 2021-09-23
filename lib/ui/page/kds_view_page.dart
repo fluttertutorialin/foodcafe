@@ -23,12 +23,12 @@ class KDSViewPage extends StatelessWidget {
         color: refreshColor,
         onRefresh: () async {
           if (KDSViewController.to.refreshStatus.value ==
-              RefreshStatus.SUCCESS) {
+              RefreshStatus.success) {
             _refreshKey.currentState.show(atTop: false);
           }
 
           if (KDSViewController.to.refreshStatus.value ==
-              RefreshStatus.INITIAL) {
+              RefreshStatus.initial) {
             _refreshKey.currentState.show();
             KDSViewController.to.fetchKDSView(isRefresh: true);
           }
@@ -41,7 +41,7 @@ class KDSViewPage extends StatelessWidget {
               var kdsView = KDSViewController.to.rxKDSViewList[index];
               return Column(children: [
                 Slidable(
-                    actionPane: SlidableDrawerActionPane(),
+                    actionPane: const SlidableDrawerActionPane(),
                     actionExtentRatio: 0.25,
                     child: _itemMenuPause(
                         menu: kdsView.menuName,
@@ -53,7 +53,7 @@ class KDSViewPage extends StatelessWidget {
                           onTap: () {})
                     ]),
                 Container(
-                    padding: EdgeInsets.only(top: 2, bottom: 2),
+                    padding: const EdgeInsets.only(top: 2, bottom: 2),
                     child: Dash(
                         length: Get.width - 35,
                         dashColor: Colors.grey,
@@ -66,7 +66,7 @@ class KDSViewPage extends StatelessWidget {
   _itemMenuPause({String menu, double stockCounter}) {
     return Container(
         alignment: Alignment.center,
-        padding: EdgeInsets.only(left: 0.0, right: 10.0),
+        padding: const EdgeInsets.only(left: 0.0, right: 10.0),
         child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
@@ -79,7 +79,7 @@ class KDSViewPage extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Row(children: [
-                          SizedBox(width: 10),
+                          const SizedBox(width: 10),
                           Text(menu,
                               maxLines: 1,
                               overflow: TextOverflow.ellipsis,

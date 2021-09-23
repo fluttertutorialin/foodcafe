@@ -15,6 +15,8 @@ class AcceptedPage extends StatelessWidget {
   final _infoKey = <GlobalKey>[];
   final _refreshKey = GlobalKey<RefreshIndicatorState>();
 
+  AcceptedPage({Key key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,12 +33,12 @@ class AcceptedPage extends StatelessWidget {
                 color: refreshColor,
                 onRefresh: () async {
                   if (AcceptedController.to.refreshStatus.value ==
-                      RefreshStatus.SUCCESS) {
+                      RefreshStatus.success) {
                     _refreshKey.currentState.dispose();
                   }
 
                   if (AcceptedController.to.refreshStatus.value ==
-                      RefreshStatus.INITIAL) {
+                      RefreshStatus.initial) {
                     _refreshKey.currentState.show();
                     AcceptedController.to.fetchAccepted(isRefresh: true);
                   }
@@ -55,7 +57,7 @@ class AcceptedPage extends StatelessWidget {
                           child: Card(
                               elevation: cardViewElevation,
                               child: Container(
-                                  margin: EdgeInsets.all(10),
+                                  margin: const EdgeInsets.all(10),
                                   child: Column(
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
@@ -84,7 +86,7 @@ class AcceptedPage extends StatelessWidget {
                                         OrderAddress(
                                             orderPersonDetail:
                                                 _accepted.orderPersonDetail),
-                                        SizedBox(height: 10),
+                                        const SizedBox(height: 10),
                                         OrderStatus(
                                             uniqueId: _accepted.uniqueId,
                                             orderStatus: foodReadyButton,

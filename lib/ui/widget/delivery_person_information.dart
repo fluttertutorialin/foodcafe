@@ -9,22 +9,22 @@ import '../../utils/extensions.dart';
 class DeliveryPersonInformation extends StatelessWidget {
   final DeliveryPersonDetail deliveryPersonDetail;
 
-  DeliveryPersonInformation({this.deliveryPersonDetail});
+  const DeliveryPersonInformation({Key key, this.deliveryPersonDetail}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-      SizedBox(height: 5),
+      const SizedBox(height: 5),
       Container(
           decoration: BoxDecoration(
               border: Border.all(
                   color: borderDeliveryPersonInformationColor, width: 1),
-              borderRadius: BorderRadius.all(Radius.circular(5))),
-          padding: EdgeInsets.all(10),
+              borderRadius: const BorderRadius.all(Radius.circular(5))),
+          padding: const EdgeInsets.all(10),
           child: Row(children: [
             Image.asset(deliveryBoyImage, scale: 4),
-            SizedBox(width: 10),
+            const SizedBox(width: 10),
             Expanded(
                 child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -41,7 +41,7 @@ class DeliveryPersonInformation extends StatelessWidget {
                 child: Image.asset(callImage, scale: 4),
                 onTap: () => '${deliveryPersonDetail.mobileNo.value}'.mobileCalling())
           ])),
-      SizedBox(height: 5)
+      const SizedBox(height: 5)
     ]);
   }
 }

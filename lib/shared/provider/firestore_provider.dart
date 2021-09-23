@@ -7,11 +7,11 @@ import '../../resource/api.dart';
 import '../http_hepler.dart';
 
 class FireStoreDatabaseProvider {
-  FirebaseFirestore _firebaseFireStore;
-  FirebaseAuth _firebaseAuth;
-  HttpHelper _httpHelper;
+  final FirebaseFirestore _firebaseFireStore;
+  final FirebaseAuth _firebaseAuth;
+  final HttpHelper _httpHelper;
 
-  var _googleSignIn = GoogleSignIn();
+  final _googleSignIn = GoogleSignIn();
 
   FireStoreDatabaseProvider(
       this._firebaseFireStore, this._firebaseAuth, this._httpHelper);
@@ -33,24 +33,7 @@ class FireStoreDatabaseProvider {
         .update({'columnName': notificationCounter});
   }
 
-  Future<User> googleLogin() async {
-    var googleSignInAccount = await _googleSignIn.signIn();
-    if (googleSignInAccount != null) {
-      var googleSignInAuthentication = await googleSignInAccount.authentication;
-
-      var credential = GoogleAuthProvider.credential(
-        accessToken: googleSignInAuthentication.accessToken,
-        idToken: googleSignInAuthentication.idToken,
-      );
-
-      var authResult = await _firebaseAuth.signInWithCredential(credential);
-      var user = authResult.user;
-
-      if (user != null)
-        return _firebaseAuth.currentUser;
-      else
-        return null;
-    }
+  Future<UserInfo> googleLogin() async {
     return null;
   }
 
@@ -60,8 +43,8 @@ class FireStoreDatabaseProvider {
   }
 
   void login({@required dynamic body, @required HttpSuccessCallback success, @required HttpFailureCallback error}) {
-    _httpHelper.requestToServer(LOGIN_URL,
-        method: Method.POST, body: body, success: success, error: error);
+    _httpHelper.requestToServer('',
+        method: Method.post, body: body, success: success, error: error);
   }
 
   void changePassword(
@@ -70,7 +53,7 @@ class FireStoreDatabaseProvider {
       "": "",
     });*/
 
-    _httpHelper.requestToServer(CHANGE_PASSWORD_URL,
-        method: Method.POST, success: success, error: error);
+    _httpHelper.requestToServer('',
+        method: Method.post, success: success, error: error);
   }
 }

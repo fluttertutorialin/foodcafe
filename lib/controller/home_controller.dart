@@ -17,8 +17,8 @@ import '../ui/page/ready_page.dart';
 class HomeController extends GetxController {
   static HomeController get to => Get.find();
 
-  var _localAuthRepository = Get.find<LocalAuthRepository>();
-  var fireStoreDatabaseRepository = Get.find<FireStoreDatabaseRepository>();
+  final _localAuthRepository = Get.find<LocalAuthRepository>();
+  final fireStoreDatabaseRepository = Get.find<FireStoreDatabaseRepository>();
 
   var searchController = TextEditingController();
 
@@ -31,13 +31,13 @@ class HomeController extends GetxController {
   var currentPageIndex = Rx<int>(0);
   var drawerMenuIndex = Rx<int>(0);
 
-  var secureStorageUserName = Rx<String>('');
-  var secureStorageProfileURL = Rx<String>('');
-  var secureStorageEmail = Rx<String>('');
-  var secureStorageMobile = Rx<String>('');
-  var secureStoragePinCode = Rx<String>('');
-  var secureStorageAddress = Rx<String>('');
-  var secureStorageWhereLogin = Rx<String>('');
+  var secureStorageUserNameRx = Rx<String>('');
+  var secureStorageProfileUrlRx = Rx<String>('');
+  var secureStorageEmailRx = Rx<String>('');
+  var secureStorageMobileRx = Rx<String>('');
+  var secureStoragePinCodeRx = Rx<String>('');
+  var secureStorageAddressRx = Rx<String>('');
+  var secureStorageWhereLoginRx = Rx<String>('');
 
   @override
   onInit() {
@@ -95,10 +95,10 @@ class HomeController extends GetxController {
 
   redirectPage() {
     if (drawerMenuIndex.value == pauseMenuIndex) {
-      return PauseMenuPage();
+      return const PauseMenuPage();
     } else if (drawerMenuIndex.value == pastOrder) {
       return PastOrderPage();
-    } else if (drawerMenuIndex.value == KDSView) {
+    } else if (drawerMenuIndex.value == kdsView) {
       return KDSViewPage();
     } else {
       return _tabPages(currentPageIndex.value);
@@ -126,26 +126,26 @@ class HomeController extends GetxController {
   }
 
   void getUserDetails() {
-    secureStorageUserName.value =
-        _localAuthRepository.readSession(SECURE_STORAGE_USERNAME);
+    secureStorageUserNameRx.value =
+        _localAuthRepository.readSession(secureStorageUsername);
 
-    secureStorageProfileURL.value =
-        _localAuthRepository.readSession(SECURE_STORAGE_PROFILE_URL);
+    secureStorageProfileUrlRx.value =
+        _localAuthRepository.readSession(secureStorageProfileUrl);
 
-    secureStorageEmail.value =
-        _localAuthRepository.readSession(SECURE_STORAGE_EMAIL);
+    secureStorageEmailRx.value =
+        _localAuthRepository.readSession(secureStorageEmail);
 
-    secureStorageMobile.value =
-        _localAuthRepository.readSession(SECURE_STORAGE_MOBILE);
+    secureStorageMobileRx.value =
+        _localAuthRepository.readSession(secureStorageMobile);
 
-    secureStoragePinCode.value =
-        _localAuthRepository.readSession(SECURE_STORAGE_PINCODE);
+    secureStoragePinCodeRx.value =
+        _localAuthRepository.readSession(secureStoragePinCode);
 
-    secureStorageAddress.value =
-        _localAuthRepository.readSession(SECURE_STORAGE_ADDRESS);
+    secureStorageAddressRx.value =
+        _localAuthRepository.readSession(secureStorageAddress);
 
-    secureStorageWhereLogin.value =
-        _localAuthRepository.readSession(SECURE_STORAGE_WHERE_LOGIN);
+    secureStorageWhereLoginRx.value =
+        _localAuthRepository.readSession(secureStorageWhereLogin);
   }
 
   void setUserDetails(
@@ -154,10 +154,10 @@ class HomeController extends GetxController {
       String pinCode,
       String address,
       String profileUrl}) {
-    _localAuthRepository.writeSession(SECURE_STORAGE_USERNAME, userName);
-    _localAuthRepository.writeSession(SECURE_STORAGE_MOBILE, mobile);
-    _localAuthRepository.writeSession(SECURE_STORAGE_PINCODE, pinCode);
-    _localAuthRepository.writeSession(SECURE_STORAGE_ADDRESS, address);
+    _localAuthRepository.writeSession(secureStorageUsername, userName);
+    _localAuthRepository.writeSession(secureStorageMobile, mobile);
+    _localAuthRepository.writeSession(secureStoragePinCode, pinCode);
+    _localAuthRepository.writeSession(secureStorageAddress, address);
   }
 
   searchClear(int currentPageIndex) {
@@ -193,11 +193,11 @@ class HomeController extends GetxController {
     super.onClose();
     pageController.dispose();
 
-    secureStorageUserName.value = '';
-    secureStorageProfileURL.value = '';
-    secureStorageEmail.value = '';
-    secureStorageMobile.value = '';
-    secureStoragePinCode.value = '';
-    secureStorageAddress.value = '';
+    secureStorageUserNameRx.value = '';
+    secureStorageProfileUrlRx.value = '';
+    secureStorageEmailRx.value = '';
+    secureStorageMobileRx.value = '';
+    secureStoragePinCodeRx.value = '';
+    secureStorageAddressRx.value = '';
   }
 }

@@ -7,16 +7,16 @@ import '../resource/value.dart';
 import '../utils/extensions.dart';
 
 class DeliveryTypesController extends GetxController {
-  var rxDeliveryTypes = Rx<DeliveryTypeResponse>();
-  var rxPartyType = Rx<PartyTypeResponse>();
-  var rxFreeDeliveryPerson = Rx<FreeDeliveryPersonResponse>();
+  var rxDeliveryTypes = Rx<DeliveryTypeResponse>(DeliveryTypeResponse());
+  var rxPartyType = Rx<PartyTypeResponse>(PartyTypeResponse());
+  var rxFreeDeliveryPerson = Rx<FreeDeliveryPersonResponse>(FreeDeliveryPersonResponse());
   RxString rxSelectDeliveryType = ''.obs;
   RxString rxSelectPartyType = ''.obs;
   RxString rxSelectFreeDeliveryPerson = ''.obs;
 
-  var _acceptedController = Get.put(AcceptedController());
-  var _allFindController = Get.put(AllFindController());
-  var _homeController = Get.put(HomeController());
+  final _acceptedController = Get.put(AcceptedController());
+  final _allFindController = Get.put(AllFindController());
+  final _homeController = Get.put(HomeController());
 
   @override
   void onInit() {
@@ -64,7 +64,8 @@ class DeliveryTypesController extends GetxController {
     int currentPageIndex = _homeController.currentPageIndex.value;
 
     if (currentPageIndex == acceptedIndex) {
-      _acceptedController.deliveryPersonalDetailUnSelect(uniqueId: orderUniqueId);
+      _acceptedController.deliveryPersonalDetailUnSelect(
+          uniqueId: orderUniqueId);
     }
 
     _allFindController.deliveryPersonalDetailUnSelect(uniqueId: orderUniqueId);

@@ -14,15 +14,16 @@ class OrderDetail extends StatelessWidget {
   final OrderMainList orderMainList;
   final List<OtherCharge> otherChargeList;
 
-  OrderDetail(
-      {this.infoKey, this.orderList, this.orderMainList, this.otherChargeList});
+  const OrderDetail(
+      {Key key, this.infoKey, this.orderList, this.orderMainList, this.otherChargeList}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Column(children: [
       Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
         Text(orderMainList.uniqueId, style: idStyle),
-        Text(orderMainList.dateTime.dateTimeyyyyMMddhhmma(), style: dateTimeStyle)
+        Text(orderMainList.dateTime.dateTimeyyyyMMddhhmma(),
+            style: dateTimeStyle)
       ]),
       Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
         Text(orderMainList.typeDelivery, style: deliveryType),
@@ -37,7 +38,7 @@ class OrderDetail extends StatelessWidget {
                     .replaceFirst('-', ''),
             style: timeCalculationStyle)
       ]),
-      SizedBox(height: 5),
+      const SizedBox(height: 5),
       Column(
           children: orderList
               .map((item) => Row(children: [
@@ -45,16 +46,16 @@ class OrderDetail extends StatelessWidget {
                         flex: 3500,
                         child: Row(children: [
                           Container(
-                              margin: EdgeInsets.only(bottom: 3),
+                              margin: const EdgeInsets.only(bottom: 3),
                               child: Image.asset(
                                   item.isVegNonVeg == vegIcon
                                       ? foodVegImage
                                       : foodNonVegImage,
                                   height: 12,
                                   width: 12)),
-                          SizedBox(width: 5),
+                          const SizedBox(width: 5),
                           Text(item.recipeName, style: menuNameStyle),
-                          SizedBox(width: 5),
+                          const SizedBox(width: 5),
                           Text(
                               item.orderType == fullOrderTypeApi
                                   ? fullOrderType
@@ -64,7 +65,7 @@ class OrderDetail extends StatelessWidget {
                     Flexible(
                         flex: 600,
                         child: Row(children: [
-                          Text('$quantitySymbol', style: quantitySymbolStyle),
+                          Text(quantitySymbol, style: quantitySymbolStyle),
                           Text('${item.quantity}', style: quantityStyle)
                         ])),
                     Flexible(
@@ -75,7 +76,7 @@ class OrderDetail extends StatelessWidget {
                                 style: menuPriceStyle)))
                   ]))
               .toList()),
-      SizedBox(height: 3),
+      const SizedBox(height: 3),
       Divider(color: Colors.grey.withOpacity(0.2)),
       Row(children: [
         Flexible(
@@ -86,12 +87,12 @@ class OrderDetail extends StatelessWidget {
                   Row(children: [
                     Text(orderMainList.paymentType,
                         style: paymentPaidStatusStyle),
-                    SizedBox(width: 3),
-                    Text('($CODPaymentType)', style: paymentCollectStyle)
+                    const SizedBox(width: 3),
+                    Text('($codPaymentType)', style: paymentCollectStyle)
                   ]),
                   Row(children: [
                     Text(labelTotal, style: totalQuantityStyle),
-                    SizedBox(width: 3),
+                    const SizedBox(width: 3),
                     GestureDetector(
                         key: infoKey,
                         onTap: () {
@@ -105,7 +106,7 @@ class OrderDetail extends StatelessWidget {
                               position: RelativeRect.fromLTRB(
                                   0, offset.dy + renderBox.size.height, 0, 0),
                               child: Container(
-                                  padding: EdgeInsets.all(10),
+                                  padding: const EdgeInsets.all(10),
                                   child: Column(children: [
                                     Column(
                                         children: otherChargeList
@@ -116,7 +117,7 @@ class OrderDetail extends StatelessWidget {
                                                               .spaceBetween,
                                                       children: [
                                                         Text(item.name,
-                                                            style: TextStyle(
+                                                            style: const TextStyle(
                                                                 color:
                                                                     Colors.grey,
                                                                 fontSize: 12,
@@ -124,7 +125,7 @@ class OrderDetail extends StatelessWidget {
                                                                     regularFont)),
                                                         Text(
                                                             '$rsSymbol ${item.chargeAmount}',
-                                                            style: TextStyle(
+                                                            style: const TextStyle(
                                                                 color: Colors
                                                                     .black,
                                                                 fontSize: 14,
@@ -133,19 +134,19 @@ class OrderDetail extends StatelessWidget {
                                                       ])
                                                 ]))
                                             .toList()),
-                                    Divider(),
+                                    const Divider(),
                                     Row(
                                         mainAxisAlignment:
                                             MainAxisAlignment.spaceBetween,
                                         children: [
-                                          Text(labelTotalAmount,
+                                          const Text(labelTotalAmount,
                                               style: TextStyle(
                                                   color: Colors.grey,
                                                   fontSize: 12,
                                                   fontFamily: mediumFont)),
                                           Text(
                                               '$rsSymbol ${orderMainList.totalOtherChargeAmount}',
-                                              style: TextStyle(
+                                              style: const TextStyle(
                                                   color: Colors.black,
                                                   fontSize: 14,
                                                   fontFamily: mediumFont))
@@ -154,13 +155,13 @@ class OrderDetail extends StatelessWidget {
                         },
                         child: Image.asset(informationImage,
                             height: 15, width: 15)),
-                    SizedBox(width: 3)
+                    const SizedBox(width: 3)
                   ])
                 ])),
         Flexible(
             flex: 600,
             child: Row(children: [
-              Text('$quantitySymbol', style: quantitySymbolStyle),
+              Text(quantitySymbol, style: quantitySymbolStyle),
               Text('${orderMainList.totalQuantity.round()}',
                   style: quantityStyle)
             ])),
@@ -177,8 +178,8 @@ class OrderDetail extends StatelessWidget {
 
   Duration timeHourMinute(int microsecondsSinceEpoch) {
     DateTime fromDateTime =
-        new DateTime.fromMicrosecondsSinceEpoch(microsecondsSinceEpoch);
-    DateTime nowDateTime = new DateTime.fromMicrosecondsSinceEpoch(
+        DateTime.fromMicrosecondsSinceEpoch(microsecondsSinceEpoch);
+    DateTime nowDateTime = DateTime.fromMicrosecondsSinceEpoch(
         DateTime.now().microsecondsSinceEpoch);
     return fromDateTime.difference(nowDateTime);
   }

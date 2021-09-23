@@ -6,7 +6,7 @@ class IconShadowWidget extends StatelessWidget {
   final bool showShadow;
   final Color shadowColor;
 
-  IconShadowWidget(this.icon, {this.showShadow = true, this.shadowColor});
+  const IconShadowWidget(this.icon, {Key key, this.showShadow = true, this.shadowColor}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -201,10 +201,10 @@ class IconShadowWidget extends StatelessWidget {
     list.add(ClipRect(
         child: BackdropFilter(
       filter: ui.ImageFilter.blur(sigmaX: 0.9, sigmaY: 0.9),
-      child: IconTheme(data: IconThemeData(opacity: 1.0), child: icon),
+      child: IconTheme(data: const IconThemeData(opacity: 1.0), child: icon),
     )));
 
-    list.add(IconTheme(data: IconThemeData(opacity: 1.0), child: icon));
+    list.add(IconTheme(data: const IconThemeData(opacity: 1.0), child: icon));
 
     return Stack(
       alignment: Alignment.center,

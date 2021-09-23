@@ -18,11 +18,11 @@ class OrderStatus extends StatelessWidget {
   final _acceptedController = Get.put(AcceptedController());
 
   OrderStatus(
-      {this.uniqueId,
+      {Key key, this.uniqueId,
       this.orderStatus,
       this.isRejectShow = true,
       this.rejectCallBack,
-      this.orderCallBack});
+      this.orderCallBack}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -49,7 +49,7 @@ class OrderStatus extends StatelessWidget {
                     decoration: BoxDecoration(
                         color: Colors.grey.withOpacity(0.1),
                         borderRadius: BorderRadius.circular(5.0)),
-                    padding: EdgeInsets.all(3),
+                    padding: const EdgeInsets.all(3),
                     child:
                         Text(' DELIVERY PERSON ', style: deliveryPersonStyle)),
                 onTap: () {
@@ -69,7 +69,7 @@ class OrderStatus extends StatelessWidget {
                   _deliveryTypesController.rxSelectFreeDeliveryPerson.value = '';
 
                   bottomSheetCustom(
-                      shape: RoundedRectangleBorder(
+                      shape: const RoundedRectangleBorder(
                           borderRadius: BorderRadius.only(
                               topRight: Radius.circular(10),
                               topLeft: Radius.circular(10))),
@@ -79,14 +79,14 @@ class OrderStatus extends StatelessWidget {
                       context: context,
                       builder: (context) => DeliveryTypes(uniqueId: uniqueId));
                 })),
-        SizedBox(width: 10),
+        const SizedBox(width: 10),
         InkWell(
             borderRadius: BorderRadius.circular(5.0),
             child: Container(
                 decoration: BoxDecoration(
                     color: Colors.grey.withOpacity(0.1),
                     borderRadius: BorderRadius.circular(5.0)),
-                padding: EdgeInsets.all(3),
+                padding: const EdgeInsets.all(3),
                 child: Text(' $orderStatus ', style: orderStatusStyle)),
             onTap: orderCallBack)
       ])
