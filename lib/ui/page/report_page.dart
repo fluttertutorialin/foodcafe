@@ -62,7 +62,7 @@ class ReportPage extends StatelessWidget {
 
   _topHeader() {
     return Container(
-        color: accentColor,
+        color: primarySwatchColor,
         child: Stack(children: [
           Column(mainAxisAlignment: MainAxisAlignment.end, children: [
             _headerSetting(),

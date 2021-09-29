@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:foodcafe/ui/widget/bottom_sheet_custom.dart';
+import 'package:foodcafe/ui/widget/bottom_sheet_pause_menu.dart';
 import 'package:get/get.dart';
 import '../../controller/pause_menu_controller.dart';
 import '../../resource/colors.dart';
@@ -49,7 +51,7 @@ class PauseMenuPage extends StatelessWidget {
                                                       style:
                                                           menuAvailableStyle))
                                                 ]),
-                                            /*Obx(() => CustomSwitch(
+                                            Obx(() => Switch(
                                                 value: item.switchCase.value,
                                                 onChanged: (bool value) {
                                                   bottomSheetCustom(
@@ -79,7 +81,7 @@ class PauseMenuPage extends StatelessWidget {
                                                 inactiveTrackColor:
                                                     switchTrackColor,
                                                 inactiveThumbColor:
-                                                    switchInActiveColor))*/
+                                                    switchInActiveColor))
                                           ])
                                     ])))
                                 .toList())
@@ -150,7 +152,7 @@ class PauseMenuPage extends StatelessWidget {
                                                                               Text(item.menuName.value, style: switchLabelStyle),
                                                                               Obx(() => Text(item.orderAvailableDateTime.value != null ? '${item.orderAvailableDateTime.value.dateTimeyyyyMMddhhmma()}' : '', style: menuAvailableStyle))
                                                                             ]),
-                                                                            /*Obx(() => CustomSwitch(
+                                                                            Obx(() => Switch(
                                                                                 value: item.switchCase.value,
                                                                                 onChanged: (bool value) {
                                                                                   bottomSheetCustom(
@@ -169,7 +171,7 @@ class PauseMenuPage extends StatelessWidget {
                                                                                 },
                                                                                 activeColor: switchActiveColor,
                                                                                 inactiveTrackColor: switchTrackColor,
-                                                                                inactiveThumbColor: switchInActiveColor))*/
+                                                                                inactiveThumbColor: switchInActiveColor))
                                                                           ]))
                                                                   .toList())
                                                         ]));
