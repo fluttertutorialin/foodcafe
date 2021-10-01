@@ -5,7 +5,32 @@
 
 <p align="center">
   <img alt="shields.io" src="screenshot\device-2020-12-31-101400.png" width="180"/>
-
+  <img alt="shields.io" src="screenshot\device-2020-12-31-102626.png" width="180"/>
+  <img alt="shields.io" src="screenshot\device-2020-12-31-102643.png" width="180"/>
+  <img alt="shields.io" src="screenshot\device-2020-12-31-103828.png" width="180"/>
+  <img alt="shields.io" src="screenshot\device-2020-12-31-103841.png" width="180"/>
+  <img alt="shields.io" src="screenshot\device-2020-12-31-103858.png" width="180"/>
+  <img alt="shields.io" src="screenshot\device-2020-12-31-103914.png" width="180"/>
+  <img alt="shields.io" src="screenshot\device-2020-12-31-103927.png" width="180"/>
+  <img alt="shields.io" src="screenshot\device-2020-12-31-103939.png" width="180"/>
+  <img alt="shields.io" src="screenshot\device-2020-12-31-103952.png" width="180"/>
+  <img alt="shields.io" src="screenshot\device-2020-12-31-104004.png" width="180"/>
+  <img alt="shields.io" src="screenshot\device-2020-12-31-104019.png" width="180"/>
+  <img alt="shields.io" src="screenshot\device-2020-12-31-104029.png" width="180"/>
+  <img alt="shields.io" src="screenshot\device-2020-12-31-104039.png" width="180"/>
+  <img alt="shields.io" src="screenshot\device-2020-12-31-104051.png" width="180"/>
+  <img alt="shields.io" src="screenshot\device-2020-12-31-104109.png" width="180"/>
+  <img alt="shields.io" src="screenshot\device-2020-12-31-104120.png" width="180"/>
+  <img alt="shields.io" src="screenshot\device-2020-12-31-104131.png" width="180"/>
+  <img alt="shields.io" src="screenshot\device-2020-12-31-104141.png" width="180"/>
+  <img alt="shields.io" src="screenshot\device-2020-12-31-104151.png" width="180"/>
+  <img alt="shields.io" src="screenshot\device-2020-12-31-104202.png" width="180"/>
+  <img alt="shields.io" src="screenshot\device-2020-12-31-104214.png" width="180"/>
+  <img alt="shields.io" src="screenshot\device-2020-12-31-104226.png" width="180"/>
+  <img alt="shields.io" src="screenshot\device-2020-12-31-104238.png" width="180"/>
+  <img alt="shields.io" src="screenshot\device-2020-12-31-104248.png" width="180"/>
+  <img alt="shields.io" src="screenshot\device-2020-12-31-104304.png" width="180"/>
+  <img alt="shields.io" src="screenshot\device-2020-12-31-104319.png" width="180"/>
 </p>
 
 <h4>
