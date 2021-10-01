@@ -4,8 +4,8 @@
 </h1>
 
 <p align="center">
-  <img alt="shields.io" src="screenshot\device-2020-12-31-101400.png" width="180"/>
-  <img alt="shields.io" src="screenshot\device-2020-12-31-102626.png" width="180"/>
+  <img alt="" src="screenshot\device-2020-12-31-101400.png" width="180"/>
+  <img alt="" src="screenshot\device-2020-12-31-102626.png" width="180"/>
   <img alt="shields.io" src="screenshot\device-2020-12-31-102643.png" width="180"/>
   <img alt="shields.io" src="screenshot\device-2020-12-31-103828.png" width="180"/>
   <img alt="shields.io" src="screenshot\device-2020-12-31-103841.png" width="180"/>
