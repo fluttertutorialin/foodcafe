@@ -3,6 +3,19 @@
     Flutter FoodCafe (Restaurant admin) Application
 </h1>
 
+<p align="center">
+  <img alt="shields.io" src="screenshots\device-2020-12-31-101400.png" width="140"/>
+  <img alt="shields.io" src="screenshots\Screenshot_20211001-161235.jpg" width="140"/>
+  <img alt="shields.io" src="screenshots\Screenshot_20211001-161248.jpg" width="140"/>
+  <img alt="shields.io" src="screenshots\Screenshot_20211001-161305.jpg" width="140"/>
+  <img alt="shields.io" src="screenshots\Screenshot_20211001-161327.jpg" width="140"/>
+  <img alt="shields.io" src="screenshots\Screenshot_20211001-161342.jpg" width="140"/>
+  <img alt="shields.io" src="screenshots\Screenshot_20211001-161359.jpg" width="140"/>
+  <img alt="shields.io" src="screenshots\Screenshot_20211001-161428.jpg" width="140"/>
+  <img alt="shields.io" src="screenshots\Screenshot_20211001-161501.jpg" width="140"/>
+
+</p>
+
 <h4>
     <br>
     APPLICATION SETUP
