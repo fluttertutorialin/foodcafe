@@ -3,6 +3,11 @@
     Flutter FoodCafe (Restaurant admin) Application
 </h1>
 
+
+<h4>
+    <br>
+    Application Setup
+</h4>
 0) Path set java: Path - still bin
    flutter path Mac: export PATH="$PATH:/Users/mac/Documents/flutter/bin"
 
