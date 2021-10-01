@@ -3,13 +3,10 @@
     Flutter FoodCafe (Restaurant admin) Application
 </h1>
 
-
 <h4>
     <br>
-    Application Setup
+    APPLICATION SETUP
 </h4>
-0) Path set java: Path - still bin
-   flutter path Mac: export PATH="$PATH:/Users/mac/Documents/flutter/bin"
 
 1) flutter pub pub run flutter_automation --android-sign
 2) CN="Kamlesh Lakhani", OU=1, O=jdkgroup, L=Ahmedabad, S=Gujarat, C=91
@@ -97,8 +94,11 @@
       current name: const String appName = 'Food Cafe';
    8) Release apk create
       - Terminal command: flutter build apk --release
-
-LOGIC PART
+    
+<h4>
+    <br>
+    LOGIC PART
+</h4>
 1) Preparation Time
    if value % 10 == 0 value selected display else un-select press the button + or -.
    Plus: Increment 5
@@ -217,21 +217,24 @@ LOGIC PART
       - Query & feedback, call.
    7) Share App
 
-NOTE
-json.decode(): Builds Dart objects from a string containing JSON data.
-json.encode(): Serializes a Dart object into a JSON string.
+<h4>
+    <br>
+    NOTE
+</h4>
+1) json.decode(): Builds Dart objects from a string containing JSON data.
+2) json.encode(): Serializes a Dart object into a JSON string.
 
+<h4>
+    <br>
+    INIT INSIDE
+</h4>
+1) WidgetsBinding.instance!.addPostFrameCallback((_) {});
+2) SchedulerBinding.instance.addPostFrameCallback((timeStamp) {});
 
-//init inside
-WidgetsBinding.instance!.addPostFrameCallback((_) {
-
-});
-
-SchedulerBinding.instance.addPostFrameCallback((timeStamp) {
-
-});
-
-Git
+<h4>
+    <br>
+    GIT
+</h4>
 Android Studio Git push to rejected
 VCS --> Git --> Branches
 origin/master --> Rebase
