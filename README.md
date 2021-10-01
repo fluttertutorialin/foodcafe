@@ -1,4 +1,3 @@
-# foodcafe application
 <h1 align="center">
     <br>
     Flutter FoodCafe (Restaurant admin) Application
