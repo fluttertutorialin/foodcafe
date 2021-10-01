@@ -1,6 +1,8 @@
 <h1 align="center">
     <br>
-    Flutter FoodCafe (Restaurant admin) Application
+    Flutter FoodCafe (Restaurant admin) Application. 
+    This application easy to order manage.
+    Provide the different types of functionality likes order, change order status (pending, accepted, ready, dispatched), notification,  new order, pause menu (online order, offline order, different type of recipe not order), turn of ordering (stop order details), new order, kds view (stock view), profile edit, change password, logout etc.
 </h1>
 
 # Website
