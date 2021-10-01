@@ -6,7 +6,7 @@
 </h3>
 
 # Website
-**www.fluttertutorial.in provides free UI Kit [Open link](https://fluttertutorial.in/)**
+**www.fluttertutorial.in provides free UI Kit and youtube video [Open link](https://www.youtube.com/watch?v=bPYxFIO5oSA)**
 
 <p align="center">
   <img alt="" src="screenshot\device-2020-12-31-101400.png" width="180"/>
