@@ -4,7 +4,7 @@
 </h1>
 
 <p align="center">
-  <img alt="shields.io" src="screenshots\device-2020-12-31-101400.png" width="140"/>
+  <img alt="shields.io" src="screenshot\device-2020-12-31-101400.png" width="140"/>
 
 </p>
 
