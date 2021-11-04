@@ -2,13 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../resource/api.dart';
 import '../resource/routes.dart';
-import '../shared/repository/local_auth_repository.dart';
 import '../utils/extensions.dart';
 import '../utils/state_status.dart';
+import '../shared/provider/session_store.dart';
+import '../shared/repository/firestore_database_repository.dart';
 
 class SingUpController extends GetxController {
-  static SingUpController get to => Get.find();
-  final _localAuthRepository = Get.find<LocalAuthRepository>();
+  SingUpController({this.fireStoreDatabaseRepository, this.sessionStore});
+
+  /// inject repo abstraction dependency
+  final SessionStore sessionStore;
+  final FireStoreDatabaseRepository fireStoreDatabaseRepository;
 
   var stateStatus = Rx<StateStatus>(StateStatus.initial);
 
@@ -69,15 +73,17 @@ class SingUpController extends GetxController {
     param['confirmPassword'] = _confirmPassword;
     param['mobile'] = _mobile;
 
-    _localAuthRepository.writeSession(secureStorageUsername, _userName);
-    _localAuthRepository.writeSession(secureStorageEmail, _email);
-    _localAuthRepository.writeSession(secureStorageProfileUrl, '');
-    _localAuthRepository.writeSession(secureStorageToken, '');
-    _localAuthRepository.writeSession(secureStorageUserId, '');
-    _localAuthRepository.writeSession(secureStorageMobile, _mobile);
+    sessionStore.userId('');
+    sessionStore.token('');
+    sessionStore.userName(_userName);
+    sessionStore.email(_email);
+    sessionStore.profileUrl('');
+    sessionStore.mobile(_mobile);
+    sessionStore.pinCode('123456');
+    sessionStore.address('Address');
+    sessionStore.whereLogin(whereLogin);
+    sessionStore.whereLogin(onBoarding);
 
-    _localAuthRepository.writeSession(secureStorageWhereLogin, whereLogin);
-    _localAuthRepository.writeSession(secureStorageOnBoarding, onBoarding);
     await Future.delayed(const Duration(seconds: 2));
 
     stateStatus.value = StateStatus.success;

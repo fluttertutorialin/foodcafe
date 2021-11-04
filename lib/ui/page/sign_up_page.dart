@@ -8,7 +8,7 @@ import '../../resource/style.dart';
 import '../../resource/value.dart';
 import '../../utils/extensions.dart';
 
-class SignUpPage extends StatelessWidget {
+class SignUpPage extends GetView<SingUpController> {
   final _key = GlobalKey<FormState>();
 
   SignUpPage({Key key}) : super(key: key);
@@ -45,12 +45,13 @@ class SignUpPage extends StatelessWidget {
           backgroundColor: Colors.transparent,
           child: Image.asset(appIconImage)));
 
-  _signUpPress() => const Align(alignment: Alignment.bottomCenter).customFloatForm(
-      color: appBarTitleColor,
-      stateStatus: SingUpController.to.stateStatus.value,
-      icon: Icons.navigate_next,
-      isMini: false,
-      qrCallback: () => _signUpValidate());
+  _signUpPress() =>
+      const Align(alignment: Alignment.bottomCenter).customFloatForm(
+          color: appBarTitleColor,
+          stateStatus: controller.stateStatus.value,
+          icon: Icons.navigate_next,
+          isMini: false,
+          qrCallback: () => _signUpValidate());
 
   _signUpValidate() {
     FocusScope.of(Get.context).requestFocus(FocusNode());
@@ -58,59 +59,58 @@ class SignUpPage extends StatelessWidget {
     switch (_key.currentState.validate()) {
       case true:
         _key.currentState.save();
-        SingUpController.to.callSignUp();
+        controller.callSignUp();
         break;
       case false:
-        SingUpController.to.checkAutoValidate();
+        controller.checkAutoValidate();
         break;
     }
   }
 
-  _userNameInput() => inputField(SingUpController.to.userNameController,
-      validation: SingUpController.to.isUserNameValid,
-      onChanged: SingUpController.to.changeUserName,
+  _userNameInput() => inputField(controller.userNameController,
+      validation: controller.isUserNameValid,
+      onChanged: controller.changeUserName,
       labelText: hintUserName,
       keyboardType: TextInputType.text);
 
-  _emailInput() => inputField(SingUpController.to.emailController,
-      validation: SingUpController.to.isEmailValid,
-      onChanged: SingUpController.to.changeEmail,
+  _emailInput() => inputField(controller.emailController,
+      validation: controller.isEmailValid,
+      onChanged: controller.changeEmail,
       labelText: hintEmail,
       keyboardType: TextInputType.emailAddress);
 
-  _passwordInput() => inputField(SingUpController.to.passwordController,
+  _passwordInput() => inputField(controller.passwordController,
       labelText: hintPassword,
-      validation: SingUpController.to.isPasswordValid,
-      obscureText: SingUpController.to.passwordVisible.value,
-      onChanged: SingUpController.to.changePassword,
+      validation: controller.isPasswordValid,
+      obscureText: controller.passwordVisible.value,
+      onChanged: controller.changePassword,
       maxLength: passwordMaxLength,
       inkWell: InkWell(
-          child: Icon(SingUpController.to.passwordVisible.value
+          child: Icon(controller.passwordVisible.value
               ? passwordInVisibleIcon
               : passwordVisibleIcon),
-          onTap: () => SingUpController.to.togglePasswordVisibility()));
+          onTap: () => controller.togglePasswordVisibility()));
 
-  _confirmPassword() =>
-      inputField(SingUpController.to.confirmPasswordController,
+  _confirmPassword() => inputField(controller.confirmPasswordController,
           labelText: hintConfirmPassword, validation: (confirmation) {
         return confirmation.isEmpty
             ? 'Confirm password is required'
-            : confirmation == SingUpController.to.passwordController.text
+            : confirmation == controller.passwordController.text
                 ? null
                 : 'Password and confirm password not match';
       },
-          obscureText: SingUpController.to.passwordVisible.value,
-          onChanged: SingUpController.to.changeConfirmPassword,
+          obscureText: controller.passwordVisible.value,
+          onChanged: controller.changeConfirmPassword,
           maxLength: passwordMaxLength,
           inkWell: InkWell(
-              child: Icon(SingUpController.to.passwordVisible.value
+              child: Icon(controller.passwordVisible.value
                   ? passwordInVisibleIcon
                   : passwordVisibleIcon),
-              onTap: () => SingUpController.to.togglePasswordVisibility()));
+              onTap: () => controller.togglePasswordVisibility()));
 
-  _mobileInput() => inputField(SingUpController.to.mobileController,
-      validation: SingUpController.to.isMobileValid,
-      onChanged: SingUpController.to.changeMobile,
+  _mobileInput() => inputField(controller.mobileController,
+      validation: controller.isMobileValid,
+      onChanged: controller.changeMobile,
       labelText: hintMobile,
       maxLength: mobileMaxLength,
       keyboardType: TextInputType.number);

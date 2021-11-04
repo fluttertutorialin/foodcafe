@@ -64,17 +64,11 @@ class ProfileEditController extends GetxController {
     stateStatus.value = StateStatus.loading;
 
     _homeController.setUserDetails(
-      userName: _userName == ''
-          ? _homeController.secureStorageUserNameRx.value
-          : _userName,
+      userName: _userName == '' ? _homeController.secureStorageUserNameRx.value : _userName,
       mobile:
-          _mobile == '' ? _homeController.secureStorageMobileRx.value : _mobile,
-      pinCode: _pinCode == ''
-          ? _homeController.secureStoragePinCodeRx.value
-          : _pinCode,
-      address: _address == ''
-          ? _homeController.secureStorageAddressRx.value
-          : _address,
+      _mobile == '' ? _homeController.secureStorageMobileRx.value : _mobile,
+      pinCode: _pinCode == '' ? _homeController.secureStoragePinCodeRx.value : _pinCode,
+      address: _address == '' ? _homeController.secureStorageAddressRx.value : _address,
     );
     _homeController.getUserDetails();
 

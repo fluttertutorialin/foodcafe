@@ -13,7 +13,7 @@ var descriptionStyle = TextStyle(fontSize: 32.sp, color: Colors.black, fontFamil
 
 //NOT FOUND
 var dataNotAvailableStyle = TextStyle(fontSize: 18.h, color: Colors.black, fontFamily: semiBoldFont);
-var searchDataNotAvailableStyle = TextStyle(fontSize: 30.h, color: searchDataNotAvailableColor, fontFamily: regularFont);
+var searchDataNotAvailableStyle = TextStyle(fontSize: 18.h, color: searchDataNotAvailableColor, fontFamily: regularFont);
 
 var notificationTitleStyle = TextStyle(fontSize: 40.sp, color: Colors.white, fontFamily: mediumFont);
 var totalNotificationStyle = TextStyle(fontSize: 50.sp, color: Colors.white, fontFamily: mediumFont);

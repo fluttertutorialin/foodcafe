@@ -5,18 +5,17 @@ import '../resource/api.dart';
 import '../resource/routes.dart';
 import '../resource/value.dart';
 import '../shared/repository/firestore_database_repository.dart';
-import '../shared/repository/local_auth_repository.dart';
 import '../utils/extensions.dart';
 import '../utils/state_status.dart';
-
+import '../shared/provider/session_store.dart';
 
 class LoginController extends GetxController {
   static LoginController get to => Get.find();
 
-  LoginController({this.localAuthRepository, this.fireStoreDatabaseRepository});
+  LoginController({this.fireStoreDatabaseRepository, this.sessionStore});
 
   /// inject repo abstraction dependency
-  final LocalAuthRepository localAuthRepository;
+  final SessionStore sessionStore;
   final FireStoreDatabaseRepository fireStoreDatabaseRepository;
 
   var stateStatus = Rx<StateStatus>(StateStatus.initial);
@@ -73,16 +72,16 @@ class LoginController extends GetxController {
               flushBarPosition: toastOrderPosition);
         });*/
 
-        localAuthRepository.writeSession(secureStorageUsername, developerName);
-        localAuthRepository.writeSession(secureStorageEmail, developerEmail);
-        localAuthRepository.writeSession(secureStorageProfileUrl, '');
-        localAuthRepository.writeSession(secureStorageToken, '');
-        localAuthRepository.writeSession(secureStorageUserId, '');
-        localAuthRepository.writeSession(secureStorageMobile, '');
-        localAuthRepository.writeSession(secureStoragePinCode, '123456');
-        localAuthRepository.writeSession(secureStorageAddress, 'Address');
-        localAuthRepository.writeSession(secureStorageWhereLogin, whereLogin);
-        localAuthRepository.writeSession(secureStorageOnBoarding, onBoarding);
+        sessionStore.userId('');
+        sessionStore.token('');
+        sessionStore.userName(developerName);
+        sessionStore.email(developerEmail);
+        sessionStore.profileUrl('');
+        sessionStore.mobile('');
+        sessionStore.pinCode('123456');
+        sessionStore.address('Address');
+        sessionStore.whereLogin(whereLogin);
+        sessionStore.whereLogin(onBoarding);
 
         await Future.delayed(const Duration(seconds: 2));
         stateStatus.value = StateStatus.success;
@@ -94,21 +93,11 @@ class LoginController extends GetxController {
   }
 
   Future<void> callGoogleLogin() async {
-
+    sessionStore.whereLogin(onBoarding);
   }
 
   Future<void> callFacebookLogin() async {
-    localAuthRepository.writeSession(secureStorageUsername, ''.split(' ')[0]);
-    localAuthRepository.writeSession(secureStorageEmail, '');
-    localAuthRepository.writeSession(secureStorageProfileUrl, '');
-    localAuthRepository.writeSession(secureStorageToken, '');
-    localAuthRepository.writeSession(secureStorageUserId, '');
-    localAuthRepository.writeSession(secureStorageMobile, '');
-    localAuthRepository.writeSession(secureStoragePinCode, '');
-    localAuthRepository.writeSession(secureStorageAddress, '');
-    localAuthRepository.writeSession(secureStorageWhereLogin, whereGoogleLogin);
-
-    localAuthRepository.writeSession(secureStorageOnBoarding, onBoarding);
+    sessionStore.whereLogin(onBoarding);
     Get.offNamedUntil(homeRoute, (_) => false);
   }
 

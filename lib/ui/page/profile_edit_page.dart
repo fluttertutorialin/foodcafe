@@ -17,6 +17,7 @@ class ProfileEditPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Scaffold(
       appBar: AppBar(
+          backgroundColor: appBarColor,
           elevation: appBarElevation,
           leading: IconButton(
               onPressed: () => Get.back(),
