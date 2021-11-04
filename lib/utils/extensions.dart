@@ -71,8 +71,8 @@ extension ContextExtensions on BuildContext {
 
 extension ImagePickerCameraGallery on ImageSource {
   Future<String> getImage() async {
-    PickedFile pickedFile =
-        await ImagePicker().getImage(source: this, imageQuality: 20);
+    XFile pickedFile =
+        await ImagePicker().pickImage(source: this, imageQuality: 20);
     if (pickedFile != null && pickedFile.path != null) {
       return pickedFile.path;
     }

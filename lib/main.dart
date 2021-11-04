@@ -29,8 +29,7 @@ Future<void> main() async {
   DependencyInjection.init();
   await Firebase.initializeApp();
 
-  var _firebaseService = FirebaseService();
-  _firebaseService.initializeFirebase();
+  //FirebaseService().initializeFirebase();
   FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
 
   FirebaseCrashlytics.instance.setCrashlyticsCollectionEnabled(true);
